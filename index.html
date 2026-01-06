@@ -1,188 +1,139 @@
 <!DOCTYPE html>
 <html lang="hu">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ruhatárház - Minőségi ruhák jó áron</title>
-    <meta name="description" content="Válogatott új és használt ruhák, férfi és női darabok, márkás és nem márkás ruhák egyaránt. Kedvező árak, stílusos öltözködés.">
-    <meta name="keywords" content="ruházat, férfi ruhák, női ruhák, kiegészítők, márkás ruhák, használt ruhák, kedvező ár">
-    <meta name="author" content="Ruhatárház">
-    <meta name="robots" content="index, follow">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- Open Graph -->
-    <meta property="og:title" content="Ruhatárház - Minőségi ruhák jó áron">
-    <meta property="og:description" content="Válogatott új és használt ruhák, férfi és női darabok, márkás és nem márkás ruhák egyaránt. Kedvező árak, stílusos öltözködés.">
-    <meta property="og:image" content="https://ruhatarhaz.hu/logo.png">
-    <meta property="og:url" content="https://ruhatarhaz.hu/">
-    <meta property="og:type" content="website">
+<title>Ruhatárház – Minőségi ruhák jó áron</title>
+<meta name="description" content="Válogatott új és használt ruhák, férfi és női, márkás és nem márkás darabok egyaránt, kedvező áron.">
+<meta name="robots" content="index, follow">
 
-    <!-- Twitter Card -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Ruhatárház - Minőségi ruhák jó áron">
-    <meta name="twitter:description" content="Válogatott új és használt ruhák, férfi és női darabok, márkás és nem márkás ruhák egyaránt. Kedvező árak, stílusos öltözködés.">
-    <meta name="twitter:image" content="https://ruhatarhaz.hu/logo.png">
+<style>
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    min-height: 100vh;
+    background: url('background.jpg') center / cover no-repeat;
+    color: #fff;
+    text-align: center;
+}
 
-    <!-- Strukturált adat -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "Store",
-      "name": "Ruhatárház",
-      "image": "https://ruhatarhaz.hu/logo.png",
-      "url": "https://ruhatarhaz.hu",
-      "description": "Válogatott új és használt ruhák, férfi és női darabok, márkás és nem márkás ruhák egyaránt, jó áron.",
-      "address": {
-        "@type": "PostalAddress",
-        "addressLocality": "Miskolc",
-        "addressCountry": "HU"
-      }
-    }
-    </script>
+/* Sötét overlay */
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.35);
+    z-index: 0;
+}
 
-    <style>
-        /* Alap beállítások */
-        body {
-            margin: 0;
-            padding: 0;
-            font-family: Arial, sans-serif;
-            text-align: center;
-            min-height: 100vh;
-            background-image: url('background.jpg'); /* férfias, jobb-bal oldalon mintás, középen üres */
-            background-size: cover;
-            background-repeat: no-repeat;
-            background-position: center;
-            color: #fff;
-            position: relative;
-        }
+/* Központi tartalom */
+.container {
+    position: relative;
+    z-index: 1;
+    padding-top: 40px;
+}
 
-        /* Sötét overlay a szöveg kiemeléséhez */
-        body::before {
-            content: "";
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0,0,0,0.35);
-            z-index: 0;
-        }
+/* LOGÓ KIEMELÉS */
+.logo-box {
+    display: inline-block;
+    background: rgba(255,255,255,0.9);
+    padding: 16px 22px;
+    border-radius: 16px;
+    box-shadow:
+        0 10px 30px rgba(0,0,0,0.6),
+        inset 0 0 0 2px rgba(0,0,0,0.08);
+    margin-bottom: 20px;
+}
 
-        /* Logó */
-        .logo {
-            width: 300px;
-            margin: 0 auto 20px;
-            display: block;
-            position: relative;
-            z-index: 1;
-        }
+.logo {
+    width: 160px;
+    display: block;
+}
 
-        /* Üdvözlő szöveg */
-        h1 {
-            margin: 0;
-            font-size: 28px;
-            position: relative;
-            z-index: 1;
-            text-shadow: 2px 2px 6px rgba(0,0,0,0.7);
-            display: inline-block;
-            background-color: rgba(255,255,255,0.2);
-            padding: 5px 10px;
-            border-radius: 5px;
-        }
+/* Szövegek */
+h1 {
+    margin: 10px 0 6px;
+    font-size: 30px;
+    text-shadow: 2px 2px 6px rgba(0,0,0,0.8);
+}
 
-        /* Szlogen */
-        p.slogan {
-            margin-top: 8px;
-            font-size: 18px;
-            max-width: 90%;
-            margin-left: auto;
-            margin-right: auto;
-            position: relative;
-            z-index: 1;
-            text-shadow: 1px 1px 4px rgba(0,0,0,0.6);
-            display: inline-block;
-            background-color: rgba(255,255,255,0.15);
-            padding: 5px 12px;
-            border-radius: 5px;
-        }
+.slogan {
+    font-size: 18px;
+    max-width: 90%;
+    margin: 0 auto 14px;
+    background: rgba(0,0,0,0.35);
+    padding: 8px 14px;
+    border-radius: 8px;
+}
 
-        /* Rövid bemutatkozó kulcsszavakkal */
-        p.intro {
-            margin-top: 15px;
-            font-size: 16px;
-            max-width: 90%;
-            margin-left: auto;
-            margin-right: auto;
-            position: relative;
-            z-index: 1;
-            color: #fff;
-        }
+.intro {
+    max-width: 90%;
+    margin: 0 auto 26px;
+    font-size: 16px;
+    opacity: 0.95;
+}
 
-        /* Linkek / gombok */
-        .links {
-            margin-top: 25px;
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-            align-items: center;
-            position: relative;
-            z-index: 1;
-        }
+/* Gombok */
+.links {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    align-items: center;
+}
 
-        .links a {
-            text-decoration: none;
-            background-color: #111;
-            color: #fff;
-            padding: 12px 25px;
-            border-radius: 10px;
-            font-weight: bold;
-            width: 200px;
-            display: inline-block;
-            transition: background-color 0.3s;
-        }
+.links a {
+    width: 220px;
+    padding: 14px;
+    background: #111;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 12px;
+    font-weight: bold;
+    transition: 0.3s;
+}
 
-        .links a:hover {
-            background-color: #444;
-        }
+.links a:hover {
+    background: #333;
+}
 
-        /* Mobil optimalizálás */
-        @media (max-width: 480px) {
-            h1 {
-                font-size: 24px;
-            }
-            p.slogan, p.intro {
-                font-size: 16px;
-            }
-            .links a {
-                width: 160px;
-                padding: 10px 20px;
-            }
-        }
-    </style>
+/* Mobil */
+@media (max-width: 480px) {
+    .logo { width: 130px; }
+    h1 { font-size: 24px; }
+    .slogan { font-size: 16px; }
+}
+</style>
 </head>
+
 <body>
 
-    <!-- Logó -->
-    <img src="logo.png" alt="Ruhatárház logó - férfi és női ruházat" class="logo">
+<div class="container">
 
-    <!-- Üdvözlés -->
+    <!-- LOGÓ KIEMELVE -->
+    <div class="logo-box">
+        <img src="logo.png" alt="Ruhatárház logó" class="logo">
+    </div>
+
     <h1>Üdvözöllek!</h1>
 
-    <!-- Szlogen -->
-    <p class="slogan">Minőségi, válogatott ruhák, márkás és nem márkás darabok egyaránt, jó áron – hogy mindig stílusosan öltözhess!</p>
+    <div class="slogan">
+        Minőségi, válogatott ruhák – márkás és nem márkás darabok egyaránt, jó áron
+    </div>
 
-    <!-- Rövid bemutatkozó kulcsszavakkal -->
-    <p class="intro">
-        Fedezd fel a Ruhatárház kínálatát! Válogatott <strong>férfi és női ruhák</strong>, <strong>márkás és nem márkás darabok</strong> egyaránt, minőségi anyagok, kedvező árak.
-    </p>
+    <div class="intro">
+        Fedezd fel a Ruhatárház kínálatát: férfi és női ruhák, új és használt darabok,
+        stílusosan, megfizethetően.
+    </div>
 
-    <!-- Linkek / Gombok -->
     <div class="links">
         <a href="#">Férfi ruházat</a>
         <a href="#">Női ruházat</a>
         <a href="#">Kiegészítők</a>
-        <a href="#">Újdonságok</a>
         <a href="#">Kapcsolat</a>
     </div>
+
+</div>
 
 </body>
 </html>
