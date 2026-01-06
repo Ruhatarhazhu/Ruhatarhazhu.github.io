@@ -2,42 +2,105 @@
 <html lang="hu">
 <head>
     <meta charset="UTF-8">
-    <title>Kezdőoldal</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ruhatárház</title>
     <style>
+        /* Háttér */
         body {
+            margin: 0;
+            padding: 0;
             font-family: Arial, sans-serif;
-            background: #f4f4f4;
             text-align: center;
-            padding: 50px;
+            min-height: 100vh;
+            background-image: url('background.jpg'); /* ide a feltöltött háttér képed */
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            color: #111; /* alap szöveg szín */
         }
-        a {
+
+        /* Logó */
+        .logo {
+            width: 150px;
+            margin: 0 auto 5px; /* logó és szöveg közti tér */
             display: block;
-            margin: 15px auto;
-            padding: 12px;
-            max-width: 300px;
-            background: #0066cc;
-            color: white;
-            text-decoration: none;
-            border-radius: 6px;
-            font-size: 18px;
         }
-        a:hover {
-            background: #004999;
+
+        /* Üdvözlő szöveg */
+        h1 {
+            margin: 0;
+            font-size: 28px;
+        }
+
+        /* Szlogen */
+        p.slogan {
+            margin-top: 5px;
+            font-size: 18px;
+            max-width: 90%;
+            margin-left: auto;
+            margin-right: auto;
+            color: #222;
+        }
+
+        /* Linkek / gombok */
+        .links {
+            margin-top: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            align-items: center;
+        }
+
+        .links a {
+            text-decoration: none;
+            background-color: #111;
+            color: #fff;
+            padding: 12px 25px;
+            border-radius: 10px;
+            font-weight: bold;
+            width: 200px;
+            display: inline-block;
+            transition: background-color 0.3s;
+        }
+
+        .links a:hover {
+            background-color: #444;
+        }
+
+        /* Mobil optimalizálás */
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 24px;
+            }
+            p.slogan {
+                font-size: 16px;
+            }
+            .links a {
+                width: 160px;
+                padding: 10px 20px;
+            }
         }
     </style>
 </head>
 <body>
 
-    <img src="logo.png" alt="Ruhatarhaz logo" style="width:300px; display:block; margin:0 auto 15px;">
-<h1>Minőségi válogatott ruhák, márkás és nem márkás darabok egyaránt, jó áron – hogy mindig stílusosan öltözhess.👕</h1>
-    
-    <h1>Üdvözöllek!</h1>
-    <p>Válassz az alábbi linkek közül:</p>
+    <!-- Logó -->
+    <img src="logo.png" alt="Ruhatárház logó" class="logo">
 
-    <a href="https://google.com">Google</a>
-    <a href="https://youtube.com">YouTube</a>
-    <a href="https://facebook.com">Facebook</a>
+    <!-- Üdvözlés -->
+    <h1>Üdvözöllek!</h1>
+
+    <!-- Szlogen -->
+    <p class="slogan">Minőségi, válogatott ruhák, márkás és nem márkás darabok egyaránt, jó áron – hogy mindig stílusosan öltözhess!</p>
+
+    <!-- Linkek / Gombok -->
+    <div class="links">
+        <a href="#">Férfi ruházat</a>
+        <a href="#">Női ruházat</a>
+        <a href="#">Kiegészítők</a>
+        <a href="#">Újdonságok</a>
+        <a href="#">Kapcsolat</a>
+    </div>
 
 </body>
 </html>
