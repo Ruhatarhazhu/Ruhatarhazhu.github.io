@@ -153,6 +153,59 @@ h1 {
         padding: 20px 26px;
     }
 }
+
+    /* MODERN GOMBOK */
+.links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    justify-content: center;
+    margin-top: 30px;
+}
+
+.links a {
+    text-decoration: none;
+    padding: 14px 26px;
+    border-radius: 999px;
+    font-size: 16px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    color: #fff;
+    background: linear-gradient(135deg, #ff6f00, #ff9800);
+    box-shadow: 0 8px 25px rgba(255, 111, 0, 0.35);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.links a::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: rgba(255,255,255,0.2);
+    transition: left 0.3s ease;
+}
+
+.links a:hover::before {
+    left: 0;
+}
+
+.links a:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 35px rgba(255, 111, 0, 0.5);
+}
+
+@media (max-width: 480px) {
+    .links a {
+        width: 100%;
+        text-align: center;
+        font-size: 15px;
+        padding: 14px;
+    }
+}
 </style>
 </head>
 
