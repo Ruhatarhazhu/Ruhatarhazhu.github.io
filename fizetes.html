@@ -1,5 +1,54 @@
-<!-- kosar.html -->
+<!-- termek.html -->
 <!DOCTYPE html><html lang="hu">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DivatShop - Termékoldal</title>
+<link rel="icon" href="favicon.ico">
+<style>
+body {margin:0; font-family: Arial, sans-serif; background-color: #fff;}
+header, footer {background-color: #f8f8f8; padding: 10px 20px;}
+header {display:flex; justify-content: space-between; align-items:center;}
+.logo img {max-height:50px; width:auto;}
+nav a {margin-left:15px; font-weight:500; color:#333;}
+.product-detail {display:flex; padding:20px; gap:20px;}
+.product-detail img {max-width:300px; height:auto;}
+.product-info {flex:1;}
+button {background-color:#e91e63; color:#fff; border:none; padding:10px 16px; cursor:pointer; margin-top:10px;}
+footer {text-align:center; font-size:14px; color:#666;}
+footer a {color:#e91e63;}
+</style>
+</head>
+<body>
+<header>
+<div class="logo"><img src="logo.webp" alt="DivatShop logó"></div>
+<nav>
+<a href="index.html">Főoldal</a>
+<a href="termek.html">Termékek</a>
+<a href="kosar.html">Kosár</a>
+</nav>
+</header>
+<section class="product-detail">
+<img src="product1.jpg" alt="Rózsaszín ruha">
+<div class="product-info">
+<h1>Rózsaszín ruha</h1>
+<p>Elegáns, tavaszi ruhadarab, több méretben.</p>
+<p>Ár: 5 990 Ft</p>
+<button onclick="addToCart('Rózsaszín ruha', 5990)">Kosárba</button>
+</div>
+</section>
+<footer>
+&copy; 2026 DivatShop | <a href="#">Kapcsolat</a> | <a href="#">Adatvédelem</a>
+</footer>
+<script>
+let cartItems = [];
+function addToCart(name, price) {
+cartItems.push({name, price});
+alert(name + ' hozzáadva a kosárhoz!');
+}
+</script>
+</body>
+</html><!-- kosar.html --><!DOCTYPE html><html lang="hu">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -45,3 +94,52 @@ alert('A fizetés funkció még nem aktív.');
 }
 </script>
 </body>
+</html><!-- fizetes.html --><!DOCTYPE html><html lang="hu">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DivatShop - Fizetés</title>
+<link rel="icon" href="favicon.ico">
+<style>
+body {margin:0; font-family: Arial, sans-serif; background-color:#fff;}
+header, footer {background-color:#f8f8f8; padding:10px 20px;}
+header {display:flex; justify-content: space-between; align-items:center;}
+.logo img {max-height:50px; width:auto;}
+nav a {margin-left:15px; font-weight:500; color:#333;}
+form {padding:20px; max-width:400px; margin:auto; display:flex; flex-direction:column; gap:10px;}
+input {padding:8px; font-size:14px;}
+button {background-color:#e91e63; color:#fff; border:none; padding:10px 16px; cursor:pointer;}
+footer {text-align:center; font-size:14px; color:#666;}
+footer a {color:#e91e63;}
+</style>
+</head>
+<body>
+<header>
+<div class="logo"><img src="logo.webp" alt="DivatShop logó"></div>
+<nav>
+<a href="index.html">Főoldal</a>
+<a href="termek.html">Termékek</a>
+<a href="kosar.html">Kosár</a>
+</nav>
+</header>
+<section>
+<h1 style="text-align:center;">Fizetés</h1>
+<form onsubmit="pay(event)">
+<input type="text" placeholder="Teljes név" required>
+<input type="text" placeholder="Cím" required>
+<input type="text" placeholder="Telefonszám" required>
+<input type="email" placeholder="Email" required>
+<button type="submit">Fizetés</button>
+</form>
+</section>
+<footer>
+&copy; 2026 DivatShop | <a href="#">Kapcsolat</a> | <a href="#">Adatvédelem</a>
+</footer>
+<script>
+function pay(e){
+e.preventDefault();
+alert('A fizetés funkció még nem aktív.');
+}
+</script>
+</body>
+</html>
