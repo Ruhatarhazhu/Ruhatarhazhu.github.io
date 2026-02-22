@@ -9,7 +9,7 @@
         a { text-decoration: none; color: inherit; }
         header, footer { background-color: #f8f8f8; padding: 10px 20px; }
         header { display: flex; justify-content: space-between; align-items: center; }
-        .logo { font-size: 24px; font-weight: bold; color: #e91e63; }
+        .logo img { max-height: 50px; width: auto; }
         nav a { margin-left: 15px; font-weight: 500; color: #333; }/* --- Főoldal hero --- */
     .hero { position: relative; text-align: center; background-color: #ffe4e1; padding: 40px 20px; }
     .hero h1 { font-size: 32px; margin-bottom: 10px; }
@@ -41,7 +41,9 @@
 
 </head>
 <body><header>
-    <div class="logo">logo.webp</div>
+    <div class="logo">
+        <img src="img/logo.png" alt="DivatShop logó">
+    </div>
     <nav>
         <a href="#">Főoldal</a>
         <a href="#products">Termékek</a>
