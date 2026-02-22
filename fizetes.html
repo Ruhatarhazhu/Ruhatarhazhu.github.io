@@ -1,1 +1,47 @@
-
+<!-- kosar.html -->
+<!DOCTYPE html><html lang="hu">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DivatShop - Kosár</title>
+<link rel="icon" href="favicon.ico">
+<style>
+body {margin:0; font-family: Arial, sans-serif; background-color: #fff;}
+header, footer {background-color: #f8f8f8; padding: 10px 20px;}
+header {display:flex; justify-content: space-between; align-items:center;}
+.logo img {max-height:50px; width:auto;}
+nav a {margin-left:15px; font-weight:500; color:#333;}
+.cart-container {padding:20px;}
+.cart-item {display:flex; justify-content: space-between; margin-bottom:10px;}
+button {background-color:#e91e63; color:#fff; border:none; padding:8px 12px; cursor:pointer;}
+footer {text-align:center; font-size:14px; color:#666;}
+footer a {color:#e91e63;}
+</style>
+</head>
+<body>
+<header>
+<div class="logo"><img src="logo.webp" alt="DivatShop logó"></div>
+<nav>
+<a href="index.html">Főoldal</a>
+<a href="termek.html">Termékek</a>
+<a href="kosar.html">Kosár</a>
+</nav>
+</header>
+<section class="cart-container">
+<h1>Kosár</h1>
+<div id="cart-items">
+<p>A kosár üres.</p>
+</div>
+<p>Összesen: <span id="total">0</span> Ft</p>
+<button onclick="checkout()">Fizetés</button>
+</section>
+<footer>
+&copy; 2026 DivatShop | <a href="#">Kapcsolat</a> | <a href="#">Adatvédelem</a>
+</footer>
+<script>
+let cartItems = [];
+function checkout() {
+alert('A fizetés funkció még nem aktív.');
+}
+</script>
+</body>
