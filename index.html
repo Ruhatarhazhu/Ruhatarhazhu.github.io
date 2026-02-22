@@ -22,6 +22,27 @@ body {
 header {
     padding:20px 30px;
     border-bottom:1px solid #eee;
+    position:sticky;
+    top:0;
+    background:#fff;
+    z-index:1000;
+}
+.mobile-menu-btn {
+    display:none;
+    font-size:26px;
+    cursor:pointer;
+}
+.mobile-menu {
+    display:none;
+    flex-direction:column;
+    background:#fff;
+    border-top:1px solid #eee;
+}
+.mobile-menu a {
+    padding:15px;
+    border-bottom:1px solid #eee;
+    text-decoration:none;
+    color:#333;
 }
 .top-bar {
     display:flex;
@@ -206,7 +227,7 @@ header {
 
 @media (max-width: 992px) { .products { grid-template-columns: repeat(2,1fr); } .main { flex-direction: column; } .sidebar { width:100%; display:flex; overflow-x:auto; } .sidebar a { flex:1; text-align:center; white-space:nowrap; border-right:1px solid #eee; } .hero-content { left:30px; } }
 
-@media (max-width: 600px) { .container { margin:0; border-radius:0; } header { padding:15px; } .top-bar { flex-direction: column; align-items:flex-start; gap:10px; } .search-bar { flex-direction: column; } .search-bar button { width:100%; } .hero-content { position:relative; top:auto; left:auto; transform:none; padding:20px; background:rgba(255,255,255,0.9); } .hero-content h1 { font-size:28px; } .products { grid-template-columns:1fr; padding:15px; } .features { flex-direction: column; gap:15px; text-align:center; } .footer-top { flex-direction: column; gap:20px; padding:20px; } .footer-top div { width:100%; } }
+@media (max-width: 600px) { .mobile-menu-btn { display:block; } .sidebar { display:none; } .container { margin:0; border-radius:0; } header { padding:15px; } .top-bar { flex-direction: column; align-items:flex-start; gap:10px; } .search-bar { flex-direction: column; } .search-bar button { width:100%; } .hero-content { position:relative; top:auto; left:auto; transform:none; padding:20px; background:rgba(255,255,255,0.9); } .hero-content h1 { font-size:28px; } .products { grid-template-columns:1fr; padding:15px; } .features { flex-direction: column; gap:15px; text-align:center; } .footer-top { flex-direction: column; gap:20px; padding:20px; } .footer-top div { width:100%; } }
 
 </style>
 </head>
@@ -219,6 +240,10 @@ header {
 <div>Fiókom</div>
 <div>Kosaram</div>
 <div class="cart-icon">🛒<div class="cart-count">1</div></div>
+<div class="mobile-menu-btn" onclick="toggleMenu()">☰</div>
+</div>
+<div>Kosaram</div>
+<div class="cart-icon">🛒<div class="cart-count">1</div></div>
 </div>
 </div>
 <div class="search-bar">
@@ -226,6 +251,14 @@ header {
 <button>Keresés</button>
 </div>
 </header>
+<div class="mobile-menu" id="mobileMenu">
+<a href="#">Női Ruhák</a>
+<a href="#">Férfi Ruhák</a>
+<a href="#">Gyerek Ruhák</a>
+<a href="#">Kiegészítők</a>
+<a href="#">Újdonságok</a>
+<a href="#">Akciók</a>
+</div>
 <div class="info-strip">Gyors Szállítás | <span style="color:#d63b3b;">Akciós Árak</span> | 100% Elégedettség!</div>
 <div class="main">
 <div class="sidebar">
@@ -304,5 +337,11 @@ header {
 </div>
 <div class="footer-bottom">© 2026 Ruhatárház. Minden jog fenntartva.</div>
 </div>
+<script>
+function toggleMenu(){
+    const menu = document.getElementById('mobileMenu');
+    menu.style.display = menu.style.display === 'flex' ? 'none' : 'flex';
+}
+</script>
 </body>
 </html>
