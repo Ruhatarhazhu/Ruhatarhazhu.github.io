@@ -4,65 +4,66 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>DivatShop</title>
 <link rel="icon" type="image/png" href="favicon.png">
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
 :root{
---primary:#5a4a42;
---accent:#c8a27a;
---bg:#f7f5f2;
+--primary:#2f2f2f;
+--accent:#6b7280;
+--bg:#f3f4f6;
 --card:#ffffff;
---text:#3a3a3a;
+--border:#e5e7eb;
+--radius:18px;
 }
 *{box-sizing:border-box;}
 body{
 margin:0;
-font-family:'Poppins',sans-serif;
+font-family:'Inter',sans-serif;
 background:var(--bg);
-color:var(--text);
-}/* ================= HEADER ================= */ header{ position:sticky; top:0; background:#ffffffcc; backdrop-filter:blur(8px); padding:18px 40px; display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid #eee; z-index:1000; } .logo img{ height:36px; border-radius:8px; } .nav{ display:flex; gap:25px; align-items:center; } .nav a{ text-decoration:none; color:var(--text); font-size:14px; font-weight:500; border-radius:20px; padding:6px 14px; transition:.2s; } .nav a:hover{ background:var(--accent); color:#fff; } .cart{ position:relative; cursor:pointer; font-size:18px; } .cart-count{ position:absolute; top:-6px; right:-10px; background:var(--accent); color:#fff; font-size:10px; border-radius:50%; padding:3px 6px; }
+color:var(--primary);
+}/* ================= HEADER ================= */ header{ position:sticky; top:0; background:#ffffffdd; backdrop-filter:blur(10px); padding:16px 40px; display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid var(--border); z-index:1000; } .logo img{ height:32px; border-radius:8px; } .nav{ display:flex; gap:20px; align-items:center; } .nav a{ text-decoration:none; color:var(--primary); font-size:14px; font-weight:500; padding:8px 16px; border-radius:30px; transition:.2s; } .nav a:hover{ background:var(--primary); color:#fff; } .cart{ position:relative; cursor:pointer; font-size:18px; padding:6px 10px; border-radius:50%; transition:.2s; } .cart:hover{ background:#eee; } .cart-count{ position:absolute; top:-5px; right:-6px; background:var(--primary); color:#fff; font-size:10px; border-radius:50%; padding:2px 6px; }
 
-/* ================= HERO ================= */ .hero{ margin:40px; background:#fff; border-radius:30px; padding:60px 30px; text-align:center; box-shadow:0 10px 30px rgba(0,0,0,0.05); } .hero h1{ margin:0 0 15px; font-size:36px; color:var(--primary); } .hero p{ margin-bottom:25px; color:#777; } .hero button{ background:var(--accent); color:#fff; border:none; padding:12px 28px; border-radius:25px; font-weight:500; cursor:pointer; transition:.2s; } .hero button:hover{ opacity:.85; }
+/* ================= HERO ================= */ .hero{ margin:50px auto; max-width:1100px; background:var(--card); border-radius:calc(var(--radius) + 10px); padding:70px 40px; text-align:center; box-shadow:0 10px 30px rgba(0,0,0,0.04); } .hero h1{ margin:0 0 15px; font-size:38px; font-weight:600; } .hero p{ margin-bottom:30px; color:var(--accent); } .hero button{ background:var(--primary); color:#fff; border:none; padding:12px 30px; border-radius:30px; font-weight:500; cursor:pointer; transition:.2s; } .hero button:hover{ opacity:.85; }
 
-/* ================= PRODUCTS ================= */ .section-title{ text-align:center; margin:60px 0 30px; font-size:20px; color:var(--primary); } .products{ display:grid; grid-template-columns:repeat(3,1fr); gap:30px; padding:0 40px 80px; } .card{ background:var(--card); border-radius:25px; padding:20px; text-align:center; box-shadow:0 8px 25px rgba(0,0,0,0.05); transition:.2s; } .card:hover{ transform:translateY(-5px); } .card img{ width:100%; border-radius:20px; margin-bottom:15px; } .card h3{ margin:10px 0 5px; font-size:16px; } .price{ color:var(--primary); font-weight:600; margin-bottom:10px; } .card button{ background:var(--primary); color:#fff; border:none; padding:8px 20px; border-radius:20px; cursor:pointer; transition:.2s; } .card button:hover{ background:var(--accent); }
+/* ================= PRODUCTS ================= */ .section-title{ text-align:center; margin:80px 0 40px; font-size:18px; font-weight:600; } .products{ display:grid; grid-template-columns:repeat(3,1fr); gap:35px; max-width:1100px; margin:0 auto 100px; padding:0 20px; } .card{ background:var(--card); border-radius:var(--radius); padding:18px; border:1px solid var(--border); transition:.2s; } .card:hover{ transform:translateY(-6px); box-shadow:0 10px 25px rgba(0,0,0,0.05); } .card img{ width:100%; border-radius:14px; margin-bottom:15px; } .card h3{ margin:8px 0 5px; font-size:15px; } .price{ color:var(--accent); font-weight:500; margin-bottom:12px; } .card button{ background:var(--primary); color:#fff; border:none; padding:8px 18px; border-radius:30px; font-size:13px; cursor:pointer; transition:.2s; } .card button:hover{ background:#000; }
 
-/* ================= FOOTER ================= */ footer{ background:#fff; padding:40px 20px; text-align:center; border-top:1px solid #eee; border-radius:30px 30px 0 0; }
+/* ================= FOOTER ================= */ footer{ background:var(--card); padding:50px 20px; text-align:center; border-top:1px solid var(--border); border-radius:30px 30px 0 0; font-size:14px; color:var(--accent); }
 
-/* ================= RESPONSIVE ================= */ @media(max-width:1000px){ .products{grid-template-columns:repeat(2,1fr);} } @media(max-width:700px){ .products{grid-template-columns:1fr;} .hero{margin:20px;} header{flex-direction:column;gap:10px;} } </style>
+/* ================= RESPONSIVE ================= */ @media(max-width:1000px){ .products{grid-template-columns:repeat(2,1fr);} } @media(max-width:700px){ .products{grid-template-columns:1fr;} .hero{margin:30px 20px;padding:50px 25px;} header{flex-direction:column;gap:12px;} } </style>
 
 </head>
 <body><header>
 <div class="logo"><img src="logo.webp" alt="DivatShop"></div>
 <div class="nav">
 <a href="#">Főoldal</a>
-<a href="#">Termékek</a>
+<a href="#">Kollekció</a>
 <a href="#">Kapcsolat</a>
 <div class="cart">🛒<div class="cart-count">2</div></div>
 </div>
 </header><section class="hero">
-<h1>Elegáns és Egyszerű Stílus</h1>
-<p>Letisztult formák, lekerekített részletek, természetes színek.</p>
-<button>Vásárlás</button>
+<h1>Időtálló, Letisztult Stílus</h1>
+<p>Egyszerű formák, harmonikus arányok és minőségi megjelenés.</p>
+<button>Fedezd fel</button>
 </section><div class="section-title">Kiemelt Termékek</div>
 <div class="products">
 <div class="card">
 <img src="product1.jpg" alt="Termék">
-<h3>Női Ruha</h3>
-<div class="price">12 990 Ft</div>
+<h3>Minimal Kabát</h3>
+<div class="price">24 990 Ft</div>
 <button>Kosárba</button>
 </div>
 <div class="card">
 <img src="product2.jpg" alt="Termék">
-<h3>Férfi Póló</h3>
+<h3>Basic Póló</h3>
 <div class="price">8 990 Ft</div>
 <button>Kosárba</button>
 </div>
 <div class="card">
 <img src="product3.jpg" alt="Termék">
-<h3>Kabát</h3>
-<div class="price">24 990 Ft</div>
+<h3>Modern Farmer</h3>
+<div class="price">19 990 Ft</div>
 <button>Kosárba</button>
 </div>
 </div><footer>
-© 2024 DivatShop – Egyszerű szépség
+© 2024 DivatShop – Letisztult megjelenés, kiegyensúlyozott stílus
 </footer></body>
 </html>
