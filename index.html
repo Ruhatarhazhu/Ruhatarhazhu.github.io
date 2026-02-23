@@ -2,122 +2,109 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>DivatShop Prémium</title>
+<title>DivatShop</title>
 <link rel="icon" type="image/png" href="favicon.png">
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
-body{margin:0;font-family:'Poppins',sans-serif;background:#f4f6f8;color:#222;}
-.container{max-width:1200px;margin:0 auto;}
-header{position:sticky;top:0;background:rgba(255,255,255,0.95);backdrop-filter:blur(12px);z-index:1000;padding:20px 40px;transition:.3s;border-bottom:1px solid #eee;display:flex;flex-direction:column;}
-header.shrink{padding:10px 40px;box-shadow:0 5px 20px rgba(0,0,0,0.05);} 
-.top-bar{display:flex;justify-content:space-between;align-items:center;}
-.logo img{height:44px;transition:.3s;}
-header.shrink .logo img{height:34px;}
-.top-links{display:flex;gap:25px;align-items:center;}
-.cart-wrapper{position:relative;}
-.cart-icon{font-size:22px;cursor:pointer;position:relative;}
-.cart-count{position:absolute;top:-6px;right:-10px;background:#d63b3b;color:#fff;font-size:11px;border-radius:50%;padding:3px 6px;font-weight:600;}
-.mini-cart{position:absolute;right:0;top:40px;width:280px;background:#fff;border-radius:16px;box-shadow:0 15px 40px rgba(0,0,0,0.15);padding:15px;display:none;flex-direction:column;gap:10px;}
-.mini-cart.open{display:flex;}
-.mini-cart-item{display:flex;justify-content:space-between;font-size:14px;align-items:center;}
-.mini-cart button{background:#d63b3b;color:#fff;border:none;padding:8px;border-radius:6px;cursor:pointer;}
-.mobile-menu-btn{display:none;font-size:26px;cursor:pointer;}
-.search-bar{margin-top:15px;display:flex;gap:10px;}
-.search-bar input{flex:1;padding:12px 18px;border-radius:30px;border:1px solid #e5e5e5;}
-.search-bar button{background:#d63b3b;color:#fff;border:none;padding:12px 25px;border-radius:30px;font-weight:600;cursor:pointer;}
-.mobile-menu{display:none;flex-direction:column;background:#fff;border-top:1px solid #eee;overflow:hidden;max-height:0;transition:max-height .4s ease;}
-.mobile-menu.open{display:flex;max-height:400px;}
-.mobile-menu a{padding:15px;border-bottom:1px solid #eee;text-decoration:none;color:#333;}
-.hero{position:relative;}
-.hero img{width:100%;display:block;}
-.hero-content{position:absolute;top:50%;left:80px;transform:translateY(-50%);color:#fff;}
-.hero-content h1{font-family:'Playfair Display',serif;font-size:54px;margin:0;}
-.hero-content span{color:#ffdede;}
-.hero-content p{font-size:22px;margin:15px 0;}
-.hero-content button{background:#fff;color:#d63b3b;border:none;padding:14px 30px;border-radius:30px;font-weight:600;cursor:pointer;}
-.section-title{text-align:center;font-size:26px;font-weight:600;margin:50px 0 30px;}
-.products{display:grid;grid-template-columns:repeat(4,1fr);gap:25px;padding:0 40px 50px;}
-.card{border-radius:18px;background:#fff;box-shadow:0 10px 30px rgba(0,0,0,0.05);transition:.3s;text-align:center;padding-bottom:15px;}
-.card:hover{transform:translateY(-8px);box-shadow:0 20px 50px rgba(0,0,0,0.1);} 
-.card img{width:100%;border-radius:18px 18px 0 0;}
-.price{color:#d63b3b;font-weight:600;margin:10px 0;}
-.card button{background:#2e7d32;color:#fff;border:none;padding:10px;width:80%;border-radius:8px;cursor:pointer;}
-.footer-top{display:flex;justify-content:space-around;padding:40px;flex-wrap:wrap;background:#fafafa;}
-.footer-top div{min-width:150px;margin-bottom:20px;}
-.footer-bottom{text-align:center;padding:20px;background:#f0f0f0;font-size:14px;}
-.page{display:none;padding:40px;}
+:root{
+--primary:#111;
+--accent:#000;
+--bg:#fafafa;
+--card:#ffffff;
+--border:#eaeaea;
+}
+*{box-sizing:border-box;}
+body{margin:0;font-family:'Inter',sans-serif;background:var(--bg);color:var(--primary);}
+header{position:sticky;top:0;background:#fff;border-bottom:1px solid var(--border);padding:18px 40px;display:flex;justify-content:space-between;align-items:center;z-index:1000;transition:.3s;}
+header.shrink{padding:10px 40px;}
+.logo img{height:32px;}
+.nav-right{display:flex;align-items:center;gap:20px;}
+.cart{position:relative;cursor:pointer;font-size:18px;}
+.cart-count{position:absolute;top:-6px;right:-10px;background:#000;color:#fff;font-size:10px;border-radius:50%;padding:2px 6px;}
+.mobile-btn{display:none;font-size:22px;cursor:pointer;}
+.mobile-menu{display:none;flex-direction:column;border-bottom:1px solid var(--border);background:#fff;}
+.mobile-menu a{padding:15px 40px;text-decoration:none;color:#000;border-top:1px solid var(--border);}
+.mobile-menu.open{display:flex;}
+.hero{padding:100px 40px;text-align:center;background:#fff;}
+.hero h1{font-size:42px;margin:0 0 15px;}
+.hero p{color:#666;margin-bottom:25px;}
+.hero button{background:#000;color:#fff;border:none;padding:12px 28px;border-radius:6px;cursor:pointer;}
+.section-title{text-align:center;margin:60px 0 30px;font-size:20px;font-weight:600;}
+.products{display:grid;grid-template-columns:repeat(4,1fr);gap:30px;padding:0 40px 80px;}
+.card{background:var(--card);border:1px solid var(--border);padding:20px;border-radius:10px;text-align:center;transition:.2s;}
+.card:hover{border-color:#000;}
+.card img{width:100%;margin-bottom:15px;}
+.price{margin:10px 0;font-weight:600;}
+.card button{background:#000;color:#fff;border:none;padding:8px 20px;border-radius:6px;cursor:pointer;}
+footer{border-top:1px solid var(--border);padding:40px;text-align:center;background:#fff;color:#666;font-size:14px;}
+.page{display:none;padding:60px 40px;max-width:500px;margin:auto;}
 .page.active{display:block;}
-input,textarea{width:100%;padding:10px;margin-bottom:10px;border:1px solid #ddd;border-radius:6px;}
-button.primary{background:#d63b3b;color:#fff;border:none;padding:10px 20px;border-radius:8px;cursor:pointer;}
-@media(max-width:992px){.products{grid-template-columns:repeat(2,1fr);} }
-@media(max-width:768px){.mobile-menu-btn{display:block;}.products{grid-template-columns:1fr;}.hero-content{position:relative;left:auto;top:auto;transform:none;padding:20px;background:rgba(0,0,0,0.5);} }
+input{width:100%;padding:10px;margin-bottom:12px;border:1px solid var(--border);border-radius:6px;}
+button.primary{background:#000;color:#fff;border:none;padding:10px 20px;border-radius:6px;cursor:pointer;}
+@media(max-width:1000px){.products{grid-template-columns:repeat(2,1fr);} }
+@media(max-width:700px){
+.products{grid-template-columns:1fr;}
+.mobile-btn{display:block;}
+}
 </style>
 </head>
 <body>
 <header id="header">
-<div class="top-bar">
 <div class="logo"><img src="logo.webp"></div>
-<div class="top-links">
-<div class="cart-wrapper">
-<div class="cart-icon" onclick="toggleMiniCart()">🛒<div class="cart-count" id="cartCount">0</div></div>
-<div class="mini-cart" id="miniCart"></div>
+<div class="nav-right">
+<div class="cart" onclick="toggleCart()">🛒<div class="cart-count" id="cartCount">0</div></div>
+<div class="mobile-btn" onclick="toggleMenu()">☰</div>
 </div>
-<div class="mobile-menu-btn" onclick="toggleMenu()">☰</div>
-</div>
-</div>
-<div class="search-bar"><input type="text" placeholder="Keresés..."><button>Keresés</button></div>
 </header>
 <div class="mobile-menu" id="mobileMenu">
 <a href="#" onclick="showShop()">Shop</a>
 <a href="#" onclick="showCheckout()">Fizetés</a>
 <a href="#" onclick="showAdmin()">Admin</a>
 </div>
-<div class="hero">
-<img src="hero.jpg" alt="Akció">
-<div class="hero-content">
-<h1>Tavaszi <span>Kiárusítás!</span></h1>
-<p>Akár <strong>50%</strong> kedvezmény</p>
+<section class="hero">
+<h1>Letisztult Divat</h1>
+<p>Minimalista stílus, prémium minőség.</p>
 <button onclick="showShop()">Vásárlás</button>
-</div>
-</div><div id="shopPage" class="page active">
-<div class="section-title">Népszerű Termékek</div>
+</section>
+<div id="shopPage" class="page active" style="display:block;max-width:none;padding:0;">
+<div class="section-title">Termékek</div>
 <div class="products" id="productGrid"></div>
-</div><div id="checkoutPage" class="page">
+</div>
+<div id="checkoutPage" class="page">
 <h2>Fizetés</h2>
 <input placeholder="Teljes név">
 <input placeholder="Email">
 <input placeholder="Szállítási cím">
 <button class="primary" onclick="completeOrder()">Rendelés leadása</button>
-</div><div id="adminPage" class="page">
-<h2>Termék hozzáadása</h2>
+</div>
+<div id="adminPage" class="page">
+<h2>Új termék</h2>
 <input id="adminName" placeholder="Termék neve">
 <input id="adminPrice" placeholder="Ár (Ft)">
 <input id="adminImage" placeholder="Kép fájl (pl product5.jpg)">
 <button class="primary" onclick="addProduct()">Hozzáadás</button>
-</div><div class="footer-top">
-<div><strong>Információk</strong><br>Szállítás<br>Kapcsolat</div>
-<div><strong>Segítség</strong><br>GYIK<br>Visszaküldés</div>
-<div><strong>Kapcsolat</strong><br>info@divatshop.hu</div>
 </div>
-<div class="footer-bottom">© 2024 DivatShop</div><script>
+<footer>© 2024 DivatShop</footer>
+<script>
 let products=JSON.parse(localStorage.getItem('products'))||[
-{id:1,name:'Nyári Ruha',price:3990,image:'product1.jpg'},
-{id:2,name:'Férfi Póló',price:2490,image:'product2.jpg'}];
+{id:1,name:'Minimal Póló',price:7990,image:'product1.jpg'},
+{id:2,name:'Basic Farmer',price:15990,image:'product2.jpg'}
+];
 let cart=JSON.parse(localStorage.getItem('cart'))||[];
 function save(){localStorage.setItem('cart',JSON.stringify(cart));localStorage.setItem('products',JSON.stringify(products));}
-function renderProducts(){const grid=document.getElementById('productGrid');grid.innerHTML='';products.forEach(p=>{grid.innerHTML+=`<div class='card'><img src='${p.image}'><h3>${p.name}</h3><div class='price'>${p.price} Ft</div><button onclick='addToCart(${p.id})'>Kosárba</button></div>`;});}
-function addToCart(id){const product=products.find(p=>p.id===id);cart.push(product);save();renderCart();}
-function renderCart(){document.getElementById('cartCount').innerText=cart.length;const mini=document.getElementById('miniCart');mini.innerHTML='';let total=0;cart.forEach((item,i)=>{total+=item.price;mini.innerHTML+=`<div class='mini-cart-item'>${item.name} ${item.price} Ft <button onclick='removeItem(${i})'>X</button></div>`;});mini.innerHTML+=`<strong>Összesen: ${total} Ft</strong><button onclick='showCheckout()'>Fizetés</button>`;}
-function removeItem(i){cart.splice(i,1);save();renderCart();}
-function toggleMiniCart(){document.getElementById('miniCart').classList.toggle('open');}
+function renderProducts(){const grid=document.getElementById('productGrid');grid.innerHTML='';products.forEach(p=>{grid.innerHTML+=`<div class='card'><img src='${p.image}'><div>${p.name}</div><div class='price'>${p.price} Ft</div><button onclick='addToCart(${p.id})'>Kosárba</button></div>`;});}
+function addToCart(id){cart.push(products.find(p=>p.id===id));save();renderCart();}
+function renderCart(){document.getElementById('cartCount').innerText=cart.length;}
+function toggleCart(){alert('Kosár tételek: '+cart.length);}
 function toggleMenu(){document.getElementById('mobileMenu').classList.toggle('open');}
 function showShop(){setPage('shopPage');}
 function showCheckout(){setPage('checkoutPage');}
 function showAdmin(){setPage('adminPage');}
 function setPage(id){document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));document.getElementById(id).classList.add('active');}
-function addProduct(){const name=document.getElementById('adminName').value;const price=parseInt(document.getElementById('adminPrice').value);const image=document.getElementById('adminImage').value;if(!name||!price||!image)return alert('Tölts ki mindent!');products.push({id:Date.now(),name,price,image});save();renderProducts();alert('Hozzáadva!');}
-function completeOrder(){alert('Rendelés leadva!');cart=[];save();renderCart();showShop();}
+function addProduct(){const n=document.getElementById('adminName').value;const p=parseInt(document.getElementById('adminPrice').value);const i=document.getElementById('adminImage').value;if(!n||!p||!i)return;products.push({id:Date.now(),name:n,price:p,image:i});save();renderProducts();}
+function completeOrder(){cart=[];save();renderCart();showShop();}
 window.addEventListener('scroll',()=>{document.getElementById('header').classList.toggle('shrink',window.scrollY>50);});
 renderProducts();renderCart();
-</script></body>
+</script>
+</body>
 </html>
