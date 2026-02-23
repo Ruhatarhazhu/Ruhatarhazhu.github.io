@@ -1,4 +1,5 @@
-<!DOCTYPE html><html lang="hu">
+<!DOCTYPE html>
+<html lang="hu">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -41,7 +42,7 @@ header.shrink .logo img{height:34px;}
 .section-title{text-align:center;font-size:26px;font-weight:600;margin:50px 0 30px;}
 .products{display:grid;grid-template-columns:repeat(4,1fr);gap:25px;padding:0 40px 50px;}
 .card{border-radius:18px;overflow:hidden;background:#fff;box-shadow:0 10px 30px rgba(0,0,0,0.05);transition:all .3s ease;text-align:center;}
-.card:hover{transform:translateY(-8px);box-shadow:0 20px 50px rgba(0,0,0,0.1);} 
+.card:hover{transform:translateY(-8px);box-shadow:0 20px 50px rgba(0,0,0,0.1);}
 .card img{width:100%;}
 .card h3{margin:15px 0 5px;}
 .price{color:#d63b3b;font-weight:600;margin-bottom:10px;}
@@ -62,12 +63,11 @@ header.shrink .logo img{height:34px;}
 <div class="logo"><img src="logo.webp" alt="DivatShop"></div>
 <div class="top-links">
 <div class="cart-wrapper">
-<div class="cart-icon" onclick="toggleCart()">🛒<div class="cart-count">2</div></div>
+<div class="cart-icon" onclick="toggleCart()">🛒<div class="cart-count" id="cartCount">0</div></div>
 <div class="mini-cart" id="miniCart">
-<div class="mini-cart-item"><span>Nyári Ruha</span><span>3 990 Ft</span></div>
-<div class="mini-cart-item"><span>Férfi Póló</span><span>2 490 Ft</span></div>
-<div class="mini-cart-total">Összesen: 6 480 Ft</div>
-<button>Fizetés</button>
+<div class="cart-items" id="cartItems"></div>
+<div class="mini-cart-total">Összesen: <span id="cartTotal">0</span> Ft</div>
+<button onclick="showCheckout();toggleCart();">Fizetés</button>
 </div>
 </div>
 <div class="mobile-menu-btn" onclick="toggleMenu()">☰</div>
@@ -75,6 +75,7 @@ header.shrink .logo img{height:34px;}
 </div>
 <div class="search-bar"><input type="text" placeholder="Keresés..."><button>Keresés</button></div>
 </header>
+
 <div class="mobile-menu" id="mobileMenu">
 <a href="#">Női Ruhák</a>
 <a href="#">Férfi Ruhák</a>
@@ -83,6 +84,7 @@ header.shrink .logo img{height:34px;}
 <a href="#">Újdonságok</a>
 <a href="#">Akciók</a>
 </div>
+
 <div class="hero">
 <img src="hero.jpg" alt="Akció">
 <div class="hero-content">
@@ -91,8 +93,10 @@ header.shrink .logo img{height:34px;}
 <button>Nézd Meg</button>
 </div>
 </div>
+
 <div class="section-title">Népszerű Termékek</div>
 <div class="products" id="productGrid"></div>
+
 <div class="footer-top">
 <div><h4>Információk</h4><a href="#">Szállítás</a><a href="#">Vásárlási Feltételek</a><a href="#">Kapcsolat</a></div>
 <div><h4>Vásárlói Segítség</h4><a href="#">GYIK</a><a href="#">Visszaküldés</a><a href="#">Mérettáblázat</a></div>
@@ -101,29 +105,58 @@ header.shrink .logo img{height:34px;}
 </div>
 <div class="footer-bottom">© 2024 DivatShop. Minden jog fenntartva.</div>
 </div>
+
 <div class="cart-panel" id="cartPanel">
 <h3>Kosár</h3>
-<div class="cart-items" id="cartItems"></div>
-<strong>Összesen: <span id="cartTotal">0</span> Ft</strong>
+<div class="cart-items" id="cartPanelItems"></div>
+<strong>Összesen: <span id="cartPanelTotal">0</span> Ft</strong>
 <button class="primary" onclick="showCheckout();toggleCart();">Fizetés</button>
 </div>
+
 <script>
-let products = JSON.parse(localStorage.getItem('products')) || [
+let products = [
 {id:1,name:'Nyári Ruha',price:3990,image:'product1.jpg'},
 {id:2,name:'Férfi Póló',price:2490,image:'product2.jpg'},
 {id:3,name:'Divat Cipő',price:5990,image:'product3.jpg'},
 {id:4,name:'Női Farmer',price:4490,image:'product4.jpg'}
 ];
+
 let cart = JSON.parse(localStorage.getItem('cart')) || [];
-function saveData(){localStorage.setItem('cart',JSON.stringify(cart));localStorage.setItem('products',JSON.stringify(products));}
-function renderProducts(){const grid=document.getElementById('productGrid');grid.innerHTML='';products.forEach(p=>{const div=document.createElement('div');div.className='card';div.innerHTML=`<img src="${p.image}"><h3>${p.name}</h3><div class='price'>${p.price} Ft</div><button class='primary' onclick='addToCart(${p.id})'>Kosárba</button>`;grid.appendChild(div);});}
-function addToCart(id){const product=products.find(p=>p.id===id);cart.push(product);saveData();renderCart();}
-function renderCart(){document.getElementById('cartCount').innerText=cart.length;const items=document.getElementById('cartItems');items.innerHTML='';let total=0;cart.forEach((item,i)=>{total+=item.price;items.innerHTML+=`<div>${item.name} - ${item.price} Ft <button onclick='removeItem(${i})'>X</button></div>`;});document.getElementById('cartTotal').innerText=total;}
-function removeItem(index){cart.splice(index,1);saveData();renderCart();}
+
+function saveCart(){localStorage.setItem('cart',JSON.stringify(cart));}
+function renderProducts(){
+  const grid = document.getElementById('productGrid'); grid.innerHTML='';
+  products.forEach(p=>{
+    const div=document.createElement('div'); div.className='card';
+    div.innerHTML=`<img src="${p.image}"><h3>${p.name}</h3><div class='price'>${p.price} Ft</div><button onclick='addToCart(${p.id})'>Kosárba</button>`;
+    grid.appendChild(div);
+  });
+}
+function addToCart(id){
+  const product = products.find(p=>p.id===id);
+  cart.push(product);
+  saveCart(); renderCart();
+}
+function renderCart(){
+  document.getElementById('cartCount').innerText = cart.length;
+  const items=document.getElementById('cartItems');
+  const panelItems=document.getElementById('cartPanelItems');
+  items.innerHTML = ''; panelItems.innerHTML='';
+  let total=0;
+  cart.forEach((item,i)=>{
+    total+=item.price;
+    const html=`<div>${item.name} - ${item.price} Ft <button onclick='removeItem(${i})'>X</button></div>`;
+    items.innerHTML+=html; panelItems.innerHTML+=html;
+  });
+  document.getElementById('cartTotal').innerText = total;
+  document.getElementById('cartPanelTotal').innerText = total;
+}
+function removeItem(i){cart.splice(i,1); saveCart(); renderCart();}
 function toggleCart(){document.getElementById('cartPanel').classList.toggle('open');}
 function toggleMenu(){document.getElementById('mobileMenu').classList.toggle('open');}
-window.addEventListener('scroll',function(){const header=document.getElementById('header');header.classList.toggle('shrink',window.scrollY>50);});
-renderProducts();renderCart();
+window.addEventListener('scroll',()=>{document.getElementById('header').classList.toggle('shrink',window.scrollY>50);});
+
+renderProducts(); renderCart();
 </script>
 </body>
 </html>
