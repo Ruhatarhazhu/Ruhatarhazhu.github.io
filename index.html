@@ -1,5 +1,4 @@
-<!DOCTYPE html>
-<html lang="hu">
+<!DOCTYPE html><html lang="hu">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,16 +6,17 @@
 <link rel="icon" type="image/png" href="favicon.png">
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
 <style>
+/* Alap stílusok */
 body{margin:0;font-family:'Poppins',sans-serif;background:#f4f6f8;}
-.container{max-width:1200px;margin:30px auto;background:#fff;border-radius:24px;box-shadow:0 20px 60px rgba(0,0,0,0.08);overflow:hidden;}
-header{padding:20px 50px;position:sticky;top:0;background:rgba(255,255,255,0.95);backdrop-filter:blur(12px);z-index:1000;transition:all .3s ease;border-bottom:1px solid #f0f0f0;display:flex;flex-direction:column;}
+.container{max-width:1200px;margin:0 auto;}
+header{position:sticky;top:0;background:rgba(255,255,255,0.95);backdrop-filter:blur(12px);z-index:1000;padding:20px 50px;transition:all .3s ease;border-bottom:1px solid #f0f0f0;display:flex;flex-direction:column;}
 header.shrink{padding:10px 50px;box-shadow:0 5px 20px rgba(0,0,0,0.05);}
 .top-bar{display:flex;justify-content:space-between;align-items:center;}
 .logo img{height:44px;transition:all .3s ease;}
 header.shrink .logo img{height:34px;}
 .top-links{display:flex;align-items:center;gap:25px;}
 .cart-wrapper{position:relative;}
-.cart-icon{font-size:22px;cursor:pointer;position:relative;transition:transform 0.2s ease;}
+.cart-icon{font-size:22px;cursor:pointer;position:relative;transition:transform .2s ease;}
 .cart-icon:hover{transform:scale(1.1);}
 .cart-count{position:absolute;top:-6px;right:-10px;background:#d63b3b;color:#fff;font-size:11px;border-radius:50%;padding:3px 6px;font-weight:600;}
 .mini-cart{position:absolute;right:0;top:40px;width:260px;background:#fff;border-radius:16px;box-shadow:0 15px 40px rgba(0,0,0,0.15);padding:15px;display:none;flex-direction:column;gap:10px;animation:fadeIn .2s ease;}
@@ -24,7 +24,7 @@ header.shrink .logo img{height:34px;}
 .mini-cart-total{border-top:1px solid #eee;padding-top:8px;font-weight:600;}
 .mini-cart button{background:#d63b3b;color:#fff;border:none;padding:10px;border-radius:8px;cursor:pointer;}
 @keyframes fadeIn{from{opacity:0;transform:translateY(-5px);}to{opacity:1;transform:translateY(0);}}
-.mobile-menu-btn{display:none;font-size:26px;cursor:pointer;transition:transform 0.2s ease;}
+.mobile-menu-btn{display:none;font-size:26px;cursor:pointer;transition:transform .2s ease;}
 .mobile-menu-btn:hover{transform:rotate(90deg);}
 .search-bar{margin-top:15px;display:flex;gap:10px;}
 .search-bar input{flex:1;padding:12px 18px;border-radius:30px;border:1px solid #e5e5e5;outline:none;}
@@ -53,7 +53,7 @@ header.shrink .logo img{height:34px;}
 .footer-top a{display:block;text-decoration:none;color:#555;margin-bottom:6px;}
 .footer-bottom{text-align:center;padding:20px;background:#f5f5f5;font-size:14px;}
 @media(max-width:992px){.products{grid-template-columns:repeat(2,1fr);}}
-@media(max-width:768px){.mobile-menu-btn{display:block;}.products{grid-template-columns:1fr;}.hero-content{position:relative;left:auto;top:auto;transform:none;padding:20px;background:rgba(255,255,255,0.9);}}
+@media(max-width:768px){.mobile-menu-btn{display:block;}.products{grid-template-columns:1fr;}.hero-content{position:relative;left:auto;top:auto;transform:none;padding:20px;background:rgba(255,255,255,0.9);}} 
 </style>
 </head>
 <body>
@@ -64,18 +64,13 @@ header.shrink .logo img{height:34px;}
 <div class="top-links">
 <div class="cart-wrapper">
 <div class="cart-icon" onclick="toggleCart()">🛒<div class="cart-count" id="cartCount">0</div></div>
-<div class="mini-cart" id="miniCart">
-<div class="cart-items" id="cartItems"></div>
-<div class="mini-cart-total">Összesen: <span id="cartTotal">0</span> Ft</div>
-<button onclick="showCheckout();toggleCart();">Fizetés</button>
-</div>
+<div class="mini-cart" id="miniCart"></div>
 </div>
 <div class="mobile-menu-btn" onclick="toggleMenu()">☰</div>
 </div>
 </div>
 <div class="search-bar"><input type="text" placeholder="Keresés..."><button>Keresés</button></div>
 </header>
-
 <div class="mobile-menu" id="mobileMenu">
 <a href="#">Női Ruhák</a>
 <a href="#">Férfi Ruhák</a>
@@ -84,7 +79,6 @@ header.shrink .logo img{height:34px;}
 <a href="#">Újdonságok</a>
 <a href="#">Akciók</a>
 </div>
-
 <div class="hero">
 <img src="hero.jpg" alt="Akció">
 <div class="hero-content">
@@ -93,70 +87,12 @@ header.shrink .logo img{height:34px;}
 <button>Nézd Meg</button>
 </div>
 </div>
-
 <div class="section-title">Népszerű Termékek</div>
 <div class="products" id="productGrid"></div>
-
 <div class="footer-top">
 <div><h4>Információk</h4><a href="#">Szállítás</a><a href="#">Vásárlási Feltételek</a><a href="#">Kapcsolat</a></div>
 <div><h4>Vásárlói Segítség</h4><a href="#">GYIK</a><a href="#">Visszaküldés</a><a href="#">Mérettáblázat</a></div>
 <div><h4>Kapcsolat</h4><a href="#">info@divatshop.hu</a><a href="#">+36 20 123 4567</a></div>
 <div><h4>Kövess Minket</h4><a href="#">Facebook</a><a href="#">Instagram</a><a href="#">Twitter</a></div>
 </div>
-<div class="footer-bottom">© 2024 DivatShop. Minden jog fenntartva.</div>
-</div>
-
-<div class="cart-panel" id="cartPanel">
-<h3>Kosár</h3>
-<div class="cart-items" id="cartPanelItems"></div>
-<strong>Összesen: <span id="cartPanelTotal">0</span> Ft</strong>
-<button class="primary" onclick="showCheckout();toggleCart();">Fizetés</button>
-</div>
-
-<script>
-let products = [
-{id:1,name:'Nyári Ruha',price:3990,image:'product1.jpg'},
-{id:2,name:'Férfi Póló',price:2490,image:'product2.jpg'},
-{id:3,name:'Divat Cipő',price:5990,image:'product3.jpg'},
-{id:4,name:'Női Farmer',price:4490,image:'product4.jpg'}
-];
-
-let cart = JSON.parse(localStorage.getItem('cart')) || [];
-
-function saveCart(){localStorage.setItem('cart',JSON.stringify(cart));}
-function renderProducts(){
-  const grid = document.getElementById('productGrid'); grid.innerHTML='';
-  products.forEach(p=>{
-    const div=document.createElement('div'); div.className='card';
-    div.innerHTML=`<img src="${p.image}"><h3>${p.name}</h3><div class='price'>${p.price} Ft</div><button onclick='addToCart(${p.id})'>Kosárba</button>`;
-    grid.appendChild(div);
-  });
-}
-function addToCart(id){
-  const product = products.find(p=>p.id===id);
-  cart.push(product);
-  saveCart(); renderCart();
-}
-function renderCart(){
-  document.getElementById('cartCount').innerText = cart.length;
-  const items=document.getElementById('cartItems');
-  const panelItems=document.getElementById('cartPanelItems');
-  items.innerHTML = ''; panelItems.innerHTML='';
-  let total=0;
-  cart.forEach((item,i)=>{
-    total+=item.price;
-    const html=`<div>${item.name} - ${item.price} Ft <button onclick='removeItem(${i})'>X</button></div>`;
-    items.innerHTML+=html; panelItems.innerHTML+=html;
-  });
-  document.getElementById('cartTotal').innerText = total;
-  document.getElementById('cartPanelTotal').innerText = total;
-}
-function removeItem(i){cart.splice(i,1); saveCart(); renderCart();}
-function toggleCart(){document.getElementById('cartPanel').classList.toggle('open');}
-function toggleMenu(){document.getElementById('mobileMenu').classList.toggle('open');}
-window.addEventListener('scroll',()=>{document.getElementById('header').classList.toggle('shrink',window.scrollY>50);});
-
-renderProducts(); renderCart();
-</script>
-</body>
-</html>
+<div class="footer-bottom">© 2024 DivatShop. Minden
