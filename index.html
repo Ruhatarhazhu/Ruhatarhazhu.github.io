@@ -135,7 +135,7 @@ const b=document.createElement("div");b.className="badge";b.innerText="ELADVA";c
 }else if(p.new==="TRUE"){
 const b=document.createElement("div");b.className="badge new";b.innerText="ÚJ";card.appendChild(b);
 }
-card.onclick=()=>openModal(p.images);
+card.onclick=()=>window.location.href="product.html?slug="+p.name.toLowerCase().replace(/ /g,"-");
 grid.appendChild(card);
 });
 renderPagination(filtered.length);
