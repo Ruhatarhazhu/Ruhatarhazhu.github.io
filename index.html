@@ -1,14 +1,10 @@
-<!DOCTYPE html>
-<html lang="hu">
+<!DOCTYPE html><html lang="hu">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>DivatShop</title>
 <link rel="icon" href="favicon.png">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-
-<style>
-
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet"><style>
 :root{
   --green:#3a7d2e;
   --green-hover:#2f6825;
@@ -16,11 +12,7 @@
   --text:#333;
 }
 
-*{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-}
+*{margin:0;padding:0;box-sizing:border-box;}
 
 body{
   font-family:'Inter',sans-serif;
@@ -28,18 +20,14 @@ body{
   color:var(--text);
 }
 
-/* WRAPPER */
-
 .wrapper{
   max-width:1200px;
   margin:40px auto;
   background:#fff;
   border-radius:20px;
-  box-shadow:0 10px 30px rgba(0,0,0,0.06);
+  box-shadow:0 20px 60px rgba(0,0,0,0.08);
   overflow:hidden;
 }
-
-/* HEADER */
 
 header{
   padding:20px 30px;
@@ -61,41 +49,56 @@ nav a{
   font-size:14px;
 }
 
-/* SEARCH */
-
-.search{
-  padding:15px 30px;
+.controls{
+  display:flex;
+  gap:15px;
+  padding:20px 30px;
   border-bottom:1px solid var(--border);
+  align-items:center;
+  flex-wrap:wrap;
 }
 
-.search input{
-  width:100%;
-  padding:10px;
+select, .toggle{
+  padding:8px 12px;
   border:1px solid var(--border);
   border-radius:8px;
+  font-size:14px;
+  background:#fff;
 }
 
-/* PRODUCTS */
+.toggle{
+  display:flex;
+  align-items:center;
+  gap:6px;
+  cursor:pointer;
+}
 
 .products{
   display:grid;
   grid-template-columns:repeat(4,1fr);
-  gap:25px;
+  gap:30px;
   padding:30px;
 }
 
 .card{
   border:1px solid var(--border);
-  border-radius:14px;
+  border-radius:16px;
   padding:15px;
   text-align:center;
   background:#fff;
+  transition:.3s ease;
+  position:relative;
+}
+
+.card:hover{
+  transform:translateY(-6px);
+  box-shadow:0 15px 35px rgba(0,0,0,0.12);
 }
 
 .card img{
   width:100%;
-  border-radius:10px;
-  margin-bottom:10px;
+  border-radius:12px;
+  margin-bottom:12px;
 }
 
 .card h3{
@@ -105,37 +108,43 @@ nav a{
 
 .price{
   font-weight:600;
-  margin-bottom:10px;
+  margin-bottom:6px;
+}
+
+.size{
+  font-size:13px;
+  color:#777;
+  margin-bottom:12px;
 }
 
 .vinted-btn{
   display:inline-block;
-  background:var(--green);
+  background:linear-gradient(135deg,var(--green),var(--green-hover));
   color:#fff;
-  padding:8px 18px;
-  border-radius:8px;
+  padding:9px 20px;
+  border-radius:10px;
   text-decoration:none;
   font-size:13px;
-  transition:.2s;
+  transition:.3s;
 }
 
 .vinted-btn:hover{
-  background:var(--green-hover);
+  transform:scale(1.05);
+  box-shadow:0 8px 20px rgba(0,0,0,0.15);
 }
 
-/* SOLD */
-
-.sold{
+.sold-badge{
+  position:absolute;
+  top:12px;
+  left:12px;
   background:#111;
   color:#fff;
   font-size:11px;
-  padding:4px 8px;
-  position:absolute;
-  margin:10px;
-  border-radius:4px;
+  padding:5px 8px;
+  border-radius:6px;
 }
 
-/* FOOTER */
+.hidden{display:none;}
 
 footer{
   padding:30px;
@@ -145,83 +154,74 @@ footer{
   color:#777;
 }
 
-/* RESPONSIVE */
-
 @media(max-width:1000px){
-  .products{
-    grid-template-columns:repeat(2,1fr);
-  }
+  .products{grid-template-columns:repeat(2,1fr);} 
 }
 
 @media(max-width:600px){
-  .products{
-    grid-template-columns:1fr;
-  }
+  .products{grid-template-columns:1fr;} 
 }
-
-</style>
-</head>
-<body>
-
-<div class="wrapper">
-
-<header>
+</style></head>
+<body><div class="wrapper"><header>
   <div class="logo">DivatShop</div>
   <nav>
     <a href="#">Termékek</a>
     <a href="https://www.vinted.hu/member/SAJATPROFILOD" target="_blank">Vinted Profil</a>
   </nav>
-</header>
-
-<div class="search">
-  <input type="text" placeholder="Keresés...">
-</div>
-
-<section class="products">
-
-  <div class="card">
+</header><div class="controls">
+  <select id="sizeFilter" onchange="filterProducts()">
+    <option value="all">Összes méret</option>
+    <option value="S">S</option>
+    <option value="M">M</option>
+    <option value="L">L</option>
+  </select>  <label class="toggle">
+    <input type="checkbox" id="availableToggle" onchange="filterProducts()">
+    Csak elérhető termékek
+  </label>
+</div><section class="products" id="productGrid">  <div class="card" data-size="M" data-available="true">
     <img src="product1.jpg">
     <h3>Oversized Blézer</h3>
     <div class="price">4 990 Ft</div>
-    <a href="VINTED_LINK" target="_blank" class="vinted-btn">
-      Megnézem Vinteden
-    </a>
-  </div>
-
-  <div class="card">
+    <div class="size">Méret: M</div>
+    <a href="VINTED_LINK" target="_blank" class="vinted-btn">Megnézem Vinteden</a>
+  </div>  <div class="card" data-size="S" data-available="false">
+    <div class="sold-badge">ELADVA</div>
     <img src="product2.jpg">
     <h3>Vintage Farmer</h3>
     <div class="price">3 490 Ft</div>
-    <a href="VINTED_LINK" target="_blank" class="vinted-btn">
-      Megnézem Vinteden
-    </a>
-  </div>
-
-  <div class="card">
+    <div class="size">Méret: S</div>
+    <a href="#" class="vinted-btn">Eladva</a>
+  </div>  <div class="card" data-size="L" data-available="true">
     <img src="product3.jpg">
     <h3>Minimal Kabát</h3>
     <div class="price">8 990 Ft</div>
-    <a href="VINTED_LINK" target="_blank" class="vinted-btn">
-      Megnézem Vinteden
-    </a>
-  </div>
-
-  <div class="card">
+    <div class="size">Méret: L</div>
+    <a href="VINTED_LINK" target="_blank" class="vinted-btn">Megnézem Vinteden</a>
+  </div>  <div class="card" data-size="M" data-available="true">
     <img src="product4.jpg">
     <h3>Basic Póló</h3>
     <div class="price">2 490 Ft</div>
-    <a href="VINTED_LINK" target="_blank" class="vinted-btn">
-      Megnézem Vinteden
-    </a>
-  </div>
-
-</section>
-
-<footer>
+    <div class="size">Méret: M</div>
+    <a href="VINTED_LINK" target="_blank" class="vinted-btn">Megnézem Vinteden</a>
+  </div></section><footer>
   © 2024 DivatShop – Minden termék Vinteden vásárolható.
-</footer>
+</footer></div><script>
+function filterProducts(){
+  const size = document.getElementById('sizeFilter').value;
+  const onlyAvailable = document.getElementById('availableToggle').checked;
+  const cards = document.querySelectorAll('.card');
 
-</div>
+  cards.forEach(card=>{
+    const cardSize = card.dataset.size;
+    const available = card.dataset.available === 'true';
 
-</body>
+    let show = true;
+
+    if(size !== 'all' && cardSize !== size) show = false;
+    if(onlyAvailable && !available) show = false;
+
+    card.classList.toggle('hidden', !show);
+  });
+}
+</script></body>
 </html>
