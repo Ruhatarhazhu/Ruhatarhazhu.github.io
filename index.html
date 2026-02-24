@@ -37,40 +37,21 @@ header{
   border-bottom:1px solid var(--border);
 }
 
-.logo{
-  font-weight:600;
-  font-size:18px;
-}
-
-nav a{
-  margin-left:25px;
-  text-decoration:none;
-  color:#666;
-  font-size:14px;
-}
+.logo{font-weight:600;font-size:18px;}
 
 .controls{
   display:flex;
   gap:15px;
   padding:20px 30px;
   border-bottom:1px solid var(--border);
-  align-items:center;
   flex-wrap:wrap;
 }
 
-select, .toggle{
+select{
   padding:8px 12px;
   border:1px solid var(--border);
   border-radius:8px;
   font-size:14px;
-  background:#fff;
-}
-
-.toggle{
-  display:flex;
-  align-items:center;
-  gap:6px;
-  cursor:pointer;
 }
 
 .products{
@@ -86,8 +67,14 @@ select, .toggle{
   padding:15px;
   text-align:center;
   background:#fff;
-  transition:.3s ease;
-  position:relative;
+  transition:.4s ease;
+  opacity:0;
+  transform:translateY(20px);
+}
+
+.card.visible{
+  opacity:1;
+  transform:translateY(0);
 }
 
 .card:hover{
@@ -99,23 +86,12 @@ select, .toggle{
   width:100%;
   border-radius:12px;
   margin-bottom:12px;
+  cursor:pointer;
 }
 
-.card h3{
-  font-size:15px;
-  margin-bottom:6px;
-}
-
-.price{
-  font-weight:600;
-  margin-bottom:6px;
-}
-
-.size{
-  font-size:13px;
-  color:#777;
-  margin-bottom:12px;
-}
+.price{font-weight:600;margin:6px 0;}
+.size{font-size:13px;color:#777;margin-bottom:6px;}
+.category{font-size:12px;color:#999;margin-bottom:10px;}
 
 .vinted-btn{
   display:inline-block;
@@ -133,25 +109,38 @@ select, .toggle{
   box-shadow:0 8px 20px rgba(0,0,0,0.15);
 }
 
-.sold-badge{
-  position:absolute;
-  top:12px;
-  left:12px;
-  background:#111;
-  color:#fff;
-  font-size:11px;
-  padding:5px 8px;
-  border-radius:6px;
-}
-
 .hidden{display:none;}
 
-footer{
+/* MODAL */
+.modal{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,0.6);
+  display:none;
+  align-items:center;
+  justify-content:center;
+  z-index:999;
+}
+
+.modal-content{
+  background:#fff;
+  width:90%;
+  max-width:600px;
+  border-radius:16px;
   padding:30px;
-  text-align:center;
-  border-top:1px solid var(--border);
-  font-size:13px;
-  color:#777;
+}
+
+.modal-content img{
+  width:100%;
+  border-radius:12px;
+  margin-bottom:20px;
+}
+
+.close{
+  text-align:right;
+  cursor:pointer;
+  font-size:14px;
+  margin-bottom:10px;
 }
 
 @media(max-width:1000px){
@@ -164,64 +153,99 @@ footer{
 </style></head>
 <body><div class="wrapper"><header>
   <div class="logo">DivatShop</div>
-  <nav>
-    <a href="#">Termékek</a>
-    <a href="https://www.vinted.hu/member/SAJATPROFILOD" target="_blank">Vinted Profil</a>
-  </nav>
 </header><div class="controls">
-  <select id="sizeFilter" onchange="filterProducts()">
-    <option value="all">Összes méret</option>
-    <option value="S">S</option>
-    <option value="M">M</option>
-    <option value="L">L</option>
-  </select>  <label class="toggle">
-    <input type="checkbox" id="availableToggle" onchange="filterProducts()">
-    Csak elérhető termékek
-  </label>
-</div><section class="products" id="productGrid">  <div class="card" data-size="M" data-available="true">
-    <img src="product1.jpg">
+  <select id="categoryFilter" onchange="filterProducts()">
+    <option value="all">Összes kategória</option>
+    <option value="Kabát">Kabát</option>
+    <option value="Farmer">Farmer</option>
+    <option value="Póló">Póló</option>
+  </select>  <select id="sortPrice" onchange="sortProducts()">
+    <option value="default">Ár szerint</option>
+    <option value="low">Olcsóbb elöl</option>
+    <option value="high">Drágább elöl</option>
+  </select>
+</div><section class="products" id="productGrid">  <div class="card" data-price="4990" data-category="Kabát">
+    <img src="product1.jpg" onclick="openModal(this)">
     <h3>Oversized Blézer</h3>
+    <div class="category">Kabát</div>
     <div class="price">4 990 Ft</div>
     <div class="size">Méret: M</div>
-    <a href="VINTED_LINK" target="_blank" class="vinted-btn">Megnézem Vinteden</a>
-  </div>  <div class="card" data-size="S" data-available="false">
-    <div class="sold-badge">ELADVA</div>
-    <img src="product2.jpg">
+    <a href="#" target="_blank" class="vinted-btn">Megnézem Vinteden</a>
+  </div>  <div class="card" data-price="3490" data-category="Farmer">
+    <img src="product2.jpg" onclick="openModal(this)">
     <h3>Vintage Farmer</h3>
+    <div class="category">Farmer</div>
     <div class="price">3 490 Ft</div>
     <div class="size">Méret: S</div>
-    <a href="#" class="vinted-btn">Eladva</a>
-  </div>  <div class="card" data-size="L" data-available="true">
-    <img src="product3.jpg">
+    <a href="#" target="_blank" class="vinted-btn">Megnézem Vinteden</a>
+  </div>  <div class="card" data-price="8990" data-category="Kabát">
+    <img src="product3.jpg" onclick="openModal(this)">
     <h3>Minimal Kabát</h3>
+    <div class="category">Kabát</div>
     <div class="price">8 990 Ft</div>
     <div class="size">Méret: L</div>
-    <a href="VINTED_LINK" target="_blank" class="vinted-btn">Megnézem Vinteden</a>
-  </div>  <div class="card" data-size="M" data-available="true">
-    <img src="product4.jpg">
+    <a href="#" target="_blank" class="vinted-btn">Megnézem Vinteden</a>
+  </div>  <div class="card" data-price="2490" data-category="Póló">
+    <img src="product4.jpg" onclick="openModal(this)">
     <h3>Basic Póló</h3>
+    <div class="category">Póló</div>
     <div class="price">2 490 Ft</div>
     <div class="size">Méret: M</div>
-    <a href="VINTED_LINK" target="_blank" class="vinted-btn">Megnézem Vinteden</a>
-  </div></section><footer>
-  © 2024 DivatShop – Minden termék Vinteden vásárolható.
-</footer></div><script>
+    <a href="#" target="_blank" class="vinted-btn">Megnézem Vinteden</a>
+  </div></section></div><!-- MODAL --><div class="modal" id="productModal">
+  <div class="modal-content">
+    <div class="close" onclick="closeModal()">Bezárás ✕</div>
+    <img id="modalImg">
+    <h3 id="modalTitle"></h3>
+    <div id="modalPrice"></div>
+  </div>
+</div><script>
+
+/* Animált betöltés */
+window.addEventListener('load',()=>{
+  const cards=document.querySelectorAll('.card');
+  cards.forEach((card,i)=>{
+    setTimeout(()=>card.classList.add('visible'),i*100);
+  });
+});
+
+/* Kategória szűrés */
 function filterProducts(){
-  const size = document.getElementById('sizeFilter').value;
-  const onlyAvailable = document.getElementById('availableToggle').checked;
-  const cards = document.querySelectorAll('.card');
-
+  const category=document.getElementById('categoryFilter').value;
+  const cards=document.querySelectorAll('.card');
   cards.forEach(card=>{
-    const cardSize = card.dataset.size;
-    const available = card.dataset.available === 'true';
-
-    let show = true;
-
-    if(size !== 'all' && cardSize !== size) show = false;
-    if(onlyAvailable && !available) show = false;
-
-    card.classList.toggle('hidden', !show);
+    const match=category==='all'||card.dataset.category===category;
+    card.classList.toggle('hidden',!match);
   });
 }
+
+/* Ár szerinti rendezés */
+function sortProducts(){
+  const type=document.getElementById('sortPrice').value;
+  const grid=document.getElementById('productGrid');
+  const cards=[...document.querySelectorAll('.card')];
+
+  if(type==='low'){
+    cards.sort((a,b)=>a.dataset.price-b.dataset.price);
+  }else if(type==='high'){
+    cards.sort((a,b)=>b.dataset.price-a.dataset.price);
+  }
+
+  cards.forEach(card=>grid.appendChild(card));
+}
+
+/* Termék aloldal (modal) */
+function openModal(img){
+  const card=img.closest('.card');
+  document.getElementById('modalImg').src=img.src;
+  document.getElementById('modalTitle').innerText=card.querySelector('h3').innerText;
+  document.getElementById('modalPrice').innerText=card.querySelector('.price').innerText;
+  document.getElementById('productModal').style.display='flex';
+}
+
+function closeModal(){
+  document.getElementById('productModal').style.display='none';
+}
+
 </script></body>
 </html>
