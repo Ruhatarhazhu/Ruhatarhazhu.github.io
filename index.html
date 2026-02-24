@@ -1,9 +1,10 @@
 <!DOCTYPE html><html lang="hu">
 <head>
+<link rel="icon" type="image/png" href="favicon.png">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="DivatShop – Minőségi second-hand ruhák, elérhetőek Vinteden.">
-<title>DivatShop</title>
+<title>Ruhatárház</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet"><style>
 :root{
   --green:#3a7d2e;
@@ -62,7 +63,10 @@ header{padding:20px 30px;border-bottom:1px solid var(--border);font-weight:600;f
 @media(max-width:600px){.products{grid-template-columns:1fr;} }
 </style></head>
 <body><div class="wrapper">
-<header>DivatShop</header><section class="products">  <div class="card" data-sold="false" data-new="true"
+<header style="display:flex;align-items:center;gap:15px;">
+  <img src="logo.webp" alt="Ruhatárház logó" style="height:40px;">
+  <span style="font-weight:600;font-size:18px;">Ruhatárház</span>
+</header><section class="products">  <div class="card" data-sold="false" data-new="true"
        data-images="product1.jpg,product1b.jpg,product1c.jpg"
        data-description="Elegáns oversized blézer kiváló állapotban. Tökéletes tavaszi darab.">
     <img src="product1.jpg" onclick="openModal(this)">
