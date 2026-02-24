@@ -13,239 +13,130 @@
 }
 
 *{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Inter',sans-serif;background:#f6f6f6;color:var(--text);} 
 
-body{
-  font-family:'Inter',sans-serif;
-  background:#f6f6f6;
-  color:var(--text);
-}
+.wrapper{max-width:1200px;margin:40px auto;background:#fff;border-radius:24px;box-shadow:0 25px 80px rgba(0,0,0,0.06);overflow:hidden;} 
 
-#progressBar{
-  position:fixed;
-  top:0;
-  left:0;
-  height:3px;
-  width:0;
-  background:linear-gradient(90deg,#3a7d2e,#2f6825);
-  z-index:2000;
-  transition:width .2s ease;
-}
+header{display:flex;justify-content:center;padding:20px;border-bottom:1px solid var(--border);} 
+header img{height:38px;} 
 
-.wrapper{
-  max-width:1200px;
-  margin:60px auto;
-  background:#fff;
-  border-radius:24px;
-  box-shadow:0 25px 80px rgba(0,0,0,0.06);
-  overflow:hidden;
-}
+.controls{display:flex;gap:15px;flex-wrap:wrap;padding:20px;border-bottom:1px solid var(--border);} 
+select{padding:8px 12px;border-radius:8px;border:1px solid var(--border);} 
 
-header{
-  position:sticky;
-  top:0;
-  z-index:1000;
-  background:rgba(255,255,255,0.9);
-  backdrop-filter:blur(8px);
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  padding:25px 0;
-  border-bottom:1px solid var(--border);
-  transition:all .3s ease;
-}
+.products{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;padding:30px;} 
 
-header img{
-  height:42px;
-  transition:.3s;
-}
+.card{border:1px solid var(--border);border-radius:18px;padding:15px;background:#fff;transition:.3s;cursor:pointer;} 
+.card:hover{transform:translateY(-4px);box-shadow:0 10px 25px rgba(0,0,0,0.1);} 
 
-header.scrolled{
-  padding:12px 0;
-  box-shadow:0 10px 30px rgba(0,0,0,0.08);
-}
+.card img{width:100%;height:200px;object-fit:cover;border-radius:14px;margin-bottom:10px;} 
+.price{font-weight:600;margin:5px 0;} 
 
-header.scrolled img{
-  height:34px;
-}
+.pagination{display:flex;justify-content:center;gap:10px;padding:20px;} 
+.pagination button{padding:6px 12px;border:1px solid var(--border);background:#fff;border-radius:6px;cursor:pointer;} 
+.pagination button.active{background:var(--green);color:#fff;} 
 
-.products{
-  display:grid;
-  grid-template-columns:repeat(3, 1fr);
-  gap:24px;
-  padding:30px;
-}
+.modal{position:fixed;inset:0;background:rgba(0,0,0,0.8);display:none;align-items:center;justify-content:center;} 
+.modal img{max-width:90%;max-height:90%;border-radius:12px;} 
 
-.card{
-  border:1px solid var(--border);
-  border-radius:20px;
-  padding:18px;
-  background:#fff;
-  transition:.3s ease;
-  position:relative;
-  overflow:hidden;
-}
+@media(max-width:900px){.products{grid-template-columns:repeat(2,1fr);} }
+@media(max-width:600px){.products{grid-template-columns:1fr;} }
+</style></head>
+<body><div class="wrapper">
+<header><img src="logo.webp" alt="Ruhatárház"></header><div class="controls">
+<select id="categoryFilter"><option value="all">Összes kategória</option></select>
+<select id="sortPrice">
+<option value="default">Ár szerint</option>
+<option value="low">Olcsóbb elöl</option>
+<option value="high">Drágább elöl</option>
+</select>
+</div><section class="products"></section>
+<div class="pagination"></div></div><div class="modal" id="imageModal" onclick="this.style.display='none'">
+<img id="modalImg">
+</div><script>
 
-.card:hover{
-  transform:translateY(-6px);
-  box-shadow:0 15px 35px rgba(0,0,0,0.12);
-}
-
-.card img{
-  width:100%;
-  height:220px;
-  object-fit:cover;
-  border-radius:14px;
-  margin-bottom:12px;
-  transition:transform .4s ease;
-}
-
-.card:hover img{
-  transform:scale(1.04);
-}
-
-.price{
-  font-weight:600;
-  margin:8px 0;
-}
-
-.vinted-btn{
-  display:inline-block;
-  background:linear-gradient(135deg,var(--green),var(--green-hover));
-  color:#fff;
-  padding:10px 20px;
-  border-radius:12px;
-  text-decoration:none;
-  font-size:14px;
-  transition:.3s;
-}
-
-.vinted-btn:hover{
-  transform:scale(1.05);
-}
-
-.badge{
-  position:absolute;
-  top:12px;
-  left:12px;
-  background:#111;
-  color:#fff;
-  font-size:11px;
-  padding:6px 9px;
-  border-radius:8px;
-}
-
-.badge.new{
-  background:var(--green);
-}
-
-footer{
-  padding:30px;
-  text-align:center;
-  border-top:1px solid var(--border);
-  font-size:13px;
-  color:#777;
-}
-
-@media(max-width:900px){
-  .products{
-    grid-template-columns:repeat(2,1fr);
-  }
-}
-
-@media(max-width:600px){
-  header img{height:28px;}
-  .products{
-    grid-template-columns:1fr;
-    padding:18px;
-    gap:18px;
-  }
-  .card{
-    padding:14px;
-  }
-  .card img{
-    height:200px;
-  }
-}
-  .products{padding:20px;gap:20px;}
-  .card{padding:14px;}
-}
-</style></head><body><div id="progressBar"></div><div class="wrapper"><header>
-  <img src="logo.webp" alt="Ruhatárház logó">
-</header><section class="products"></section><footer>
-  © 2024 Ruhatárház – Minden termék Vinteden vásárolható.
-</footer></div><script>
-
-const sheetURL = "https://docs.google.com/spreadsheets/d/1PlqIBtGVKHCQIoDk4gAbIOIpRh_-bEGRXmexvaT5sos/export?format=csv";
+const sheetURL="https://docs.google.com/spreadsheets/d/1PlqIBtGVKHCQIoDk4gAbIOIpRh_-bEGRXmexvaT5sos/export?format=csv";
+let products=[];
+let currentPage=1;
+const perPage=6;
 
 async function loadProducts(){
-  try{
-    const res = await fetch(sheetURL);
-    const data = await res.text();
-    const rows = data.split("\n").slice(1);
+const res=await fetch(sheetURL);
+const data=await res.text();
+const rows=data.split("\n").slice(1);
+products=[];
 
-    const grid = document.querySelector(".products");
-    grid.innerHTML = "";
+rows.forEach(row=>{
+if(!row.trim()) return;
+const cols=row.split(",");
+if(cols.length<8) return;
+products.push({
+name:cols[0],
+price:parseInt(cols[1]),
+image:cols[2].split("|")[0],
+category:cols[7]||"Egyéb"
+});
+});
 
-    rows.forEach(row=>{
-      if(!row.trim()) return;
-
-      const cols = row.split(",");
-      if(cols.length < 7) return;
-
-      const name = cols[0].trim();
-      const price = cols[1].trim();
-      const images = cols[2].trim();
-      const link = cols[4].trim();
-      const isNew = cols[5].trim();
-      const isSold = cols[6].trim();
-
-      const imageArray = images.split("|").map(img=>img.trim());
-
-      const card = document.createElement("div");
-      card.className = "card";
-
-      card.innerHTML = `
-        <img src="${imageArray[0]}" loading="lazy">
-        <h3>${name}</h3>
-        <div class="price">${price} Ft</div>
-        <a href="${link}" target="_blank" class="vinted-btn">
-          ${isSold === "TRUE" ? "Eladva" : "Megnézem Vinteden"}
-        </a>
-      `;
-
-      if(isSold === "TRUE"){
-        const badge = document.createElement("div");
-        badge.className = "badge";
-        badge.innerText = "ELADVA";
-        card.appendChild(badge);
-      } else if(isNew === "TRUE"){
-        const badge = document.createElement("div");
-        badge.className = "badge new";
-        badge.innerText = "ÚJ";
-        card.appendChild(badge);
-      }
-
-      grid.appendChild(card);
-    });
-
-  }catch(err){
-    console.error("Sheet betöltési hiba:", err);
-  }
+initCategories();
+render();
 }
 
-window.addEventListener("scroll", ()=>{
-  const scrollTop = window.scrollY;
-  const docHeight = document.body.scrollHeight - window.innerHeight;
-  const progress = (scrollTop / docHeight) * 100;
-  document.getElementById("progressBar").style.width = progress + "%";
-
-  const header = document.querySelector("header");
-  if(window.scrollY > 50){
-    header.classList.add("scrolled");
-  } else {
-    header.classList.remove("scrolled");
-  }
+function initCategories(){
+const select=document.getElementById("categoryFilter");
+const cats=[...new Set(products.map(p=>p.category))];
+select.innerHTML='<option value="all">Összes kategória</option>';
+cats.forEach(cat=>{
+select.innerHTML+=`<option value="${cat}">${cat}</option>`;
 });
+}
+
+function render(){
+let filtered=[...products];
+const cat=document.getElementById("categoryFilter").value;
+const sort=document.getElementById("sortPrice").value;
+
+if(cat!="all") filtered=filtered.filter(p=>p.category===cat);
+
+if(sort==="low") filtered.sort((a,b)=>a.price-b.price);
+if(sort==="high") filtered.sort((a,b)=>b.price-a.price);
+
+const start=(currentPage-1)*perPage;
+const paginated=filtered.slice(start,start+perPage);
+
+const grid=document.querySelector(".products");
+grid.innerHTML="";
+
+paginated.forEach(p=>{
+const card=document.createElement("div");
+card.className="card";
+card.innerHTML=`<img src="${p.image}" loading="lazy"><h3>${p.name}</h3><div class="price">${p.price} Ft</div>`;
+card.onclick=()=>openModal(p.image);
+grid.appendChild(card);
+});
+
+renderPagination(filtered.length);
+}
+
+function renderPagination(total){
+const pages=Math.ceil(total/perPage);
+const container=document.querySelector(".pagination");
+container.innerHTML="";
+for(let i=1;i<=pages;i++){
+const btn=document.createElement("button");
+btn.textContent=i;
+if(i===currentPage) btn.classList.add("active");
+btn.onclick=()=>{currentPage=i;render();};
+container.appendChild(btn);
+}
+}
+
+function openModal(src){
+document.getElementById("modalImg").src=src;
+document.getElementById("imageModal").style.display="flex";
+}
+
+document.getElementById("categoryFilter").addEventListener("change",()=>{currentPage=1;render();});
+document.getElementById("sortPrice").addEventListener("change",()=>{currentPage=1;render();});
 
 loadProducts();
 
