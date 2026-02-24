@@ -52,12 +52,25 @@ body{
   gap:10px;
   margin-top:15px;
 }
+.thumbs{
+  display:flex;
+  gap:12px;
+  margin-top:18px;
+  flex-wrap:wrap;
+}
+
 .thumbs img{
-  width:80px;
-  height:80px;
+  width:70px;
+  height:90px;
   object-fit:cover;
-  border-radius:8px;
+  border-radius:10px;
   cursor:pointer;
+  transition:.3s;
+  border:2px solid transparent;
+}
+
+.thumbs img:hover{
+  border:2px solid #3a7d2e;
 }
 .price{
   font-size:20px;
