@@ -252,22 +252,31 @@ window.addEventListener('scroll', function(){
 
 </script></body>
 
-  <script>
+<script>
 
 const sheetURL = "https://docs.google.com/spreadsheets/d/1PlqIBtGVKHCQIoDk4gAbIOIpRh_-bEGRXmexvaT5sos/edit?usp=drivesdk";
 
 async function loadProducts() {
   const res = await fetch(sheetURL);
   const data = await res.text();
-  const rows = data.split("\n").slice(1);
 
+  const rows = data.split("\n").slice(1);
   const grid = document.querySelector(".products");
   grid.innerHTML = "";
 
   rows.forEach(row => {
-    if(!row) return;
+    if (!row.trim()) return;
 
-    const [name, price, images, description, vinted_link, isNew, isSold] = row.split(",");
+    const cols = row.split(",");
+    if (cols.length < 7) return;
+
+    const name = cols[0];
+    const price = cols[1];
+    const images = cols[2];
+    const description = cols[3];
+    const vinted_link = cols[4];
+    const isNew = cols[5];
+    const isSold = cols[6];
 
     const imageArray = images.split("|");
 
@@ -287,12 +296,12 @@ async function loadProducts() {
       </a>
     `;
 
-    if(isSold === "TRUE"){
+    if (isSold === "TRUE") {
       const badge = document.createElement("div");
       badge.className = "badge";
       badge.innerText = "ELADVA";
       card.appendChild(badge);
-    } else if(isNew === "TRUE"){
+    } else if (isNew === "TRUE") {
       const badge = document.createElement("div");
       badge.className = "badge new";
       badge.innerText = "ÚJ";
@@ -305,5 +314,5 @@ async function loadProducts() {
 
 loadProducts();
 
-  </script>
+</script>
 </html>
