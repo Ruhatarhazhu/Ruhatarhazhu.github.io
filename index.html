@@ -5,8 +5,16 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>DivatShop</title>
 <link rel="icon" href="favicon.png">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
 <style>
+
+:root{
+  --green:#3a7d2e;
+  --green-hover:#2f6825;
+  --border:#e5e5e5;
+  --text:#333;
+}
 
 *{
   margin:0;
@@ -15,147 +23,124 @@
 }
 
 body{
-  font-family:'Inter', sans-serif;
-  background:#ffffff;
-  color:#111;
+  font-family:'Inter',sans-serif;
+  background:#f4f4f4;
+  color:var(--text);
+}
+
+/* WRAPPER */
+
+.wrapper{
+  max-width:1200px;
+  margin:40px auto;
+  background:#fff;
+  border-radius:20px;
+  box-shadow:0 10px 30px rgba(0,0,0,0.06);
+  overflow:hidden;
 }
 
 /* HEADER */
 
 header{
-  padding:20px 40px;
+  padding:20px 30px;
   display:flex;
   justify-content:space-between;
   align-items:center;
-  border-bottom:1px solid #eee;
+  border-bottom:1px solid var(--border);
 }
 
 .logo{
   font-weight:600;
   font-size:18px;
-  letter-spacing:1px;
 }
 
 nav a{
   margin-left:25px;
   text-decoration:none;
-  color:#555;
-  font-size:14px;
-  transition:.2s;
-}
-
-nav a:hover{
-  color:#000;
-}
-
-/* HERO */
-
-.hero{
-  height:60vh;
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-  align-items:center;
-  text-align:center;
-  padding:0 20px;
-}
-
-.hero h1{
-  font-size:42px;
-  font-weight:500;
-  margin-bottom:15px;
-}
-
-.hero p{
-  font-size:16px;
   color:#666;
-  margin-bottom:25px;
+  font-size:14px;
 }
 
-.hero a{
-  padding:12px 28px;
-  border:1px solid #111;
-  text-decoration:none;
-  color:#111;
-  font-size:13px;
-  letter-spacing:1px;
-  transition:.2s;
+/* SEARCH */
+
+.search{
+  padding:15px 30px;
+  border-bottom:1px solid var(--border);
 }
 
-.hero a:hover{
-  background:#111;
-  color:#fff;
+.search input{
+  width:100%;
+  padding:10px;
+  border:1px solid var(--border);
+  border-radius:8px;
 }
 
 /* PRODUCTS */
 
-.section-title{
-  text-align:center;
-  margin:80px 0 40px;
-  font-size:18px;
-  font-weight:500;
-}
-
 .products{
-  max-width:1200px;
-  margin:0 auto 100px;
   display:grid;
   grid-template-columns:repeat(4,1fr);
-  gap:40px;
-  padding:0 40px;
+  gap:25px;
+  padding:30px;
 }
 
 .card{
-  text-align:left;
-  position:relative;
+  border:1px solid var(--border);
+  border-radius:14px;
+  padding:15px;
+  text-align:center;
+  background:#fff;
 }
 
 .card img{
   width:100%;
-  margin-bottom:15px;
+  border-radius:10px;
+  margin-bottom:10px;
 }
 
 .card h3{
-  font-size:14px;
-  font-weight:500;
+  font-size:15px;
   margin-bottom:6px;
 }
 
 .price{
-  font-size:14px;
+  font-weight:600;
   margin-bottom:10px;
 }
 
 .vinted-btn{
-  font-size:12px;
+  display:inline-block;
+  background:var(--green);
+  color:#fff;
+  padding:8px 18px;
+  border-radius:8px;
   text-decoration:none;
-  border-bottom:1px solid #111;
-  color:#111;
+  font-size:13px;
   transition:.2s;
 }
 
 .vinted-btn:hover{
-  opacity:.6;
+  background:var(--green-hover);
 }
 
-/* SOLD BADGE */
+/* SOLD */
 
 .sold{
-  position:absolute;
-  top:15px;
-  left:15px;
   background:#111;
   color:#fff;
   font-size:11px;
-  padding:5px 8px;
+  padding:4px 8px;
+  position:absolute;
+  margin:10px;
+  border-radius:4px;
 }
 
 /* FOOTER */
 
 footer{
-  padding:40px;
+  padding:30px;
   text-align:center;
-  border-top:1px solid #eee;
+  border-top:1px solid var(--border);
   font-size:13px;
   color:#777;
 }
@@ -172,34 +157,25 @@ footer{
   .products{
     grid-template-columns:1fr;
   }
-
-  .hero h1{
-    font-size:28px;
-  }
 }
 
 </style>
 </head>
 <body>
 
+<div class="wrapper">
+
 <header>
-  <div class="logo">DIVATSHOP</div>
+  <div class="logo">DivatShop</div>
   <nav>
     <a href="#">Termékek</a>
     <a href="https://www.vinted.hu/member/SAJATPROFILOD" target="_blank">Vinted Profil</a>
-    <a href="#">Instagram</a>
   </nav>
 </header>
 
-<section class="hero">
-  <h1>Minimal Second-Hand Collection</h1>
-  <p>Gondosan válogatott darabok – elérhetőek Vinteden.</p>
-  <a href="https://www.vinted.hu/member/SAJATPROFILOD" target="_blank">
-    Fedezd fel Vinteden
-  </a>
-</section>
-
-<div class="section-title">Elérhető Termékek</div>
+<div class="search">
+  <input type="text" placeholder="Keresés...">
+</div>
 
 <section class="products">
 
@@ -207,18 +183,17 @@ footer{
     <img src="product1.jpg">
     <h3>Oversized Blézer</h3>
     <div class="price">4 990 Ft</div>
-    <a href="VINTED_TERMÉK_LINK" target="_blank" class="vinted-btn">
+    <a href="VINTED_LINK" target="_blank" class="vinted-btn">
       Megnézem Vinteden
     </a>
   </div>
 
   <div class="card">
-    <div class="sold">ELADVA</div>
     <img src="product2.jpg">
     <h3>Vintage Farmer</h3>
     <div class="price">3 490 Ft</div>
-    <a href="#" class="vinted-btn">
-      Eladva
+    <a href="VINTED_LINK" target="_blank" class="vinted-btn">
+      Megnézem Vinteden
     </a>
   </div>
 
@@ -226,7 +201,7 @@ footer{
     <img src="product3.jpg">
     <h3>Minimal Kabát</h3>
     <div class="price">8 990 Ft</div>
-    <a href="VINTED_TERMÉK_LINK" target="_blank" class="vinted-btn">
+    <a href="VINTED_LINK" target="_blank" class="vinted-btn">
       Megnézem Vinteden
     </a>
   </div>
@@ -235,7 +210,7 @@ footer{
     <img src="product4.jpg">
     <h3>Basic Póló</h3>
     <div class="price">2 490 Ft</div>
-    <a href="VINTED_TERMÉK_LINK" target="_blank" class="vinted-btn">
+    <a href="VINTED_LINK" target="_blank" class="vinted-btn">
       Megnézem Vinteden
     </a>
   </div>
@@ -245,6 +220,8 @@ footer{
 <footer>
   © 2024 DivatShop – Minden termék Vinteden vásárolható.
 </footer>
+
+</div>
 
 </body>
 </html>
