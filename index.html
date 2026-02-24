@@ -2,6 +2,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="DivatShop – Minőségi second-hand ruhák, elérhetőek Vinteden.">
 <title>DivatShop</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet"><style>
 :root{
@@ -27,27 +28,30 @@ header{padding:20px 30px;border-bottom:1px solid var(--border);font-weight:600;f
 .vinted-btn{display:inline-block;background:linear-gradient(135deg,var(--green),var(--green-hover));color:#fff;padding:9px 20px;border-radius:10px;text-decoration:none;font-size:13px;transition:.3s;} 
 .vinted-btn:hover{transform:scale(1.05);} 
 
-.sold-overlay{
+.badge{
   position:absolute;
-  inset:0;
-  background:rgba(0,0,0,0.65);
+  top:12px;
+  left:12px;
+  background:#111;
   color:#fff;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-weight:600;
-  font-size:18px;
-  border-radius:16px;
+  font-size:11px;
+  padding:5px 8px;
+  border-radius:6px;
 }
+
+.badge.new{background:var(--green);} 
 
 .hidden{display:none;}
 
 /* MODAL */
 .modal{position:fixed;inset:0;background:rgba(0,0,0,0.7);display:none;align-items:center;justify-content:center;z-index:999;}
-.modal-content{background:#fff;width:95%;max-width:800px;border-radius:16px;padding:30px;}
+.modal-content{background:#fff;width:95%;max-width:800px;border-radius:16px;padding:30px;position:relative;}
 .close{text-align:right;cursor:pointer;font-size:14px;margin-bottom:10px;}
 
-.gallery-main img{width:100%;border-radius:12px;margin-bottom:15px;}
+.gallery-main{position:relative;overflow:hidden;}
+.gallery-main img{width:100%;border-radius:12px;margin-bottom:15px;transition:transform .3s ease;}
+.gallery-main img.zoomed{transform:scale(2);cursor:zoom-out;} 
+
 .gallery-thumbs{display:flex;gap:10px;margin-bottom:20px;}
 .gallery-thumbs img{width:80px;height:80px;object-fit:cover;border-radius:8px;cursor:pointer;border:2px solid transparent;}
 .gallery-thumbs img.active{border:2px solid var(--green);} 
@@ -58,18 +62,18 @@ header{padding:20px 30px;border-bottom:1px solid var(--border);font-weight:600;f
 @media(max-width:600px){.products{grid-template-columns:1fr;} }
 </style></head>
 <body><div class="wrapper">
-<header>DivatShop</header><section class="products">  <div class="card" data-sold="false"
+<header>DivatShop</header><section class="products">  <div class="card" data-sold="false" data-new="true"
        data-images="product1.jpg,product1b.jpg,product1c.jpg"
        data-description="Elegáns oversized blézer kiváló állapotban. Tökéletes tavaszi darab.">
     <img src="product1.jpg" onclick="openModal(this)">
-    <h3>Oversized Blézer</h3>
+    <h3><a href="product-blezer.html" style="text-decoration:none;color:inherit;">Oversized Blézer</a></h3>
     <div class="price">4 990 Ft</div>
     <a href="#" target="_blank" class="vinted-btn">Megnézem Vinteden</a>
-  </div>  <div class="card" data-sold="true"
+  </div>  <div class="card" data-sold="true" data-new="false"
        data-images="product2.jpg,product2b.jpg"
        data-description="Vintage farmer magas derékkal, hibátlan állapot.">
     <img src="product2.jpg" onclick="openModal(this)">
-    <h3>Vintage Farmer</h3>
+    <h3><a href="product-farmer.html" style="text-decoration:none;color:inherit;">Vintage Farmer</a></h3>
     <div class="price">3 490 Ft</div>
     <a href="#" class="vinted-btn">Eladva</a>
   </div></section>
@@ -77,7 +81,7 @@ header{padding:20px 30px;border-bottom:1px solid var(--border);font-weight:600;f
   <div class="modal-content">
     <div class="close" onclick="closeModal()">Bezárás ✕</div>
     <div class="gallery-main">
-      <img id="modalMainImg">
+      <img id="modalMainImg" onclick="toggleZoom(this)">
     </div>
     <div class="gallery-thumbs" id="modalThumbs"></div>
     <h3 id="modalTitle"></h3>
@@ -86,22 +90,32 @@ header{padding:20px 30px;border-bottom:1px solid var(--border);font-weight:600;f
   </div>
 </div><script>
 
-/* Automatikus ELADVA kezelés */
+/* Badge kezelés */
 document.querySelectorAll('.card').forEach(card=>{
   if(card.dataset.sold==='true'){
-    const overlay=document.createElement('div');
-    overlay.className='sold-overlay';
-    overlay.innerText='ELADVA';
-    card.appendChild(overlay);
+    const badge=document.createElement('div');
+    badge.className='badge';
+    badge.innerText='ELADVA';
+    card.appendChild(badge);
+  } else if(card.dataset.new==='true'){
+    const badge=document.createElement('div');
+    badge.className='badge new';
+    badge.innerText='ÚJ';
+    card.appendChild(badge);
   }
 });
 
-/* Modal megnyitás több képpel */
+/* Modal galéria + swipe */
+let currentIndex=0;
+let images=[];
+
 function openModal(img){
   const card=img.closest('.card');
-  const images=card.dataset.images.split(',');
+  images=card.dataset.images.split(',');
+  currentIndex=0;
 
-  document.getElementById('modalMainImg').src=images[0];
+  updateMainImage();
+
   document.getElementById('modalTitle').innerText=card.querySelector('h3').innerText;
   document.getElementById('modalPrice').innerText=card.querySelector('.price').innerText;
   document.getElementById('modalDescription').innerText=card.dataset.description;
@@ -113,19 +127,40 @@ function openModal(img){
     const thumb=document.createElement('img');
     thumb.src=src;
     if(i===0) thumb.classList.add('active');
-    thumb.onclick=function(){
-      document.getElementById('modalMainImg').src=src;
-      document.querySelectorAll('.gallery-thumbs img').forEach(t=>t.classList.remove('active'));
-      thumb.classList.add('active');
-    };
+    thumb.onclick=function(){currentIndex=i;updateMainImage();};
     thumbs.appendChild(thumb);
   });
 
   document.getElementById('productModal').style.display='flex';
 }
 
+function updateMainImage(){
+  const main=document.getElementById('modalMainImg');
+  main.src=images[currentIndex];
+  document.querySelectorAll('.gallery-thumbs img').forEach((t,i)=>{
+    t.classList.toggle('active',i===currentIndex);
+  });
+}
+
 function closeModal(){
   document.getElementById('productModal').style.display='none';
+}
+
+/* Swipe mobilon */
+let startX=0;
+document.getElementById('modalMainImg').addEventListener('touchstart',e=>{
+  startX=e.touches[0].clientX;
+});
+
+document.getElementById('modalMainImg').addEventListener('touchend',e=>{
+  let endX=e.changedTouches[0].clientX;
+  if(endX<startX-50 && currentIndex<images.length-1){currentIndex++;updateMainImage();}
+  if(endX>startX+50 && currentIndex>0){currentIndex--;updateMainImage();}
+});
+
+/* Zoom */
+function toggleZoom(img){
+  img.classList.toggle('zoomed');
 }
 
 </script></body>
