@@ -251,4 +251,61 @@ window.addEventListener('scroll', function(){
 });
 
 </script></body>
+
+  <script>
+
+const sheetURL = "https://docs.google.com/spreadsheets/d/1PlqIBtGVKHCQIoDk4gAbIOIpRh_-bEGRXmexvaT5sos/export?format=csv";
+
+async function loadProducts() {
+  try {
+    const res = await fetch(sheetURL);
+    if (!res.ok) throw new Error("Hálózati hiba");
+
+    const data = await res.text();
+    const rows = data.split("\n").slice(1);
+
+    const grid = document.querySelector(".products");
+    if (!grid) return;
+
+    grid.innerHTML = "";
+
+    rows.forEach(row => {
+      if (!row.trim()) return;
+
+      const cols = row.split(",");
+      if (cols.length < 7) return;
+
+      const name = cols[0];
+      const price = cols[1];
+      const images = cols[2];
+      const description = cols[3];
+      const vinted_link = cols[4];
+      const isNew = cols[5];
+      const isSold = cols[6];
+
+      const imageArray = images.split("|");
+
+      const card = document.createElement("div");
+      card.className = "card";
+
+      card.innerHTML = `
+        <img src="${imageArray[0]}" onclick="openModal(this)">
+        <h3>${name}</h3>
+        <div class="price">${price} Ft</div>
+        <a href="${vinted_link}" target="_blank" class="vinted-btn">
+          ${isSold === "TRUE" ? "Eladva" : "Megnézem Vinteden"}
+        </a>
+      `;
+
+      grid.appendChild(card);
+    });
+
+  } catch (error) {
+    console.error("Hiba a betöltésnél:", error);
+  }
+}
+
+document.addEventListener("DOMContentLoaded", loadProducts);
+
+  </script>
 </html>
