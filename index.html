@@ -77,12 +77,12 @@ header.scrolled img{
 
 .card{
   border:1px solid var(--border);
-  border-radius:18px;
+  border-radius:20px;
   padding:18px;
-  text-align:center;
   background:#fff;
   transition:.3s ease;
   position:relative;
+  overflow:hidden;
 }
 
 .card:hover{
@@ -92,9 +92,15 @@ header.scrolled img{
 
 .card img{
   width:100%;
-  border-radius:14px;
-  margin-bottom:12px;
+  aspect-ratio:1/1;
   object-fit:cover;
+  border-radius:16px;
+  margin-bottom:14px;
+  transition:transform .4s ease;
+}
+
+.card:hover img{
+  transform:scale(1.04);
 }
 
 .price{
@@ -124,8 +130,8 @@ header.scrolled img{
   background:#111;
   color:#fff;
   font-size:11px;
-  padding:5px 8px;
-  border-radius:6px;
+  padding:6px 9px;
+  border-radius:8px;
 }
 
 .badge.new{
@@ -142,6 +148,8 @@ footer{
 
 @media(max-width:600px){
   header img{height:30px;}
+  .products{padding:20px;gap:20px;}
+  .card{padding:14px;}
 }
 </style></head><body><div id="progressBar"></div><div class="wrapper"><header>
   <img src="logo.webp" alt="Ruhatárház logó">
@@ -166,21 +174,20 @@ async function loadProducts(){
       const cols = row.split(",");
       if(cols.length < 7) return;
 
-      const name = cols[0];
-      const price = cols[1];
-      const images = cols[2];
-      const description = cols[3];
-      const link = cols[4];
-      const isNew = cols[5];
-      const isSold = cols[6];
+      const name = cols[0].trim();
+      const price = cols[1].trim();
+      const images = cols[2].trim();
+      const link = cols[4].trim();
+      const isNew = cols[5].trim();
+      const isSold = cols[6].trim();
 
-      const imageArray = images.split("|");
+      const imageArray = images.split("|").map(img=>img.trim());
 
       const card = document.createElement("div");
       card.className = "card";
 
       card.innerHTML = `
-        <img src="${imageArray[0]}">
+        <img src="${imageArray[0]}" loading="lazy">
         <h3>${name}</h3>
         <div class="price">${price} Ft</div>
         <a href="${link}" target="_blank" class="vinted-btn">
