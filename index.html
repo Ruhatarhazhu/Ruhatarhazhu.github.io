@@ -251,4 +251,59 @@ window.addEventListener('scroll', function(){
 });
 
 </script></body>
+
+  <script>
+
+const sheetURL = "https://docs.google.com/spreadsheets/d/1PlqIBtGVKHCQIoDk4gAbIOIpRh_-bEGRXmexvaT5sos/edit?usp=drivesdk";
+
+async function loadProducts() {
+  const res = await fetch(sheetURL);
+  const data = await res.text();
+  const rows = data.split("\n").slice(1);
+
+  const grid = document.querySelector(".products");
+  grid.innerHTML = "";
+
+  rows.forEach(row => {
+    if(!row) return;
+
+    const [name, price, images, description, vinted_link, isNew, isSold] = row.split(",");
+
+    const imageArray = images.split("|");
+
+    const card = document.createElement("div");
+    card.className = "card";
+    card.dataset.images = imageArray.join(",");
+    card.dataset.description = description;
+    card.dataset.new = isNew;
+    card.dataset.sold = isSold;
+
+    card.innerHTML = `
+      <img src="${imageArray[0]}" onclick="openModal(this)">
+      <h3>${name}</h3>
+      <div class="price">${price} Ft</div>
+      <a href="${vinted_link}" target="_blank" class="vinted-btn">
+        ${isSold === "TRUE" ? "Eladva" : "Megnézem Vinteden"}
+      </a>
+    `;
+
+    if(isSold === "TRUE"){
+      const badge = document.createElement("div");
+      badge.className = "badge";
+      badge.innerText = "ELADVA";
+      card.appendChild(badge);
+    } else if(isNew === "TRUE"){
+      const badge = document.createElement("div");
+      badge.className = "badge new";
+      badge.innerText = "ÚJ";
+      card.appendChild(badge);
+    }
+
+    grid.appendChild(card);
+  });
+}
+
+loadProducts();
+
+  </script>
 </html>
