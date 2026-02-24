@@ -1,38 +1,18 @@
-<!DOCTYPE html>
-<html lang="hu">
+<!DOCTYPE html><html lang="hu">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Termék – Ruhatárház</title>
 <link rel="icon" type="image/png" href="favicon.png">
-<meta name="description" content="Ruhatárház prémium Vinted termék.">
+<meta name="description" content="Ruhatárház prémium Vinted termék."><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet"><style>
+body{font-family:'Inter',sans-serif;background:#f6f6f6;margin:0;}
+.wrapper{max-width:1000px;margin:60px auto;background:#fff;padding:40px;border-radius:20px;box-shadow:0 25px 80px rgba(0,0,0,.06);} 
+.back{display:inline-block;margin-bottom:20px;text-decoration:none;color:#555;}
 
-<!-- Open Graph -->
-<meta property="og:type" content="product">
-<meta property="og:title" content="Ruhatárház termék">
-<meta property="og:description" content="Nézd meg ezt a terméket a Ruhatárház oldalán.">
-<meta property="og:image" content="">
-<meta property="og:url" content="">
-
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-
-<style>
-body{
-  font-family:'Inter',sans-serif;
-  background:#f6f6f6;
-  margin:0;
-}
-.wrapper{
-  max-width:1000px;
-  margin:60px auto;
-  background:#fff;
-  padding:40px;
-  border-radius:20px;
-  box-shadow:0 25px 80px rgba(0,0,0,.06);
-}
 .gallery{
+  position:relative;
   width:100%;
-  aspect-ratio: 4 / 5;
+  aspect-ratio:4/5;
   overflow:hidden;
   border-radius:16px;
   background:#f2f2f2;
@@ -47,82 +27,50 @@ body{
   object-fit:cover;
   border-radius:16px;
 }
-.thumbs{
-  display:flex;
-  gap:10px;
-  margin-top:15px;
-}
-.thumbs{
-  display:flex;
-  gap:12px;
-  margin-top:18px;
-  flex-wrap:wrap;
-}
 
-.thumbs img{
-  width:70px;
-  height:90px;
-  object-fit:cover;
-  border-radius:10px;
-  cursor:pointer;
-  transition:.3s;
-  border:2px solid transparent;
-}
-
-.thumbs img:hover{
-  border:2px solid #3a7d2e;
-}
-.price{
-  font-size:20px;
-  font-weight:600;
-  margin:15px 0;
-}
-.button{
-  display:inline-block;
-  background:#3a7d2e;
+.arrow{
+  position:absolute;
+  top:50%;
+  transform:translateY(-50%);
+  background:rgba(0,0,0,.5);
   color:#fff;
-  padding:12px 25px;
-  border-radius:12px;
-  text-decoration:none;
+  border:none;
+  width:40px;
+  height:40px;
+  border-radius:50%;
+  cursor:pointer;
+  font-size:18px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
 }
-.back{
-  display:inline-block;
-  margin-bottom:20px;
-  text-decoration:none;
-  color:#555;
+.arrow.left{left:15px;}
+.arrow.right{right:15px;}
+
+.thumbs{display:flex;gap:12px;margin-top:18px;flex-wrap:wrap;}
+.thumbs img{width:70px;height:90px;object-fit:cover;border-radius:10px;cursor:pointer;border:2px solid transparent;transition:.3s;}
+.thumbs img.active{border:2px solid #3a7d2e;}
+
+.price{font-size:20px;font-weight:600;margin:15px 0;}
+.button{display:inline-block;background:#3a7d2e;color:#fff;padding:12px 25px;border-radius:12px;text-decoration:none;}
+
+@media(max-width:600px){
+  .gallery{aspect-ratio:3/4;}
 }
-  @media(max-width:600px){
-  .gallery{
-    aspect-ratio: 3 / 4;
-  }
-
-  .thumbs img{
-    width:60px;
-    height:80px;
-  }
-  }
-</style>
-</head>
-<body>
-
-<div class="wrapper">
-<a href="index.html" class="back">← Vissza</a>
-
-<div class="gallery">
+</style></head>
+<body><div class="wrapper">
+<a href="index.html" class="back">← Vissza</a><div class="gallery">
+<button class="arrow left" onclick="prevImage()">◀</button>
 <img id="mainImg">
-<div class="thumbs" id="thumbs"></div>
-</div>
-
-<h1 id="name"></h1>
+<button class="arrow right" onclick="nextImage()">▶</button>
+</div><div class="thumbs" id="thumbs"></div><h1 id="name"></h1>
 <div class="price" id="price"></div>
 <p id="description"></p>
-<a id="vintedLink" target="_blank" class="button">Megnézem Vinteden</a>
-
-</div>
-
-<script>
+<a id="vintedLink" target="_blank" class="button">Megnézem Vinteden</a></div><script>
 
 const sheetURL="https://docs.google.com/spreadsheets/d/1PlqIBtGVKHCQIoDk4gAbIOIpRh_-bEGRXmexvaT5sos/export?format=csv";
+let currentImages=[];
+let currentIndex=0;
 
 function getSlug(){
   const params=new URLSearchParams(window.location.search);
@@ -131,6 +79,23 @@ function getSlug(){
 
 function slugify(text){
   return text.toLowerCase().replace(/ /g,"-");
+}
+
+function updateImage(){
+  document.getElementById("mainImg").src=currentImages[currentIndex];
+  document.querySelectorAll(".thumbs img").forEach((img,i)=>{
+    img.classList.toggle("active", i===currentIndex);
+  });
+}
+
+function nextImage(){
+  currentIndex=(currentIndex+1)%currentImages.length;
+  updateImage();
+}
+
+function prevImage(){
+  currentIndex=(currentIndex-1+currentImages.length)%currentImages.length;
+  updateImage();
 }
 
 async function loadProduct(){
@@ -145,41 +110,34 @@ async function loadProduct(){
 
     const name=cols[0].trim();
     const price=cols[1].trim();
-    const images=cols[2].trim().split("|");
+    const images=cols[2].trim().split("|").map(i=>i.trim());
     const description=cols[3].trim();
     const link=cols[4].trim();
 
     if(slugify(name)===slug){
-
       document.title=name+" – Ruhatárház";
-      document.querySelector('meta[name="description"]').setAttribute("content",description);
-      document.querySelector('meta[property="og:title"]').setAttribute("content",name);
-      document.querySelector('meta[property="og:description"]').setAttribute("content",description);
-      document.querySelector('meta[property="og:image"]').setAttribute("content",images[0]);
-      document.querySelector('meta[property="og:url"]').setAttribute("content",window.location.href);
-
       document.getElementById("name").innerText=name;
       document.getElementById("price").innerText=price+" Ft";
       document.getElementById("description").innerText=description;
       document.getElementById("vintedLink").href=link;
 
-      document.getElementById("mainImg").src=images[0];
+      currentImages=images;
+      currentIndex=0;
+      updateImage();
 
       const thumbs=document.getElementById("thumbs");
-      images.forEach(img=>{
+      thumbs.innerHTML="";
+      images.forEach((img,i)=>{
         const t=document.createElement("img");
         t.src=img;
-        t.onclick=()=>document.getElementById("mainImg").src=img;
+        t.onclick=()=>{currentIndex=i;updateImage();};
         thumbs.appendChild(t);
       });
-
     }
   });
 }
 
 loadProduct();
 
-</script>
-
-</body>
+</script></body>
 </html>
