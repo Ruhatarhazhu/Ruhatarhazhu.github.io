@@ -113,11 +113,15 @@ async function loadProduct(){
     const images=cols[2].trim().split("|").map(i=>i.trim());
     const description=cols[3].trim();
     const link=cols[4].trim();
+    const size = cols[8] ? cols[8].trim() : "";
 
     if(slugify(name)===slug){
       document.title=name+" – Ruhatárház";
       document.getElementById("name").innerText=name;
       document.getElementById("price").innerText=price+" Ft";
+      if(size){
+  document.getElementById("size").innerText="Méret: " + size;
+      }
       document.getElementById("description").innerText=description;
       document.getElementById("vintedLink").href=link;
 
