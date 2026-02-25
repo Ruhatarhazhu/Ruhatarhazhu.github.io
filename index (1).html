@@ -1,0 +1,190 @@
+<!DOCTYPE html><html lang="hu">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ruhatárház</title>
+<link rel="icon" type="image/png" href="favicon.png">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet"><style>
+:root{
+  --green:#3a7d2e;
+  --green-hover:#2f6825;
+  --border:#e8e8e8;
+  --text:#1a1a1a;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Inter',sans-serif;background:#f6f6f6;color:var(--text);} 
+
+#progressBar{position:fixed;top:0;left:0;height:3px;width:0;background:linear-gradient(90deg,#3a7d2e,#2f6825);z-index:2000;transition:.2s;}
+
+.wrapper{max-width:1200px;margin:50px auto;background:#fff;border-radius:24px;box-shadow:0 25px 80px rgba(0,0,0,.06);overflow:hidden;}
+
+header{position:sticky;top:0;background:#fff;display:flex;justify-content:center;padding:25px 0;border-bottom:1px solid var(--border);transition:.3s;z-index:1000;}
+header img{height:42px;transition:.3s;}
+header.scrolled{padding:12px 0;box-shadow:0 10px 30px rgba(0,0,0,.08);} 
+header.scrolled img{height:34px;} 
+
+.controls{display:flex;gap:15px;flex-wrap:wrap;padding:20px;border-bottom:1px solid var(--border);} 
+select{padding:8px 12px;border-radius:8px;border:1px solid var(--border);} 
+
+.products{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;padding:30px;} 
+
+.card{border:1px solid var(--border);border-radius:18px;padding:15px;background:#fff;transition:.3s;position:relative;cursor:pointer;} 
+.card:hover{transform:translateY(-5px);box-shadow:0 12px 30px rgba(0,0,0,.12);} 
+
+.card img{width:100%;height:200px;object-fit:cover;border-radius:14px;margin-bottom:10px;transition:.4s;} 
+.card:hover img{transform:scale(1.05);} 
+
+.price{font-weight:600;margin:6px 0;} 
+
+.badge{position:absolute;top:12px;left:12px;background:#111;color:#fff;font-size:11px;padding:5px 8px;border-radius:6px;} 
+.badge.new{background:var(--green);} 
+
+.pagination{display:flex;justify-content:center;gap:8px;padding:20px;} 
+.pagination button{padding:6px 12px;border:1px solid var(--border);background:#fff;border-radius:6px;cursor:pointer;} 
+.pagination button.active{background:var(--green);color:#fff;} 
+
+footer{padding:30px;text-align:center;border-top:1px solid var(--border);font-size:13px;color:#777;} 
+
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.85);display:none;align-items:center;justify-content:center;flex-direction:column;z-index:3000;} 
+.modal img{max-width:90%;max-height:80%;border-radius:14px;transition:.3s;} 
+.modal-controls{margin-top:15px;display:flex;gap:15px;} 
+.modal-controls button{padding:6px 12px;border:none;border-radius:6px;background:#fff;cursor:pointer;} 
+
+@media(max-width:900px){.products{grid-template-columns:repeat(2,1fr);} }
+@media(max-width:600px){.products{grid-template-columns:1fr;} header img{height:30px;} }
+</style></head>
+<body><div id="progressBar"></div><div class="wrapper">
+<header><img src="logo.webp" alt="Ruhatárház"></header><div class="controls">
+<select id="categoryFilter"><option value="all">Összes kategória</option></select>
+<select id="sortPrice">
+<option value="default">Ár szerint</option>
+<option value="low">Olcsóbb elöl</option>
+<option value="high">Drágább elöl</option>
+</select>
+</div><section class="products"></section>
+<div class="pagination"></div><footer>© 2024 Ruhatárház – Minden termék Vinteden vásárolható.</footer>
+</div><div class="modal" id="imageModal">
+<img id="modalImg">
+<div class="modal-controls">
+<button onclick="prevImage()">◀</button>
+<button onclick="nextImage()">▶</button>
+<button onclick="closeModal()">Bezárás</button>
+</div>
+</div><script>
+
+const sheetURL="https://docs.google.com/spreadsheets/d/1PlqIBtGVKHCQIoDk4gAbIOIpRh_-bEGRXmexvaT5sos/export?format=csv";
+let products=[];
+let currentPage=1;
+let currentImages=[];
+let currentIndex=0;
+const perPage=6;
+
+async function loadProducts(){
+const res=await fetch(sheetURL);
+const data=await res.text();
+const rows=data.split("\n").slice(1);
+products=[];
+
+rows.forEach(row=>{
+if(!row.trim()) return;
+const cols=row.split(",");
+if(cols.length<8) return;
+products.push({
+name:cols[0].trim(),
+price:parseInt(cols[1]),
+images:cols[2].trim().split("|").map(i=>i.trim()),
+description:cols[3],
+link:cols[4],
+new:cols[5].trim(),
+sold:cols[6].trim(),
+category:cols[7].trim()
+});
+});
+initCategories();
+render();
+}
+
+function initCategories(){
+const select=document.getElementById("categoryFilter");
+const cats=[...new Set(products.map(p=>p.category))];
+select.innerHTML='<option value="all">Összes kategória</option>';
+cats.forEach(cat=>select.innerHTML+=`<option value="${cat}">${cat}</option>`);
+}
+
+function render(){
+let filtered=[...products];
+const cat=document.getElementById("categoryFilter").value;
+const sort=document.getElementById("sortPrice").value;
+
+if(cat!="all") filtered=filtered.filter(p=>p.category===cat);
+if(sort==="low") filtered.sort((a,b)=>a.price-b.price);
+if(sort==="high") filtered.sort((a,b)=>b.price-a.price);
+
+const start=(currentPage-1)*perPage;
+const paginated=filtered.slice(start,start+perPage);
+
+const grid=document.querySelector(".products");
+grid.innerHTML="";
+
+paginated.forEach(p=>{
+const card=document.createElement("div");
+card.className="card";
+card.innerHTML=`<img src="${p.images[0]}" loading="lazy"><h3>${p.name}</h3><div class="price">${p.price} Ft</div>`;
+if(p.sold==="TRUE"){
+const b=document.createElement("div");b.className="badge";b.innerText="ELADVA";card.appendChild(b);
+}else if(p.new==="TRUE"){
+const b=document.createElement("div");b.className="badge new";b.innerText="ÚJ";card.appendChild(b);
+}
+card.onclick=()=>window.location.href="product.html?slug="+p.name.toLowerCase().replace(/ /g,"-");
+grid.appendChild(card);
+});
+renderPagination(filtered.length);
+}
+
+function renderPagination(total){
+const pages=Math.ceil(total/perPage);
+const container=document.querySelector(".pagination");
+container.innerHTML="";
+for(let i=1;i<=pages;i++){
+const btn=document.createElement("button");
+btn.textContent=i;
+if(i===currentPage) btn.classList.add("active");
+btn.onclick=()=>{currentPage=i;render();};
+container.appendChild(btn);
+}
+}
+
+function openModal(images){
+currentImages=images;
+currentIndex=0;
+document.getElementById("modalImg").src=currentImages[currentIndex];
+document.getElementById("imageModal").style.display="flex";
+}
+
+function closeModal(){document.getElementById("imageModal").style.display="none";}
+function nextImage(){currentIndex=(currentIndex+1)%currentImages.length;document.getElementById("modalImg").src=currentImages[currentIndex];}
+function prevImage(){currentIndex=(currentIndex-1+currentImages.length)%currentImages.length;document.getElementById("modalImg").src=currentImages[currentIndex];}
+
+let startX=0;
+document.getElementById("imageModal").addEventListener("touchstart",e=>startX=e.touches[0].clientX);
+document.getElementById("imageModal").addEventListener("touchend",e=>{
+let endX=e.changedTouches[0].clientX;
+if(startX-endX>50) nextImage();
+if(endX-startX>50) prevImage();
+});
+
+window.addEventListener("scroll",()=>{
+const scrollTop=window.scrollY;
+const docHeight=document.body.scrollHeight-window.innerHeight;
+document.getElementById("progressBar").style.width=(scrollTop/docHeight)*100+"%";
+const header=document.querySelector("header");
+if(scrollTop>50) header.classList.add("scrolled"); else header.classList.remove("scrolled");
+});
+
+document.getElementById("categoryFilter").addEventListener("change",()=>{currentPage=1;render();});
+document.getElementById("sortPrice").addEventListener("change",()=>{currentPage=1;render();});
+
+loadProducts();
+
+</script></body>
+</html>
