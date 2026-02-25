@@ -107,27 +107,109 @@ footer{padding:30px;text-align:center;border-top:1px solid var(--border);font-si
   }
 }
 
+  .header-inner{
+  position:relative;
+  width:100%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.logo{
+  height:42px;
+  transition:.3s;
+}
+
+.right-actions{
+  position:absolute;
+  right:25px;
+  display:flex;
+  align-items:center;
+  gap:14px;
+}
+
+.social-icon{
+  width:34px;
+  height:34px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border-radius:50%;
+  background:#f2f2f2;
+  transition:.3s;
+}
+
+.social-icon svg{
+  width:18px;
+  height:18px;
+  fill:#333;
+  transition:.3s;
+}
+
+.social-icon:hover{
+  background:#3a7d2e;
+}
+
+.social-icon:hover svg{
+  fill:#fff;
+}
+
+.contact-btn{
+  padding:8px 18px;
+  border-radius:12px;
+  background:linear-gradient(135deg,#3a7d2e,#2f6825);
+  color:#fff;
+  text-decoration:none;
+  font-size:14px;
+  font-weight:500;
+  transition:.3s;
+}
+
+.contact-btn:hover{
+  transform:translateY(-2px);
+  box-shadow:0 8px 20px rgba(0,0,0,.15);
+}
+
+@media(max-width:600px){
+  .logo{
+    height:30px;
+  }
+  .right-actions{
+    right:15px;
+    gap:10px;
+  }
+  .contact-btn{
+    padding:6px 14px;
+    font-size:13px;
+  }
+}
 </style></head>
 <body><div id="progressBar"></div><div class="wrapper">
 <header>
   <div class="header-inner">
-    <div class="spacer"></div>
+
+    <div class="left-space"></div>
 
     <img src="logo.webp" alt="Ruhatárház" class="logo">
 
-    <div class="socials">
-      <a href="https://facebook.com/IDE_A_LINK" target="_blank" aria-label="Facebook">
+    <div class="right-actions">
+      <a href="https://facebook.com/IDE_A_LINK" target="_blank" class="social-icon" aria-label="Facebook">
         <svg viewBox="0 0 24 24">
           <path d="M22 12a10 10 0 1 0-11.5 9.9v-7h-2.3v-2.9h2.3V9.5c0-2.3 1.4-3.6 3.5-3.6 1 0 2 .2 2 .2v2.3h-1.1c-1.1 0-1.4.7-1.4 1.3v1.6h2.4l-.4 2.9h-2v7A10 10 0 0 0 22 12z"/>
         </svg>
       </a>
 
-      <a href="https://t.me/IDE_A_LINK" target="_blank" aria-label="Telegram">
+      <a href="https://t.me/IDE_A_LINK" target="_blank" class="social-icon" aria-label="Telegram">
         <svg viewBox="0 0 24 24">
           <path d="M9.04 15.32 8.8 19c.4 0 .57-.17.77-.37l1.85-1.77 3.84 2.8c.7.4 1.2.2 1.38-.65l2.5-11.7c.23-1.05-.38-1.46-1.06-1.2L3.4 9.6c-1.02.4-1 .96-.18 1.2l3.6 1.12 8.37-5.28c.4-.25.77-.11.47.14"/>
         </svg>
       </a>
+
+      <a href="mailto:email@ruhatárház.hu" class="contact-btn">
+        Kapcsolat
+      </a>
     </div>
+
   </div>
 </header><div class="controls">
 <select id="categoryFilter"><option value="all">Összes kategória</option></select>
