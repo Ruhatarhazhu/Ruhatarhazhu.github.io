@@ -124,6 +124,24 @@ async function loadProduct(){
 
     if(slugify(name)===slug){
       document.title=name+" – Ruhatárház";
+      // ===== Open Graph dinamikus frissítés =====
+
+document.querySelector('meta[property="og:title"]').setAttribute("content", name + " – Ruhatárház");
+
+document.querySelector('meta[property="og:description"]').setAttribute(
+  "content",
+  description ? description.substring(0,150) : "Minőségi ruhák a Ruhatárház kínálatából."
+);
+
+document.querySelector('meta[property="og:image"]').setAttribute(
+  "content",
+  images[0]
+);
+
+document.querySelector('meta[property="og:url"]').setAttribute(
+  "content",
+  window.location.href
+);
       document.getElementById("name").innerText=name;
       document.getElementById("price").innerText=price+" Ft";
       if(size){
