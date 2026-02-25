@@ -52,6 +52,61 @@ footer{padding:30px;text-align:center;border-top:1px solid var(--border);font-si
 
 @media(max-width:900px){.products{grid-template-columns:repeat(2,1fr);} }
 @media(max-width:600px){.products{grid-template-columns:1fr;} header img{height:30px;} }
+.header-inner{
+  position:relative;
+  width:100%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.logo{
+  height:42px;
+  transition:.3s;
+}
+
+.socials{
+  position:absolute;
+  right:25px;
+  display:flex;
+  gap:14px;
+}
+
+.socials a{
+  width:34px;
+  height:34px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border-radius:50%;
+  background:#f2f2f2;
+  transition:.3s;
+}
+
+.socials a:hover{
+  background:#3a7d2e;
+}
+
+.socials svg{
+  width:18px;
+  height:18px;
+  fill:#333;
+  transition:.3s;
+}
+
+.socials a:hover svg{
+  fill:#fff;
+}
+
+@media(max-width:600px){
+  .socials{
+    right:15px;
+  }
+  .logo{
+    height:30px;
+  }
+}
+
 </style></head>
 <body><div id="progressBar"></div><div class="wrapper">
 <header>
