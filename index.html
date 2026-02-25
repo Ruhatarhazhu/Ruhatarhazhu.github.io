@@ -107,32 +107,78 @@ footer{padding:30px;text-align:center;border-top:1px solid var(--border);font-si
   }
 }
 
-  .header-inner{
-  width:100%;
+  header{
+  background:#ffffff;
+  border-radius:20px;
+  padding:18px 0;
+  margin:20px auto;
+  max-width:1100px;
+  box-shadow:0 6px 20px rgba(0,0,0,0.05);
+}
+
+.header-inner{
   display:flex;
   align-items:center;
   justify-content:center;
   position:relative;
-  padding:0 25px;
+  padding:0 30px;
 }
 
 .left-socials{
   position:absolute;
-  left:25px;
+  left:30px;
   display:flex;
-  gap:12px;
+  gap:14px;
 }
 
 .right-actions{
   position:absolute;
-  right:25px;
+  right:30px;
 }
 
 .logo{
   height:42px;
+}
+
+.social-icon{
+  width:36px;
+  height:36px;
+  background:#f4f4f4;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
   transition:.3s;
 }
 
+.social-icon svg{
+  width:18px;
+  height:18px;
+  fill:#333;
+}
+
+.social-icon:hover{
+  background:#3a7d2e;
+}
+
+.social-icon:hover svg{
+  fill:#fff;
+}
+
+.contact-btn{
+  background:#3a7d2e;
+  color:white;
+  padding:10px 20px;
+  border-radius:14px;
+  text-decoration:none;
+  font-weight:500;
+  transition:.3s;
+}
+
+.contact-btn:hover{
+  transform:translateY(-2px);
+  box-shadow:0 8px 18px rgba(0,0,0,0.12);
+}
 .social-icon{
   width:34px;
   height:34px;
@@ -190,13 +236,26 @@ footer{padding:30px;text-align:center;border-top:1px solid var(--border);font-si
 }
 
     @media(max-width:600px){
-.header-inner{
-    padding:0 15px;
+
+  header{
+    padding:14px 0;
+  }
+
+  .header-inner{
+    padding:0 18px;
   }
 
   .left-socials{
-    left:15px;
+    left:18px;
     gap:8px;
+  }
+
+  .right-actions{
+    right:18px;
+  }
+
+  .logo{
+    height:28px;
   }
 
   .social-icon{
@@ -207,14 +266,6 @@ footer{padding:30px;text-align:center;border-top:1px solid var(--border);font-si
   .social-icon svg{
     width:14px;
     height:14px;
-  }
-
-  .logo{
-    height:28px;
-  }
-
-  .right-actions{
-    right:15px;
   }
 
   .contact-btn{
