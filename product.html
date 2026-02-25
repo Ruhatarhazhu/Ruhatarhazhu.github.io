@@ -120,6 +120,9 @@ async function loadProduct(){
       document.getElementById("price").innerText=price+" Ft";
       document.getElementById("description").innerText=description;
       document.getElementById("vintedLink").href=link;
+      if(product.size){
+  document.getElementById("product-size").textContent = "Méret: " + product.size;
+      }
 
       currentImages=images;
       currentIndex=0;
