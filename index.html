@@ -107,57 +107,46 @@ footer{padding:30px;text-align:center;border-top:1px solid var(--border);font-si
   }
 }
 
-  header{
-  background:#fff;
-  border-radius:22px;
-  padding:18px 25px;
-  margin:20px auto;
+  .site-header{
   max-width:1100px;
-  box-shadow:0 4px 16px rgba(0,0,0,0.06);
+  margin:20px auto;
+  background:#ffffff;
+  border-radius:22px;
+  box-shadow:0 6px 18px rgba(0,0,0,0.06);
+  padding:18px 25px;
 }
 
-.header-inner{
+.header-content{
   display:flex;
   align-items:center;
   justify-content:space-between;
 }
 
-.left-socials{
+.logo-wrapper img{
+  height:38px;
+}
+
+.socials{
   display:flex;
   gap:12px;
 }
 
-.logo{
-  height:38px;
-}
-
-.right-actions{
-  display:flex;
-  align-items:center;
-}
-
-.social-icon{
+.icon{
   width:34px;
   height:34px;
-  border-radius:50%;
   background:#f3f3f3;
+  border-radius:50%;
   display:flex;
   align-items:center;
   justify-content:center;
-  transition:.2s;
 }
 
-.social-icon svg{
+.icon svg{
   width:16px;
   height:16px;
   fill:#333;
 }
-
-.social-icon svg{
-  width:18px;
-  height:18px;
-  fill:#333;
-}
+  
 
 .social-icon:hover{
   background:#3a7d2e;
@@ -169,12 +158,12 @@ footer{padding:30px;text-align:center;border-top:1px solid var(--border);font-si
 
 .contact-btn{
   background:#3a7d2e;
-  color:white;
-  padding:10px 20px;
+  color:#fff;
+  padding:8px 18px;
   border-radius:14px;
   text-decoration:none;
   font-weight:500;
-  transition:.3s;
+  font-size:14px;
 }
 
 .contact-btn:hover{
@@ -238,21 +227,16 @@ footer{padding:30px;text-align:center;border-top:1px solid var(--border);font-si
 }
 
     @media(max-width:600px){
-@media(max-width:600px){
 
-  header{
+  .site-header{
     padding:14px 15px;
   }
 
-  .header-inner{
-    gap:10px;
-  }
-
-  .logo{
+  .logo-wrapper img{
     height:26px;
   }
 
-  .social-icon{
+  .icon{
     width:28px;
     height:28px;
   }
@@ -261,21 +245,33 @@ footer{padding:30px;text-align:center;border-top:1px solid var(--border);font-si
     padding:6px 12px;
     font-size:12px;
   }
-
-}
+    }
 </style></head>
 <body><div id="progressBar"></div><div class="wrapper">
-<header>
-  <div class="header-inner">
+<header class="site-header">
+  <div class="header-content">
 
-    <div class="left-socials">
-      <a href="https://facebook.com/..." class="social-icon" target="_blank">...</a>
-      <a href="https://t.me/ruhatarhaz" class="social-icon" target="_blank">...</a>
+    <div class="socials">
+      <a href="https://facebook.com/IDE_A_LINK" target="_blank" class="icon">
+        <!-- FB -->
+        <svg viewBox="0 0 24 24">
+          <path d="M22 12a10 10 0 1 0-11.5 9.9v-7h-2.3v-2.9h2.3V9.5c0-2.3 1.4-3.6 3.5-3.6 1 0 2 .2 2 .2v2.3h-1.1c-1.1 0-1.4.7-1.4 1.3v1.6h2.4l-.4 2.9h-2v7A10 10 0 0 0 22 12z"/>
+        </svg>
+      </a>
+
+      <a href="https://t.me/ruhatarhaz" target="_blank" class="icon">
+        <!-- TG -->
+        <svg viewBox="0 0 24 24">
+          <path d="M9.04 15.32 8.8 19c.4 0 .57-.17.77-.37l1.85-1.77 3.84 2.8c.7.4 1.2.2 1.38-.65l2.5-11.7c.23-1.05-.38-1.46-1.06-1.2L3.4 9.6c-1.02.4-1 .96-.18 1.2l3.6 1.12 8.37-5.28c.4-.25.77-.11.47.14"/>
+        </svg>
+      </a>
     </div>
 
-    <img src="logo.webp" class="logo">
+    <div class="logo-wrapper">
+      <img src="logo.webp" alt="Ruhatárház">
+    </div>
 
-    <div class="right-actions">
+    <div class="contact-wrapper">
       <a href="https://t.me/ruhatarhazponthu" target="_blank" class="contact-btn">
         Kapcsolat
       </a>
