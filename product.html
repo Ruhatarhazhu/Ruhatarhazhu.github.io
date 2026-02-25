@@ -124,6 +124,31 @@ async function loadProduct(){
 
     if(slugify(name)===slug){
       document.title=name+" – Ruhatárház";
+      // ===== STRUCTURED DATA =====
+
+const structuredData = {
+  "@context": "https://schema.org/",
+  "@type": "Product",
+  "name": name,
+  "image": images,
+  "description": description,
+  "brand": {
+    "@type": "Brand",
+    "name": "Ruhatárház"
+  },
+  "offers": {
+    "@type": "Offer",
+    "url": window.location.href,
+    "priceCurrency": "HUF",
+    "price": price,
+    "availability": "https://schema.org/InStock"
+  }
+};
+
+const script = document.createElement("script");
+script.type = "application/ld+json";
+script.text = JSON.stringify(structuredData);
+document.head.appendChild(script);
       // ===== Open Graph dinamikus frissítés =====
 
 document.querySelector('meta[property="og:title"]').setAttribute("content", name + " – Ruhatárház");
