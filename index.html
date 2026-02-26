@@ -154,6 +154,8 @@ let currentImages=[];
 let currentIndex=0;
 const perPage=6;
 
+
+async function loadProducts(){
 // ===== CACHE ELLENŐRZÉS =====
 const cachedData = localStorage.getItem(CACHE_KEY);
 const cacheTime = localStorage.getItem(CACHE_TIME_KEY);
@@ -164,7 +166,6 @@ if(cachedData && cacheTime && (Date.now() - cacheTime < CACHE_DURATION)){
   render();
   return;
 }
-  async function loadProducts(){
 const res=await fetch(sheetURL);
 const data=await res.text();
 const rows=data.split("\n").slice(1);
