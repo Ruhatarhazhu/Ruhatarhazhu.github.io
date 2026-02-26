@@ -179,7 +179,7 @@ products=[];
 rows.forEach(row=>{
 if(!row.trim()) return;
 const cols=row.split(",");
-if(cols.length<8) return;
+if(cols.length<5) return;
 products.push({
 name:cols[0].trim(),
 price:parseInt(cols[1]),
