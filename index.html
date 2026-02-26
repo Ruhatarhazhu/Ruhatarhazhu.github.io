@@ -142,6 +142,10 @@ footer{padding:30px;text-align:center;border-top:1px solid var(--border);font-si
 <button onclick="closeModal()">Bezárás</button>
 </div>
 </div><script>
+  // ===== CACHE BEÁLLÍTÁS =====
+const CACHE_KEY = "ruhatárhaz_cache";
+const CACHE_TIME_KEY = "ruhatárhaz_cache_time";
+const CACHE_DURATION = 5 * 60 * 1000; // 5 perc
 
 const sheetURL="https://docs.google.com/spreadsheets/d/1PlqIBtGVKHCQIoDk4gAbIOIpRh_-bEGRXmexvaT5sos/export?format=csv";
 let products=[];
@@ -150,7 +154,17 @@ let currentImages=[];
 let currentIndex=0;
 const perPage=6;
 
-async function loadProducts(){
+// ===== CACHE ELLENŐRZÉS =====
+const cachedData = localStorage.getItem(CACHE_KEY);
+const cacheTime = localStorage.getItem(CACHE_TIME_KEY);
+
+if(cachedData && cacheTime && (Date.now() - cacheTime < CACHE_DURATION)){
+  products = JSON.parse(cachedData);
+  initCategories();
+  render();
+  return;
+}
+  async function loadProducts(){
 const res=await fetch(sheetURL);
 const data=await res.text();
 const rows=data.split("\n").slice(1);
@@ -173,6 +187,9 @@ category:cols[7].trim()
 });
 });
 initCategories();
+    // ===== CACHE MENTÉS =====
+localStorage.setItem(CACHE_KEY, JSON.stringify(products));
+localStorage.setItem(CACHE_TIME_KEY, Date.now());
 render();
 }
 
