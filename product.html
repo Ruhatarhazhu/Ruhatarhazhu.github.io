@@ -159,7 +159,7 @@ body{
 </div>
 
 <script>
-const sheetURL="https://docs.google.com/spreadsheets/d/1PlqIBtGVKHCQIoDk4gAbIOIpRh_-bEGRXmexvaT5sos/gviz/tq?tqx=out:csv";
+const sheetURL = "https://docs.google.com/spreadsheets/d/1PlqIBtGVKHCQIoDk4gAbIOIpRh_-bEGRXmexvaT5sos/gviz/tq";
 let currentImages=[];
 let currentIndex=0;
 
@@ -189,47 +189,52 @@ function prevImage(){
 }
 
 async function loadProduct(){
-  const res=await fetch(sheetURL);
-  const data=await res.text();
-  const rows=data.split("\n").slice(1);
-  const slug=getSlug();
+  const res = await fetch(sheetURL);
+  const text = await res.text();
 
-  rows.forEach(row=>{
-    const cols=row.split(",");
-    if(cols.length<8) return;
+  const json = JSON.parse(text.substring(47).slice(0, -2));
+  const rows = json.table.rows;
 
-    const name=cols[0].trim();
-    const price=cols[1].trim();
-    const images=cols[2].trim().split("|").map(i=>i.trim());
-    const description=cols[3].trim();
-    const link=cols[4].trim();
-    const size=cols[8]?cols[8].trim():"";
+  const slug = getSlug();
 
-    if(slugify(name)===slug){
-      document.title=name+" – Ruhatárház";
-      document.getElementById("name").innerText=name;
-      document.getElementById("price").innerText=price+" Ft";
-      if(size) document.getElementById("size").innerText="Méret: "+size;
-      document.getElementById("description").innerText=description;
-      document.getElementById("vintedLink").href=link;
+  rows.forEach(r => {
 
-      currentImages=images;
-      currentIndex=0;
+    const name = r.c[0]?.v || "";
+    const price = r.c[1]?.v || "";
+    const images = (r.c[2]?.v || "").split("|");
+    const description = r.c[3]?.v || "";
+    const link = r.c[4]?.v || "";
+    const size = r.c[8]?.v || "";
+
+    if(slugify(name) === slug){
+
+      document.getElementById("name").innerText = name;
+      document.getElementById("price").innerText = price + " Ft";
+      document.getElementById("description").innerText = description;
+      document.getElementById("vintedLink").href = link;
+
+      if(size){
+        document.getElementById("size").innerText = "Méret: " + size;
+      }
+
+      currentImages = images;
+      currentIndex = 0;
       updateImage();
 
-      const thumbs=document.getElementById("thumbs");
-      thumbs.innerHTML="";
+      const thumbs = document.getElementById("thumbs");
+      thumbs.innerHTML = "";
+
       images.forEach((img,i)=>{
-        const t=document.createElement("img");
-        t.src=img;
-        t.onclick=()=>{currentIndex=i;updateImage();};
+        const t = document.createElement("img");
+        t.src = img;
+        t.onclick = ()=>{ currentIndex=i; updateImage(); };
         thumbs.appendChild(t);
       });
+
     }
+
   });
 }
-
-loadProduct();
 </script>
 
 </body>
