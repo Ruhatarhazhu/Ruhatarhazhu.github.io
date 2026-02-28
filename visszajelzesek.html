@@ -90,36 +90,36 @@ footer{
 </div>
 
 <footer>
-© 2024 Ruhatárház – Minden termék Vinteden vásárolható.
+© 2026 Ruhatárház – Minden termék Vinteden vásárolható.
 </footer>
 
   <script>
-const sheetURL = "https://docs.google.com/spreadsheets/d/1EezLhOQZ8Qj72nOKqQ3ZE5awq7oU7oM_ZsWAvTbFg7k/gviz/tq?tqx=out:csv";
+const sheetID = "1EezLhOQZ8Qj72nOKqQ3ZE5awq7oU7oM_ZsWAvTbFg7k";
+const url = `https://docs.google.com/spreadsheets/d/${sheetID}/gviz/tq?`;
 
 async function loadReviews(){
-  const res = await fetch(sheetURL);
-  const data = await res.text();
-  const rows = data.split("\n").slice(1);
+  const res = await fetch(url);
+  const text = await res.text();
+
+  const json = JSON.parse(text.substring(47).slice(0, -2));
+  const rows = json.table.rows;
 
   const container = document.getElementById("reviews-container");
   container.innerHTML = "";
 
-  rows.forEach(row=>{
-    if(!row.trim()) return;
+  rows.forEach(r => {
+    const name = r.c[0]?.v || "";
+    const rating = r.c[1]?.v || 0;
+    const message = r.c[2]?.v || "";
 
-    const cols = row.split(",");
-    if(cols.length < 3) return;
-
-    const name = cols[0];
-    const rating = cols[1];
-    const text = cols[2];
+    if(!name || !message) return;
 
     const stars = "⭐".repeat(parseInt(rating));
 
     container.innerHTML += `
       <div class="review">
         <p>${stars}</p>
-        <p>"${text}"</p>
+        <p>"${message}"</p>
         <small>– ${name}</small>
       </div>
     `;
@@ -128,7 +128,7 @@ async function loadReviews(){
 
 loadReviews();
   </script>
-
+  
 </div>
 </body>
 </html>
