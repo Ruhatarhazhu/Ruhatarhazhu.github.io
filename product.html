@@ -75,8 +75,7 @@ body{font-family:'Inter',sans-serif;background:#f6f6f6;margin:0;}
 
   }
 
-
-  /* ===== 2 OSZLOPOS ELRENDEZÉS CSAK ASZTALON ===== */
+/* ===== 2 OSZLOPOS ELRENDEZÉS CSAK ASZTALON ===== */
 @media (min-width: 992px){
 
   .product-layout{
@@ -86,12 +85,16 @@ body{font-family:'Inter',sans-serif;background:#f6f6f6;margin:0;}
   }
 
   .left-column{
-    flex:1;
-    max-width:520px;
+    flex:0 0 48%;
   }
 
   .right-column{
-    flex:1;
+    flex:0 0 48%;
+  }
+
+  .gallery{
+    width:100%;
+    aspect-ratio:4/5;
   }
 
 }
