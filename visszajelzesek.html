@@ -93,6 +93,42 @@ footer{
 © 2024 Ruhatárház – Minden termék Vinteden vásárolható.
 </footer>
 
+  <script>
+const sheetURL = "https://docs.google.com/spreadsheets/d/1EezLhOQZ8Qj72nOKqQ3ZE5awq7oU7oM_ZsWAvTbFg7k/export?format=csv";
+
+async function loadReviews(){
+  const res = await fetch(sheetURL);
+  const data = await res.text();
+  const rows = data.split("\n").slice(1);
+
+  const container = document.getElementById("reviews-container");
+  container.innerHTML = "";
+
+  rows.forEach(row=>{
+    if(!row.trim()) return;
+
+    const cols = row.split(",");
+    if(cols.length < 3) return;
+
+    const name = cols[0];
+    const rating = cols[1];
+    const text = cols[2];
+
+    const stars = "⭐".repeat(parseInt(rating));
+
+    container.innerHTML += `
+      <div class="review">
+        <p>${stars}</p>
+        <p>"${text}"</p>
+        <small>– ${name}</small>
+      </div>
+    `;
+  });
+}
+
+loadReviews();
+  </script>
+
 </div>
 </body>
 </html>
