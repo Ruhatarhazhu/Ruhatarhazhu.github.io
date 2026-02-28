@@ -68,6 +68,52 @@ footer{
   font-size:13px;
   color:#777;
 }
+
+  .review-form-block{
+  margin-top:50px;
+  padding-top:30px;
+  border-top:1px solid var(--border);
+}
+
+.review-form-block h2{
+  margin-bottom:20px;
+}
+
+#reviewForm{
+  display:flex;
+  flex-direction:column;
+  gap:15px;
+  max-width:500px;
+}
+
+#reviewForm input,
+#reviewForm select,
+#reviewForm textarea{
+  padding:10px 12px;
+  border-radius:10px;
+  border:1px solid var(--border);
+  font-family:'Inter',sans-serif;
+  font-size:14px;
+}
+
+#reviewForm textarea{
+  resize:vertical;
+  min-height:120px;
+}
+
+#reviewForm button{
+  background:var(--green);
+  color:white;
+  border:none;
+  padding:10px 16px;
+  border-radius:12px;
+  cursor:pointer;
+  transition:.3s;
+}
+
+#reviewForm button:hover{
+  background:var(--green-hover);
+}
 </style>
 </head>
 
