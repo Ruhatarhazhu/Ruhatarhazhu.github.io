@@ -63,11 +63,21 @@ body{font-family:'Inter',sans-serif;background:#f6f6f6;margin:0;}
 @media(max-width:600px){
   .gallery{aspect-ratio:3/4;}
 }
+  /* ===== CSAK ASZTALI MÉRET CSÖKKENTÉS ===== */
+@media(min-width:992px){
+
+  .product-main-image{
+    max-width:600px;
+    margin:0 auto;
+    display:block;
+  }
+
+}
 </style></head>
 <body><div class="wrapper">
 <a href="index.html" class="back">← Vissza</a><div class="gallery">
 <button class="arrow left" onclick="prevImage()">◀</button>
-<img id="mainImg">
+<img id="mainImg" class="product-main-image">
 <button class="arrow right" onclick="nextImage()">▶</button>
 </div><div class="thumbs" id="thumbs"></div><h1 id="name"></h1>
 <div class="price" id="price"></div>
