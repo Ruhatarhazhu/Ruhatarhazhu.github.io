@@ -202,10 +202,23 @@ loadReviews();
   </script>
 
   <script>
-document.getElementById("reviewForm").addEventListener("submit", function(e){
+const form = document.getElementById("reviewForm");
+const STORAGE_KEY = "ruhatarhaz_review_submitted";
+
+// Ha már beküldött
+if(localStorage.getItem(STORAGE_KEY)){
+  form.innerHTML = "<p>Köszönjük, már küldtél be véleményt ❤️</p>";
+}
+
+form.addEventListener("submit", function(e){
   e.preventDefault();
 
-  const formData = new FormData(this);
+  if(localStorage.getItem(STORAGE_KEY)){
+    alert("Már küldtél be véleményt.");
+    return;
+  }
+
+  const formData = new FormData(form);
 
   fetch("https://docs.google.com/forms/d/e/1FAIpQLSd-3dVMuyqTVFNl_UZvGz79tT3GGPuCdNRy4Nkxl75AfvvwUA/formResponse", {
     method: "POST",
@@ -213,8 +226,9 @@ document.getElementById("reviewForm").addEventListener("submit", function(e){
     body: formData
   });
 
-  this.reset();
-  alert("Köszönjük a visszajelzést!");
+  localStorage.setItem(STORAGE_KEY, "true");
+
+  form.innerHTML = "<p>Köszönjük a visszajelzést ❤️</p>";
 });
   </script>
   
