@@ -76,17 +76,51 @@ body{font-family:'Inter',sans-serif;background:#f6f6f6;margin:0;}
   }
 
 }
+
+  /* ===== 2 OSZLOPOS ELRENDEZÉS CSAK ASZTALON ===== */
+@media (min-width: 992px){
+
+  .product-layout{
+    display:flex;
+    gap:60px;
+    align-items:flex-start;
+  }
+
+  .left-column{
+    flex:1;
+    max-width:520px;
+  }
+
+  .right-column{
+    flex:1;
+  }
+
+}
 </style></head>
 <body><div class="wrapper">
-<a href="index.html" class="back">← Vissza</a><div class="gallery">
-<button class="arrow left" onclick="prevImage()">◀</button>
-<img id="mainImg" class="product-main-image">
-<button class="arrow right" onclick="nextImage()">▶</button>
-</div><div class="thumbs" id="thumbs"></div><h1 id="name"></h1>
-<div class="price" id="price"></div>
-  <div id="size"></div>
-<p id="description"></p>
-<a id="vintedLink" target="_blank" class="button">Megnézem Vinteden</a></div><script>
+<a href="index.html" class="back">← Vissza</a>
+
+<div class="product-layout">
+
+  <div class="left-column">
+    <div class="gallery">
+      <button class="arrow left" onclick="prevImage()">◀</button>
+      <img id="mainImg">
+      <button class="arrow right" onclick="nextImage()">▶</button>
+    </div>
+
+    <div class="thumbs" id="thumbs"></div>
+  </div>
+
+  <div class="right-column">
+    <h1 id="name"></h1>
+    <div class="price" id="price"></div>
+    <div id="size"></div>
+    <p id="description"></p>
+    <a id="vintedLink" target="_blank" class="button">Megnézem Vinteden</a>
+  </div>
+
+</div>
 
 const sheetURL="https://docs.google.com/spreadsheets/d/1PlqIBtGVKHCQIoDk4gAbIOIpRh_-bEGRXmexvaT5sos/export?format=csv";
 let currentImages=[];
