@@ -63,11 +63,15 @@ body{font-family:'Inter',sans-serif;background:#f6f6f6;margin:0;}
 @media(max-width:600px){
   .gallery{aspect-ratio:3/4;}
 }
-  /* ===== CSAK ASZTALI MÉRET CSÖKKENTÉS ===== */
+  /* ===== ASZTALI KÉPMÉRET KORLÁTOZÁS ===== */
 @media(min-width:992px){
 
+  .wrapper{
+    max-width:900px;
+  }
+
   .gallery{
-    max-width:480px;
+    width:600px;
     margin:0 auto;
   }
 
