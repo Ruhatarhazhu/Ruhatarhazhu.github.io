@@ -159,7 +159,7 @@ body{
 </div>
 
 <script>
-const sheetURL = "https://docs.google.com/spreadsheets/d/1PlqIBtGVKHCQIoDk4gAbIOIpRh_-bEGRXmexvaT5sos/gviz/tq";
+const sheetURL = "https://docs.google.com/spreadsheets/d/1PlqIBtGVKHCQIoDk4gAbIOIpRh_-bEGRXmexvaT5sos/export?format=csv";
 let currentImages=[];
 let currentIndex=0;
 
@@ -189,22 +189,25 @@ function prevImage(){
 }
 
 async function loadProduct(){
-  const res = await fetch(sheetURL);
-  const text = await res.text();
 
-  const json = JSON.parse(text.substring(47).slice(0, -2));
-  const rows = json.table.rows;
-
+  const res = await fetch(sheetURL + "&v=" + Date.now());
+  const data = await res.text();
+  const rows = data.split("\n").slice(1);
   const slug = getSlug();
 
-  rows.forEach(r => {
+  rows.forEach(row=>{
 
-    const name = r.c[0]?.v || "";
-    const price = r.c[1]?.v || "";
-    const images = (r.c[2]?.v || "").split("|");
-    const description = r.c[3]?.v || "";
-    const link = r.c[4]?.v || "";
-    const size = r.c[8]?.v || "";
+    if(!row.trim()) return;
+
+    const cols = row.split(",");
+    if(cols.length < 5) return;
+
+    const name = cols[0].trim();
+    const price = cols[1].trim();
+    const images = cols[2].trim().split("|");
+    const description = cols[3].trim();
+    const link = cols[4].trim();
+    const size = cols[8] ? cols[8].trim() : "";
 
     if(slugify(name) === slug){
 
@@ -230,11 +233,10 @@ async function loadProduct(){
         t.onclick = ()=>{ currentIndex=i; updateImage(); };
         thumbs.appendChild(t);
       });
-
     }
 
   });
-}
+  }
   loadProduct();
 </script>
 
