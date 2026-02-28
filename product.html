@@ -68,14 +68,13 @@ body{font-family:'Inter',sans-serif;background:#f6f6f6;margin:0;}
   @media (min-width: 992px){
 
   .gallery{
-    width:500px !important;
-    height:650px !important;
-    margin:0 auto 30px auto !important;
+    width:500px;
+    height:650px;
+    margin:0 auto 30px auto;
   }
 
   }
 
-}
 
   /* ===== 2 OSZLOPOS ELRENDEZÉS CSAK ASZTALON ===== */
 @media (min-width: 992px){
@@ -121,6 +120,8 @@ body{font-family:'Inter',sans-serif;background:#f6f6f6;margin:0;}
   </div>
 
 </div>
+  
+  <script>
 
 const sheetURL="https://docs.google.com/spreadsheets/d/1PlqIBtGVKHCQIoDk4gAbIOIpRh_-bEGRXmexvaT5sos/export?format=csv";
 let currentImages=[];
@@ -240,5 +241,7 @@ document.querySelector('meta[property="og:url"]').setAttribute(
 
 loadProduct();
 
-</script></body>
+</script>
+  
+</body>
 </html>
