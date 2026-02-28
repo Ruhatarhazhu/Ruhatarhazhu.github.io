@@ -120,6 +120,34 @@ footer{padding:30px;text-align:center;border-top:1px solid var(--border);font-si
 .reviews-link:hover{
   color:var(--green);
 }
+  .mobile-reviews-link{
+  display:none;
+  text-align:center;
+  padding:20px;
+  border-top:1px solid var(--border);
+}
+
+.mobile-reviews-link a{
+  text-decoration:none;
+  font-size:14px;
+  color:#555;
+}
+
+.mobile-reviews-link a:hover{
+  color:var(--green);
+}
+
+@media(max-width:600px){
+
+  .reviews-link{
+    display:none;
+  }
+
+  .mobile-reviews-link{
+    display:block;
+  }
+
+}
 </style></head>
 <body><div id="progressBar"></div><div class="wrapper">
 <header><a href="visszajelzesek.html" class="reviews-link">
@@ -153,7 +181,11 @@ footer{padding:30px;text-align:center;border-top:1px solid var(--border);font-si
   </select>
 
 </div><section class="products"></section>
-<div class="pagination"></div><footer>© 2024 Ruhatárház – Minden termék Vinteden vásárolható.</footer>
+<div class="pagination"><div class="mobile-reviews-link">
+  <a href="visszajelzesek.html">
+    Vásárlói visszajelzések
+  </a>
+</div></div><footer>© 2024 Ruhatárház – Minden termék Vinteden vásárolható.</footer>
 </div><div class="modal" id="imageModal">
 <img id="modalImg">
 <div class="modal-controls">
