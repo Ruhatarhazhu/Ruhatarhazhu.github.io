@@ -166,18 +166,19 @@ footer{padding:30px;text-align:center;border-top:1px solid var(--border);font-si
   opacity:1;
   transform:translateY(0);
 }
-  .background-words{
+  body{
+  background:#f3f2ef;
+}
+
+body::before{
+  content:"";
   position:fixed;
   inset:0;
+  background:
+    radial-gradient(circle at 15% 25%, rgba(58,125,46,0.08), transparent 40%),
+    radial-gradient(circle at 85% 75%, rgba(0,0,0,0.05), transparent 45%);
   z-index:0;
   pointer-events:none;
-  font-size:42px;
-  font-weight:600;
-  color:#1a1a1a;
-  opacity:0.025;
-  line-height:2.2;
-  white-space:pre-wrap;
-  padding:80px;
 }
 
 .wrapper{
@@ -186,9 +187,6 @@ footer{padding:30px;text-align:center;border-top:1px solid var(--border);font-si
 }
 </style></head>
 <body>
-  <div class="background-words">
-STYLE • VINTAGE • QUALITY • PREMIUM • RUHATÁRHÁZ • FASHION • SECOND HAND • NEW • TREND • STYLE • VINTAGE • QUALITY • PREMIUM • RUHATÁRHÁZ • FASHION • SECOND HAND • NEW • TREND • STYLE • VINTAGE • QUALITY • PREMIUM • RUHATÁRHÁZ • FASHION • SECOND HAND • NEW • TREND •
-  </div>
   <div id="progressBar"></div><div class="wrapper">
 <header><a href="visszajelzesek.html" class="reviews-link">
     Vásárlói visszajelzések
