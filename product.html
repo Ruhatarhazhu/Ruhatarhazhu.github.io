@@ -203,7 +203,9 @@ async function loadProduct(){
 
     const name = r.c[0]?.v || "";
     const price = r.c[1]?.v || "";
-    const images = (r.c[2]?.v || "").split("|").map(i => i.trim());
+    const images = (r.c[2]?.v || "")
+  .split("|")
+  .map(i => "images/" + i.trim());
     const description = r.c[3]?.v || "";
     const link = r.c[4]?.v || "";
     const size = r.c[8]?.v || "";
