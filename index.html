@@ -319,9 +319,16 @@ const card=document.createElement("div");
 card.className="card";
 card.innerHTML=`<img src="${p.images[0]}" loading="lazy"><h3>${p.name}</h3><div class="price">${p.price} Ft</div>`;
 if(p.sold === true){
-const b=document.createElement("div");b.className="badge";b.innerText="ELADVA";card.appendChild(b);
-}else if(p.new === true){
-const b=document.createElement("div");b.className="badge new";b.innerText="ÚJ";card.appendChild(b);
+  const b = document.createElement("div");
+  b.className = "badge";
+  b.innerText = "ELADVA";
+  card.appendChild(b);
+
+} else if(filtered.indexOf(p) < 2){
+  const b = document.createElement("div");
+  b.className = "badge new";
+  b.innerText = "ÚJ";
+  card.appendChild(b);
 }
 function slugify(text){
   return text
