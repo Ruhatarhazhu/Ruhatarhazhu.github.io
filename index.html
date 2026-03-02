@@ -305,7 +305,7 @@ grid.innerHTML="";
 paginated.forEach(p=>{
 const card=document.createElement("div");
 card.className="card";
-card.innerHTML=`<img src="${p.images[0]}" loading="lazy"><h3>${p.name}</h3><div class="price">${p.price} Ft</div>`;
+card.innerHTML=`<img src="images/${p.images[0]}" loading="lazy"><h3>${p.name}</h3><div class="price">${p.price} Ft</div>`;
 if(p.sold==="TRUE"){
 const b=document.createElement("div");b.className="badge";b.innerText="ELADVA";card.appendChild(b);
 }else if(p.new==="TRUE"){
