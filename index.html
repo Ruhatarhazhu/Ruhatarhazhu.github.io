@@ -22,17 +22,17 @@
 *{margin:0;padding:0;box-sizing:border-box;}
 body{
   font-family:'Inter',sans-serif;
-  margin:0;
-  background:
-    radial-gradient(circle at 20% 20%, rgba(58,125,46,0.04), transparent 40%),
-    radial-gradient(circle at 80% 80%, rgba(58,125,46,0.03), transparent 40%),
-    linear-gradient(180deg, #f9f9f7 0%, #f3f2ef 100%);
+  color:var(--text);
+  background:#f3f2ef;
 }
 
 #progressBar{position:fixed;top:0;left:0;height:3px;width:0;background:linear-gradient(90deg,#3a7d2e,#2f6825);z-index:2000;transition:.2s;}
 
 .wrapper{max-width:1200px;margin:50px auto;background:#fff;border-radius:24px;box-shadow:0 25px 80px rgba(0,0,0,.06);overflow:hidden;}
-
+.wrapper{
+  backdrop-filter: blur(2px);
+}
+  
 header{position:sticky; top:0; position:relative;top:0;background:#fff;display:flex;justify-content:center;padding:25px 0;border-bottom:1px solid var(--border);transition:.3s;z-index:1000;}
 header img{height:42px;transition:.3s;}
 header.scrolled{padding:12px 0;box-shadow:0 10px 30px rgba(0,0,0,.08);} 
