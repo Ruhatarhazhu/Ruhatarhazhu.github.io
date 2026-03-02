@@ -316,6 +316,7 @@ grid.appendChild(card);
 });
 renderPagination(filtered.length);
   observeCards();
+  setTimeout(revealOnScroll, 100);
 }
 
 function renderPagination(total){
@@ -363,20 +364,21 @@ document.getElementById("sortPrice").addEventListener("change",()=>{currentPage=
 
 loadProducts();
 
-  // ===== SCROLL ANIMÁCIÓ =====
-const observer = new IntersectionObserver((entries)=>{
-  entries.forEach(entry=>{
-    if(entry.isIntersecting){
-      entry.target.classList.add("visible");
+  // ===== SCROLL FADE-IN STABIL VERZIÓ =====
+
+function revealOnScroll(){
+  const cards = document.querySelectorAll(".card");
+
+  cards.forEach(card=>{
+    const rect = card.getBoundingClientRect();
+    if(rect.top < window.innerHeight - 50){
+      card.classList.add("visible");
     }
   });
-},{ threshold:0.1 });
-
-function observeCards(){
-  document.querySelectorAll(".card").forEach(card=>{
-    observer.observe(card);
-  });
 }
+
+window.addEventListener("scroll", revealOnScroll);
+window.addEventListener("load", revealOnScroll);
 
 </script></body>
 </html>
