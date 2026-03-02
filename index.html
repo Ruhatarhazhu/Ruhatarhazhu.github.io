@@ -255,15 +255,16 @@ async function loadProducts(){
 
   try{
 
-    const res = await fetch(sheetURL + "&t=" + new Date().getTime());
+    const res = await fetch(sheetURL);
     const text = await res.text();
 
-    const json = JSON.parse(text.substring(text.indexOf("{"), text.lastIndexOf("}") + 1));
-    const rows = json.table.rows;
+    const jsonString = text.replace("google.visualization.Query.setResponse(", "").slice(0, -2);
+    const json = JSON.parse(jsonString);
 
+    const rows = json.table.rows;
     products = [];
 
-    rows.forEach(r=>{
+    rows.forEach(r => {
 
       if(!r.c) return;
 
@@ -286,7 +287,7 @@ async function loadProducts(){
     render();
 
   }catch(err){
-    console.error("Hiba a Sheet betöltéskor:", err);
+    console.error("Sheet hiba:", err);
   }
 
 }
