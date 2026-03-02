@@ -253,33 +253,42 @@ const perPage=6;
 
 async function loadProducts(){
 
-  const res = await fetch(sheetURL + "?t=" + new Date().getTime());
-  const text = await res.text();
+  try{
 
-  const json = JSON.parse(text.substring(47).slice(0, -2));
-  const rows = json.table.rows;
+    const res = await fetch(sheetURL);
+    const text = await res.text();
 
-  products=[];
+    const json = JSON.parse(text.substring(47).slice(0, -2));
+    const rows = json.table.rows;
 
-  rows.forEach(r=>{
+    products = [];
 
-    products.push({
-      name: r.c[0]?.v || "",
-      price: parseInt(r.c[1]?.v || 0),
-      images: (r.c[2]?.v || "")
-        .split("|")
-        .map(i=>"images/"+i.trim()),
-      description: r.c[3]?.v || "",
-      link: r.c[4]?.v || "",
-      new: r.c[5]?.v || "",
-      sold: r.c[6]?.v || "",
-      category: r.c[7]?.v || ""
+    rows.forEach(r=>{
+
+      if(!r.c) return;
+
+      products.push({
+        name: r.c[0]?.v || "",
+        price: parseInt(r.c[1]?.v || 0),
+        images: (r.c[2]?.v || "")
+          .split("|")
+          .map(i=>"images/"+i.trim()),
+        description: r.c[3]?.v || "",
+        link: r.c[4]?.v || "",
+        new: r.c[5]?.v || "",
+        sold: r.c[6]?.v || "",
+        category: r.c[7]?.v || ""
+      });
+
     });
 
-  });
+    initCategories();
+    render();
 
-  initCategories();
-  render();
+  }catch(error){
+    console.error("Sheet betöltési hiba:", error);
+  }
+
 }
     // ===== CACHE MENTÉS =====
 localStorage.setItem(CACHE_KEY, JSON.stringify(products));
