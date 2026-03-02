@@ -300,6 +300,7 @@ cats.forEach(cat=>select.innerHTML+=`<option value="${cat}">${cat}</option>`);
 
 function render(){
 let filtered=[...products];
+  filtered.reverse();
 const cat=document.getElementById("categoryFilter").value;
 const sort=document.getElementById("sortPrice").value;
 
