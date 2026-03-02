@@ -160,6 +160,7 @@ body{
 
 <script>
 const sheetURL = "https://docs.google.com/spreadsheets/d/1PlqIBtGVKHCQIoDk4gAbIOIpRh_-bEGRXmexvaT5sos/gviz/tq";
+
 let currentImages = [];
 let currentIndex = 0;
 
@@ -172,11 +173,14 @@ function slugify(text){
     .toLowerCase()
     .normalize("NFD")
     .replace(/[\u0300-\u036f]/g, "")
-    .replace(/\s+/g,"-");
+    .replace(/ /g,"-");
 }
 
 function updateImage(){
   document.getElementById("mainImg").src = currentImages[currentIndex];
+  document.querySelectorAll(".thumbs img").forEach((img,i)=>{
+    img.classList.toggle("active", i === currentIndex);
+  });
 }
 
 function nextImage(){
@@ -193,7 +197,6 @@ async function loadProduct(){
 
   const res = await fetch(sheetURL);
   const text = await res.text();
-
   const json = JSON.parse(text.substring(47).slice(0, -2));
   const rows = json.table.rows;
 
@@ -203,9 +206,7 @@ async function loadProduct(){
 
     const name = r.c[0]?.v || "";
     const price = r.c[1]?.v || "";
-    const images = (r.c[2]?.v || "")
-  .split("|")
-  .map(i => "images/" + i.trim());
+    const imagesRaw = r.c[2]?.v || "";
     const description = r.c[3]?.v || "";
     const link = r.c[4]?.v || "";
     const size = r.c[8]?.v || "";
@@ -221,26 +222,28 @@ async function loadProduct(){
         document.getElementById("size").innerText = "Méret: " + size;
       }
 
-      currentImages = images;
+      currentImages = imagesRaw
+        .split("|")
+        .map(img => "images/" + img.trim());
+
       currentIndex = 0;
       updateImage();
 
       const thumbs = document.getElementById("thumbs");
       thumbs.innerHTML = "";
 
-      images.forEach((img,i)=>{
+      currentImages.forEach((img,i)=>{
         const t = document.createElement("img");
         t.src = img;
         t.onclick = ()=>{ currentIndex=i; updateImage(); };
         thumbs.appendChild(t);
       });
-
     }
 
   });
 }
+
 loadProduct();
 </script>
-
 </body>
 </html>
