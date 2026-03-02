@@ -195,7 +195,7 @@ function prevImage(){
 
 async function loadProduct(){
 
-  const res = await fetch(sheetURL);
+  const res = await fetch(sheetURL + "?t=" + new Date().getTime());
   const text = await res.text();
   const json = JSON.parse(text.substring(47).slice(0, -2));
   const rows = json.table.rows;
