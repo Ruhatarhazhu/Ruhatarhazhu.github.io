@@ -155,25 +155,6 @@ footer{padding:30px;text-align:center;border-top:1px solid var(--border);font-si
   }
 
 }
-body::before{
-  content:"STYLE • VINTAGE • QUALITY • PREMIUM • RUHATÁRHÁZ • FASHION • SECOND HAND • NEW • TREND • STYLE • VINTAGE • QUALITY • PREMIUM • RUHATÁRHÁZ • FASHION • SECOND HAND • NEW • TREND • STYLE • VINTAGE • QUALITY • PREMIUM • RUHATÁRHÁZ • FASHION • SECOND HAND • NEW • TREND •";
-  position:fixed;
-  inset:0;
-  font-size:38px;
-  font-weight:600;
-  color:#1a1a1a;
-  opacity:0.025;
-  line-height:2.2;
-  white-space:pre-wrap;
-  pointer-events:none;
-  z-index:-1;
-  padding:60px;
-}
-
-.wrapper{
-  position:relative;
-  z-index:1;
-}
   /* ===== SCROLL FADE-IN ===== */
 .card{
   opacity:0;
@@ -185,19 +166,18 @@ body::before{
   opacity:1;
   transform:translateY(0);
 }
-  .wrapper::before{
-  content:"STYLE • VINTAGE • QUALITY • PREMIUM • RUHATÁRHÁZ • FASHION • SECOND HAND • NEW • TREND • STYLE • VINTAGE • QUALITY • PREMIUM • RUHATÁRHÁZ • FASHION • SECOND HAND • NEW • TREND •";
-  position:absolute;
+  .background-words{
+  position:fixed;
   inset:0;
-  font-size:38px;
+  z-index:0;
+  pointer-events:none;
+  font-size:42px;
   font-weight:600;
   color:#1a1a1a;
-  opacity:0.03;
+  opacity:0.025;
   line-height:2.2;
   white-space:pre-wrap;
-  pointer-events:none;
-  z-index:0;
-  padding:60px;
+  padding:80px;
 }
 
 .wrapper{
@@ -205,7 +185,11 @@ body::before{
   z-index:1;
 }
 </style></head>
-<body><div id="progressBar"></div><div class="wrapper">
+<body>
+  <div class="background-words">
+STYLE • VINTAGE • QUALITY • PREMIUM • RUHATÁRHÁZ • FASHION • SECOND HAND • NEW • TREND • STYLE • VINTAGE • QUALITY • PREMIUM • RUHATÁRHÁZ • FASHION • SECOND HAND • NEW • TREND • STYLE • VINTAGE • QUALITY • PREMIUM • RUHATÁRHÁZ • FASHION • SECOND HAND • NEW • TREND •
+  </div>
+  <div id="progressBar"></div><div class="wrapper">
 <header><a href="visszajelzesek.html" class="reviews-link">
     Vásárlói visszajelzések
 </a><img src="logo.webp" alt="Ruhatárház"><div class="header-icons">
