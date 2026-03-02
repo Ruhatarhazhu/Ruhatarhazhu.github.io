@@ -243,13 +243,12 @@ const CACHE_KEY = "ruhatárhaz_cache";
 const CACHE_TIME_KEY = "ruhatárhaz_cache_time";
 const CACHE_DURATION = 5 * 60 * 1000; // 5 perc
 
-const sheetURL="https://docs.google.com/spreadsheets/d/1PlqIBtGVKHCQIoDk4gAbIOIpRh_-bEGRXmexvaT5sos/gviz/tq";
+const sheetURL="https://docs.google.com/spreadsheets/d/1PlqIBtGVKHCQIoDk4gAbIOIpRh_-bEGRXmexvaT5sos/gviz/tq?tqx=out:json";
 let products=[];
 let currentPage=1;
 let currentImages=[];
 let currentIndex=0;
 const perPage=6;
-
 
 async function loadProducts(){
 
@@ -258,10 +257,13 @@ async function loadProducts(){
     const res = await fetch(sheetURL);
     const text = await res.text();
 
-    const jsonString = text.replace("google.visualization.Query.setResponse(", "").slice(0, -2);
-    const json = JSON.parse(jsonString);
+    const jsonString = text
+      .replace("google.visualization.Query.setResponse(", "")
+      .slice(0, -2);
 
+    const json = JSON.parse(jsonString);
     const rows = json.table.rows;
+
     products = [];
 
     rows.forEach(r => {
@@ -291,6 +293,7 @@ async function loadProducts(){
   }
 
 }
+
     // ===== CACHE MENTÉS =====
 localStorage.setItem(CACHE_KEY, JSON.stringify(products));
 localStorage.setItem(CACHE_TIME_KEY, Date.now());
