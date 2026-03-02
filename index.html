@@ -257,9 +257,7 @@ async function loadProducts(){
     const res = await fetch(sheetURL);
     const text = await res.text();
 
-    const jsonString = text
-      .replace("google.visualization.Query.setResponse(", "")
-      .slice(0, -2);
+    const jsonString = text.substring(47, text.length - 2);
 
     const json = JSON.parse(jsonString);
     const rows = json.table.rows;
