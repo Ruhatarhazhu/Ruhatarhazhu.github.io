@@ -204,7 +204,9 @@ async function loadProduct(){
 
     const name = cols[0].trim();
     const price = cols[1].trim();
-    const images = cols[2].trim().split("|").map(i=>"images/"+i.trim());
+    const images = (r.c[2]?.v || "")
+  .split("|")
+  .map(img => "images/" + img.trim());
     const description = cols[3].trim();
     const link = cols[4].trim();
     const size = cols[8] ? cols[8].trim() : "";
