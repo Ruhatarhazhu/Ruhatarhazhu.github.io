@@ -234,7 +234,7 @@ if(cols.length<5) return;
 products.push({
 name:cols[0].trim(),
 price:parseInt(cols[1]),
-images:cols[2].trim().split("|").map(i=>i.trim()),
+images: cols[2].trim().split("|").map(i=>"images/"+i.trim()),
 description:cols[3],
 link:cols[4],
 new:cols[5].trim(),
