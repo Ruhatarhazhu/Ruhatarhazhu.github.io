@@ -255,10 +255,10 @@ async function loadProducts(){
 
   try{
 
-    const res = await fetch(sheetURL);
+    const res = await fetch(sheetURL + "&t=" + new Date().getTime());
     const text = await res.text();
 
-    const json = JSON.parse(text.substring(47).slice(0, -2));
+    const json = JSON.parse(text.substring(text.indexOf("{"), text.lastIndexOf("}") + 1));
     const rows = json.table.rows;
 
     products = [];
@@ -285,8 +285,8 @@ async function loadProducts(){
     initCategories();
     render();
 
-  }catch(error){
-    console.error("Sheet betöltési hiba:", error);
+  }catch(err){
+    console.error("Hiba a Sheet betöltéskor:", err);
   }
 
 }
@@ -386,9 +386,7 @@ if(scrollTop>50) header.classList.add("scrolled"); else header.classList.remove(
 document.getElementById("categoryFilter").addEventListener("change",()=>{currentPage=1;render();});
 document.getElementById("sortPrice").addEventListener("change",()=>{currentPage=1;render();});
 
-document.addEventListener("DOMContentLoaded", function() {
-  loadProducts();
-});
+document.addEventListener("DOMContentLoaded", loadProducts);
 
   // ===== SCROLL FADE-IN STABIL VERZIÓ =====
 
