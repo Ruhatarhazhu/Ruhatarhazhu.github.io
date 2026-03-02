@@ -160,8 +160,9 @@ body{
 
 <script>
 const sheetURL = "https://docs.google.com/spreadsheets/d/1PlqIBtGVKHCQIoDk4gAbIOIpRh_-bEGRXmexvaT5sos/export?format=csv";
-let currentImages=[];
-let currentIndex=0;
+
+let currentImages = [];
+let currentIndex = 0;
 
 function getSlug(){
   return new URLSearchParams(window.location.search).get("slug");
@@ -172,41 +173,44 @@ function slugify(text){
 }
 
 function updateImage(){
-  document.getElementById("mainImg").src="images/" + currentImages[currentIndex];
+  document.getElementById("mainImg").src = currentImages[currentIndex];
   document.querySelectorAll(".thumbs img").forEach((img,i)=>{
-    img.classList.toggle("active", i===currentIndex);
+    img.classList.toggle("active", i === currentIndex);
   });
 }
 
 function nextImage(){
-  currentIndex=(currentIndex+1)%currentImages.length;
+  currentIndex = (currentIndex + 1) % currentImages.length;
   updateImage();
 }
 
 function prevImage(){
-  currentIndex=(currentIndex-1+currentImages.length)%currentImages.length;
+  currentIndex = (currentIndex - 1 + currentImages.length) % currentImages.length;
   updateImage();
 }
 
 async function loadProduct(){
 
-  const res = await fetch(sheetURL + "&v=" + Date.now());
+  const res = await fetch(sheetURL);
   const data = await res.text();
   const rows = data.split("\n").slice(1);
+
   const slug = getSlug();
 
-  rows.forEach(row=>{
+  rows.forEach(row => {
 
     if(!row.trim()) return;
 
     const cols = row.split(",");
-    if(cols.length < 5) return;
+    if(cols.length < 8) return;
 
     const name = cols[0].trim();
     const price = cols[1].trim();
-    const images = (r.c[2]?.v || "")
-  .split("|")
-  .map(img => "images/" + img.trim());
+    const images = cols[2]
+      .trim()
+      .split("|")
+      .map(img => "images/" + img.trim());
+
     const description = cols[3].trim();
     const link = cols[4].trim();
     const size = cols[8] ? cols[8].trim() : "";
@@ -231,15 +235,17 @@ async function loadProduct(){
 
       images.forEach((img,i)=>{
         const t = document.createElement("img");
-        t.src = "images/" + img;
+        t.src = img;
         t.onclick = ()=>{ currentIndex=i; updateImage(); };
         thumbs.appendChild(t);
       });
     }
 
   });
-  }
-  loadProduct();
+}
+
+loadProduct();
+</script>
 </script>
 
 </body>
