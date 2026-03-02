@@ -172,7 +172,7 @@ function slugify(text){
 }
 
 function updateImage(){
-  document.getElementById("mainImg").src=currentImages[currentIndex];
+  document.getElementById("mainImg").src="images/" + currentImages[currentIndex];
   document.querySelectorAll(".thumbs img").forEach((img,i)=>{
     img.classList.toggle("active", i===currentIndex);
   });
@@ -229,7 +229,7 @@ async function loadProduct(){
 
       images.forEach((img,i)=>{
         const t = document.createElement("img");
-        t.src = img;
+        t.src = "images/" + img;
         t.onclick = ()=>{ currentIndex=i; updateImage(); };
         thumbs.appendChild(t);
       });
