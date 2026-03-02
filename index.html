@@ -383,7 +383,9 @@ if(scrollTop>50) header.classList.add("scrolled"); else header.classList.remove(
 document.getElementById("categoryFilter").addEventListener("change",()=>{currentPage=1;render();});
 document.getElementById("sortPrice").addEventListener("change",()=>{currentPage=1;render();});
 
-loadProducts();
+document.addEventListener("DOMContentLoaded", function() {
+  loadProducts();
+});
 
   // ===== SCROLL FADE-IN STABIL VERZIÓ =====
 
