@@ -20,7 +20,14 @@
   --text:#1a1a1a;
 }
 *{margin:0;padding:0;box-sizing:border-box;}
-body{font-family:'Inter',sans-serif;background:#f6f6f6;color:var(--text);} 
+body{
+  font-family:'Inter',sans-serif;
+  margin:0;
+  background:
+    radial-gradient(circle at 20% 20%, rgba(58,125,46,0.04), transparent 40%),
+    radial-gradient(circle at 80% 80%, rgba(58,125,46,0.03), transparent 40%),
+    linear-gradient(180deg, #f9f9f7 0%, #f3f2ef 100%);
+} 
 
 #progressBar{position:fixed;top:0;left:0;height:3px;width:0;background:linear-gradient(90deg,#3a7d2e,#2f6825);z-index:2000;transition:.2s;}
 
