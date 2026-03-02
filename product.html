@@ -213,7 +213,7 @@ async function loadProduct(){
     const images = cols[2]
       .trim()
       .split("|")
-      .map(img => "images/" + img.trim());
+      .map(img => img.trim());
 
     const description = cols[3].trim();
     const link = cols[4].trim();
