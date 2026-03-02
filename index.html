@@ -293,7 +293,6 @@ async function loadProducts(){
   }
 
 }
-
 function initCategories(){
 const select=document.getElementById("categoryFilter");
 const cats=[...new Set(products.map(p=>p.category))];
@@ -337,7 +336,6 @@ card.onclick=()=>window.location.href="product.html?slug="+slugify(p.name);
 grid.appendChild(card);
 });
 renderPagination(filtered.length);
-  observeCards();
   setTimeout(revealOnScroll, 100);
 }
 
