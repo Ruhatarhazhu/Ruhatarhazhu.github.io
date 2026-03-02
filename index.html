@@ -167,6 +167,17 @@ body::before{
   position:relative;
   z-index:1;
 }
+  /* ===== SCROLL FADE-IN ===== */
+.card{
+  opacity:0;
+  transform:translateY(20px);
+  transition:opacity .6s ease, transform .6s ease;
+}
+
+.card.visible{
+  opacity:1;
+  transform:translateY(0);
+}
 </style></head>
 <body><div id="progressBar"></div><div class="wrapper">
 <header><a href="visszajelzesek.html" class="reviews-link">
@@ -304,6 +315,7 @@ card.onclick=()=>window.location.href="product.html?slug="+p.name.toLowerCase().
 grid.appendChild(card);
 });
 renderPagination(filtered.length);
+  observeCards();
 }
 
 function renderPagination(total){
@@ -350,6 +362,21 @@ document.getElementById("categoryFilter").addEventListener("change",()=>{current
 document.getElementById("sortPrice").addEventListener("change",()=>{currentPage=1;render();});
 
 loadProducts();
+
+  // ===== SCROLL ANIMÁCIÓ =====
+const observer = new IntersectionObserver((entries)=>{
+  entries.forEach(entry=>{
+    if(entry.isIntersecting){
+      entry.target.classList.add("visible");
+    }
+  });
+},{ threshold:0.1 });
+
+function observeCards(){
+  document.querySelectorAll(".card").forEach(card=>{
+    observer.observe(card);
+  });
+}
 
 </script></body>
 </html>
