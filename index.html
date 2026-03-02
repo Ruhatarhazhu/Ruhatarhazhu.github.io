@@ -265,8 +265,8 @@ if(cachedData && cacheTime && (Date.now() - cacheTime < CACHE_DURATION)){
   render();
   return;
 }
-const res=await fetch(sheetURL);
-const data=await res.text();
+const res = await fetch(sheetURL + "?t=" + new Date().getTime());
+const data = await res.text();
 const rows=data.split("\n").slice(1);
 products=[];
 
