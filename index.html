@@ -246,7 +246,7 @@ const CACHE_KEY = "ruhatárhaz_cache";
 const CACHE_TIME_KEY = "ruhatárhaz_cache_time";
 const CACHE_DURATION = 5 * 60 * 1000; // 5 perc
 
-const sheetURL="https://docs.google.com/spreadsheets/d/1PlqIBtGVKHCQIoDk4gAbIOIpRh_-bEGRXmexvaT5sos/export?format=csv";
+const sheetURL="https://docs.google.com/spreadsheets/d/1PlqIBtGVKHCQIoDk4gAbIOIpRh_-bEGRXmexvaT5sos/gviz/tq";
 let products=[];
 let currentPage=1;
 let currentImages=[];
@@ -255,38 +255,35 @@ const perPage=6;
 
 
 async function loadProducts(){
-// ===== CACHE ELLENŐRZÉS =====
-const cachedData = localStorage.getItem(CACHE_KEY);
-const cacheTime = localStorage.getItem(CACHE_TIME_KEY);
 
-if(cachedData && cacheTime && (Date.now() - cacheTime < CACHE_DURATION)){
-  products = JSON.parse(cachedData);
+  const res = await fetch(sheetURL + "?t=" + new Date().getTime());
+  const text = await res.text();
+
+  const json = JSON.parse(text.substring(47).slice(0, -2));
+  const rows = json.table.rows;
+
+  products=[];
+
+  rows.forEach(r=>{
+
+    products.push({
+      name: r.c[0]?.v || "",
+      price: parseInt(r.c[1]?.v || 0),
+      images: (r.c[2]?.v || "")
+        .split("|")
+        .map(i=>"images/"+i.trim()),
+      description: r.c[3]?.v || "",
+      link: r.c[4]?.v || "",
+      new: r.c[5]?.v || "",
+      sold: r.c[6]?.v || "",
+      category: r.c[7]?.v || ""
+    });
+
+  });
+
   initCategories();
   render();
-  return;
 }
-const res = await fetch(sheetURL + "?t=" + new Date().getTime());
-const data = await res.text();
-const rows=data.split("\n").slice(1);
-products=[];
-
-rows.forEach(row=>{
-if(!row.trim()) return;
-const cols=row.split(",");
-if(cols.length<5) return;
-products.push({
-name:cols[0].trim(),
-price:parseInt(cols[1]),
-images: cols[2].trim().split("|").map(i=>"images/"+i.trim()),
-description:cols[3],
-link:cols[4],
-new:cols[5].trim(),
-sold:cols[6].trim(),
-category:cols[7].trim()
-  
-});
-});
-initCategories();
     // ===== CACHE MENTÉS =====
 localStorage.setItem(CACHE_KEY, JSON.stringify(products));
 localStorage.setItem(CACHE_TIME_KEY, Date.now());
