@@ -294,12 +294,6 @@ async function loadProducts(){
 
 }
 
-    // ===== CACHE MENTÉS =====
-localStorage.setItem(CACHE_KEY, JSON.stringify(products));
-localStorage.setItem(CACHE_TIME_KEY, Date.now());
-render();
-}
-
 function initCategories(){
 const select=document.getElementById("categoryFilter");
 const cats=[...new Set(products.map(p=>p.category))];
