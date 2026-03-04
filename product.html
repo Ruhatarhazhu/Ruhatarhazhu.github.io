@@ -176,6 +176,31 @@ function slugify(text){
     .replace(/ /g,"-");
 }
 
+  function addProductSchema(product){
+
+const schema = {
+"@context":"https://schema.org/",
+"@type":"Product",
+"name":product.name,
+"image":[product.image],
+"description":product.description,
+"offers":{
+"@type":"Offer",
+"priceCurrency":"HUF",
+"price":product.price,
+"availability":"https://schema.org/InStock",
+"url":product.url
+}
+};
+
+const script = document.createElement("script");
+script.type="application/ld+json";
+script.textContent = JSON.stringify(schema);
+
+document.head.appendChild(script);
+
+  }
+
 function updateImage(){
   document.getElementById("mainImg").src = currentImages[currentIndex];
   document.querySelectorAll(".thumbs img").forEach((img,i)=>{
@@ -217,6 +242,14 @@ async function loadProduct(){
       document.getElementById("price").innerText = price + " Ft";
       document.getElementById("description").innerText = description;
       document.getElementById("vintedLink").href = link;
+      
+      addProductSchema({
+  name: name,
+  price: price,
+  description: description,
+  image: "https://ruhatarhaz.hu/images/" + imagesRaw.split("|")[0].trim(),
+  url: window.location.href
+});
 
       if(size){
         document.getElementById("size").innerText = "Méret: " + size;
