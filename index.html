@@ -268,16 +268,70 @@ display:none;
 }
 
   }
+  /* HAMBURGER */
+
+.hamburger{
+display:none;
+position:absolute;
+left:20px;
+top:50%;
+transform:translateY(-50%);
+font-size:26px;
+cursor:pointer;
+z-index:3001;
+}
+
+/* MOBIL DRAWER */
+
+.mobile-drawer{
+position:fixed;
+top:0;
+left:-260px;
+width:260px;
+height:100%;
+background:#fff;
+box-shadow:5px 0 25px rgba(0,0,0,0.15);
+padding:80px 20px;
+transition:0.3s;
+z-index:3000;
+display:flex;
+flex-direction:column;
+gap:20px;
+}
+
+.mobile-drawer a{
+text-decoration:none;
+font-size:16px;
+color:#333;
+}
+
+.mobile-drawer.open{
+left:0;
+}
+
+@media(max-width:600px){
+
+.hamburger{
+display:block;
+}
+
+.dropdown{
+display:none;
+}
+
+}
 </style></head>
 <body>
-  <div id="progressBar"></div><div class="wrapper">
-<header><div class="mobile-drawer" id="mobileMenu">
+  <div class="mobile-drawer" id="mobileMenu">
 
 <a href="cikkek.html">📚 Cikkek</a>
 <a href="tudasbazis.html">📖 Tudásbázis</a>
 <a href="visszajelzesek.html">⭐ Vásárlói visszajelzések</a>
 
-</div><div class="hamburger" onclick="toggleMenu()">☰</div><div class="dropdown">
+</div>
+  <div id="progressBar"></div><div class="wrapper">
+<header>
+<div class="hamburger" onclick="toggleMenu()">☰</div><div class="dropdown">
   <button class="dropbtn">Tartalmak ▾</button>
 
   <div class="dropdown-content">
@@ -499,5 +553,8 @@ function revealOnScroll(){
 window.addEventListener("scroll", revealOnScroll);
 window.addEventListener("load", revealOnScroll);
 
+  function toggleMenu(){
+document.getElementById("mobileMenu").classList.toggle("open");
+}
 </script></body>
 </html>
