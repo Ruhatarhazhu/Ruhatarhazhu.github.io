@@ -37,9 +37,23 @@ body{
   backdrop-filter: blur(2px);
 }
   
-header{position:sticky; top:0; position:relative;top:0;background:#fff;display:flex;justify-content:center;padding:25px 0;border-bottom:1px solid var(--border);transition:.3s;z-index:1000;}
+header{
+position:sticky;
+top:0;
+background:#fff;
+display:flex;
+justify-content:center;
+align-items:center;
+padding:25px 0;
+border-bottom:1px solid var(--border);
+transition:padding .25s ease, box-shadow .25s ease;
+z-index:1000;
+}
 header img{height:42px;transition:.3s;}
-header.scrolled{padding:12px 0;box-shadow:0 10px 30px rgba(0,0,0,.08);} 
+header.scrolled{
+padding:12px 0;
+box-shadow:0 10px 30px rgba(0,0,0,.08);
+} 
 header.scrolled img{height:34px;} 
 
 .controls{display:flex;gap:15px;flex-wrap:wrap;padding:20px;border-bottom:1px solid var(--border);} 
