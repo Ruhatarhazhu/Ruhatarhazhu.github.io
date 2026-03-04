@@ -476,7 +476,7 @@ paginated.forEach((p,index)=>{
 const card=document.createElement("div");
 card.className="card";
 card.innerHTML=`<img src="${p.images[0]}" loading="lazy"><h3>${p.name}</h3><div class="price">${p.price} Ft</div>`;
-if(p.sold === true)
+if(p.sold === "TRUE"){
   const b = document.createElement("div");
   b.className = "badge";
   b.innerText = "ELADVA";
@@ -488,6 +488,7 @@ if(p.sold === true)
   b.innerText = "ÚJ";
   card.appendChild(b);
 }
+
 
 card.onclick=()=>window.location.href="product.html?slug="+slugify(p.name);
 grid.appendChild(card);
