@@ -494,8 +494,7 @@ card.onclick=()=>window.location.href="product.html?slug="+slugify(p.name);
 grid.appendChild(card);
 });
 renderPagination(filtered.length);
-setTimeout(revealOnScroll, 100);
-setTimeout(revealOnScroll, 500);
+setTimeout(observeCards, 100);
 }
 
 function renderPagination(total){
@@ -552,19 +551,28 @@ document.addEventListener("DOMContentLoaded", loadProducts);
 
   // ===== SCROLL FADE-IN STABIL VERZIÓ =====
 
-function revealOnScroll(){
-  const cards = document.querySelectorAll(".card");
+function observeCards(){
 
-  cards.forEach(card=>{
-    const rect = card.getBoundingClientRect();
-    if(rect.top < window.innerHeight - 50){
-      card.classList.add("visible");
-    }
-  });
+const cards = document.querySelectorAll(".card");
+
+const observer = new IntersectionObserver(entries => {
+
+entries.forEach(entry => {
+
+if(entry.isIntersecting){
+entry.target.classList.add("visible");
+observer.unobserve(entry.target);
 }
 
-window.addEventListener("load", revealOnScroll);
-window.addEventListener("scroll", revealOnScroll);
+});
+
+},{
+threshold:0.1
+});
+
+cards.forEach(card => observer.observe(card));
+
+}
   
   function toggleMenu(){
 
