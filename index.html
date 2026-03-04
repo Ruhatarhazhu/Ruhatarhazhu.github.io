@@ -54,8 +54,7 @@ height:42px;
 transition:height .25s ease;
 }
 header.scrolled{
-padding:12px 0;
-box-shadow:0 10px 30px rgba(0,0,0,.08);
+box-shadow:0 6px 20px rgba(0,0,0,.08);
 } 
 header.scrolled img{
 transform:scale(0.8);
@@ -325,6 +324,11 @@ z-index:2500;
 opacity:1;
 pointer-events:auto;
 }
+  @media(max-width:600px){
+.wrapper{
+backdrop-filter:none;
+}
+  }
 </style></head>
 <body>
   <div class="mobile-drawer" id="mobileMenu">
@@ -528,15 +532,7 @@ let ticking = false;
 
 window.addEventListener("scroll", () => {
 
-if(!ticking){
-
-window.requestAnimationFrame(() => {
-
 const scrollTop = window.scrollY;
-const docHeight = document.body.scrollHeight - window.innerHeight;
-
-document.getElementById("progressBar").style.width =
-(scrollTop / docHeight) * 100 + "%";
 
 const header = document.querySelector("header");
 
@@ -544,14 +540,6 @@ if(scrollTop > 50){
 header.classList.add("scrolled");
 }else{
 header.classList.remove("scrolled");
-}
-
-ticking = false;
-
-});
-
-ticking = true;
-
 }
 
 });
