@@ -12,6 +12,9 @@
 <meta property="og:url" content="https://ruhatarhaz.hu/">
 <meta property="og:site_name" content="Ruhatárház">
 <link rel="icon" type="image/png" href="favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="image" href="logo.webp">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet"><style>
 :root{
   --green:#3a7d2e;
@@ -505,7 +508,7 @@ grid.innerHTML="";
 paginated.forEach((p,index)=>{
 const card=document.createElement("div");
 card.className="card";
-card.innerHTML=`<img src="${p.images[0]}" loading="lazy" decoding="async"><h3>${p.name}</h3><div class="price">${p.price} Ft</div>`;
+card.innerHTML=`<img src="${p.images[0]}" ${index < 4 ? 'loading="eager"' : 'loading="lazy"'} decoding="async"><h3>${p.name}</h3><div class="price">${p.price} Ft</div>`;
 if(p.sold === "TRUE"){
   const b = document.createElement("div");
   b.className = "badge";
