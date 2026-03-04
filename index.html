@@ -231,6 +231,36 @@ body::before{
 .dropdown:hover .dropdown-content{
   display:block;
 }
+  .mobile-menu{
+  display:none;
+}
+
+@media(max-width:600px){
+
+.mobile-menu{
+  position:fixed;
+  bottom:0;
+  left:0;
+  width:100%;
+  background:#fff;
+  border-top:1px solid var(--border);
+  display:flex;
+  justify-content:space-around;
+  padding:12px 0;
+  z-index:2000;
+}
+
+.mobile-menu a{
+  text-decoration:none;
+  font-size:13px;
+  color:#333;
+}
+
+.mobile-menu a:hover{
+  color:var(--green);
+}
+
+}
 </style></head>
 <body>
   <div id="progressBar"></div><div class="wrapper">
@@ -280,6 +310,21 @@ body::before{
 </div>
 
 <footer>© 2026 Ruhatárház – Minden termék Vinteden vásárolható.</footer>
+    <div class="mobile-menu">
+
+<a href="cikkek.html">
+📚 Cikkek
+</a>
+
+<a href="tudasbazis.html">
+📖 Tudásbázis
+</a>
+
+<a href="visszajelzesek.html">
+⭐ Vélemények
+</a>
+
+    </div>
 </div><div class="modal" id="imageModal">
 <img id="modalImg">
 <div class="modal-controls">
