@@ -329,6 +329,17 @@ pointer-events:auto;
 backdrop-filter:none;
 }
   }
+  .card:empty{
+height:260px;
+background:linear-gradient(90deg,#f0f0f0 25%,#f7f7f7 37%,#f0f0f0 63%);
+background-size:400% 100%;
+animation:loading 1.4s ease infinite;
+}
+
+@keyframes loading{
+0%{background-position:100% 50%;}
+100%{background-position:0 50%;}
+}
 </style></head>
 <body>
   <div class="mobile-drawer" id="mobileMenu">
@@ -377,7 +388,14 @@ backdrop-filter:none;
     <option value="high">Drágább elöl</option>
   </select>
 
-</div><section class="products"></section>
+</div><section class="products" id="products">
+<div class="card"></div>
+<div class="card"></div>
+<div class="card"></div>
+<div class="card"></div>
+<div class="card"></div>
+<div class="card"></div>
+</section>
 <div class="pagination"></div>
 
 <footer>© 2026 Ruhatárház – Minden termék Vinteden vásárolható.</footer>
@@ -413,7 +431,9 @@ async function loadProducts(){
 
   try{
 
-    const res = await fetch(sheetURL);
+    const res = await fetch(sheetURL,{
+cache:"no-store"
+});
     const text = await res.text();
 
     const json = JSON.parse(
@@ -475,7 +495,7 @@ grid.innerHTML="";
 paginated.forEach((p,index)=>{
 const card=document.createElement("div");
 card.className="card";
-card.innerHTML=`<img src="${p.images[0]}" loading="lazy"><h3>${p.name}</h3><div class="price">${p.price} Ft</div>`;
+card.innerHTML=`<img src="${p.images[0]}" loading="lazy" decoding="async"><h3>${p.name}</h3><div class="price">${p.price} Ft</div>`;
 if(p.sold === "TRUE"){
   const b = document.createElement("div");
   b.className = "badge";
