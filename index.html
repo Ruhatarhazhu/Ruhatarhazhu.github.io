@@ -187,12 +187,62 @@ body::before{
   position:relative;
   z-index:1;
 }
+  .dropdown{
+  position:absolute;
+  left:25px;
+  top:50%;
+  transform:translateY(-50%);
+}
+
+.dropbtn{
+  background:none;
+  border:none;
+  font-size:14px;
+  cursor:pointer;
+  color:#555;
+}
+
+.dropbtn:hover{
+  color:var(--green);
+}
+
+.dropdown-content{
+  display:none;
+  position:absolute;
+  background:#fff;
+  border:1px solid var(--border);
+  border-radius:10px;
+  margin-top:8px;
+  min-width:180px;
+  box-shadow:0 10px 25px rgba(0,0,0,0.08);
+}
+
+.dropdown-content a{
+  display:block;
+  padding:10px 14px;
+  text-decoration:none;
+  color:#333;
+}
+
+.dropdown-content a:hover{
+  background:#f6f6f6;
+}
+
+.dropdown:hover .dropdown-content{
+  display:block;
+}
 </style></head>
 <body>
   <div id="progressBar"></div><div class="wrapper">
-<header><a href="visszajelzesek.html" class="reviews-link">
-    Vásárlói visszajelzések
-</a><img src="logo.webp" alt="Ruhatárház"><div class="header-icons">
+<header><div class="dropdown">
+  <button class="dropbtn">Tartalmak ▾</button>
+
+  <div class="dropdown-content">
+    <a href="cikkek.html">Cikkek</a>
+    <a href="tudasbazis.html">Tudásbázis</a>
+    <a href="visszajelzesek.html">Vásárlói visszajelzések</a>
+  </div>
+</div><img src="logo.webp" alt="Ruhatárház"><div class="header-icons">
   <a href="https://www.facebook.com/share/g/1DH3Qq5G1Y/" target="_blank">
     <svg viewBox="0 0 24 24">
       <path d="M22 12a10 10 0 1 0-11.5 9.9v-7h-2.3v-2.9h2.3V9.5c0-2.3 1.4-3.6 3.5-3.6 1 0 2 .2 2 .2v2.3h-1.1c-1.1 0-1.4.7-1.4 1.3v1.6h2.4l-.4 2.9h-2v7A10 10 0 0 0 22 12z"/>
