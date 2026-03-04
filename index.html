@@ -429,6 +429,14 @@ const perPage=20;
 
 async function loadProducts(){
 
+  const cached = localStorage.getItem("ruhat_products");
+
+if(cached){
+  products = JSON.parse(cached);
+  initCategories();
+  render();
+}
+
   try{
 
     const res = await fetch(sheetURL,{
@@ -461,6 +469,8 @@ cache:"no-store"
       });
 
     });
+
+    localStorage.setItem("ruhat_products", JSON.stringify(products));
 
     initCategories();
     render();
