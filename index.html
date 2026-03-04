@@ -450,8 +450,7 @@ cats.forEach(cat=>select.innerHTML+=`<option value="${cat}">${cat}</option>`);
 }
 
 function render(){
-let filtered=[...products];
-  filtered.reverse();
+let filtered=[...products].reverse();
 const cat=document.getElementById("categoryFilter").value;
 const sort=document.getElementById("sortPrice").value;
 
@@ -465,7 +464,7 @@ const paginated=filtered.slice(start,start+perPage);
 const grid=document.querySelector(".products");
 grid.innerHTML="";
 
-paginated.forEach(p=>{
+paginated.forEach((p,index)=>{
 const card=document.createElement("div");
 card.className="card";
 card.innerHTML=`<img src="${p.images[0]}" loading="lazy"><h3>${p.name}</h3><div class="price">${p.price} Ft</div>`;
@@ -475,7 +474,7 @@ if(p.sold === true){
   b.innerText = "ELADVA";
   card.appendChild(b);
 
-} else if(filtered.indexOf(p) < 4){
+} else if(index < 4)
   const b = document.createElement("div");
   b.className = "badge new";
   b.innerText = "ÚJ";
@@ -528,7 +527,6 @@ if(startX-endX>50) nextImage();
 if(endX-startX>50) prevImage();
 });
 
-let ticking = false;
 
 window.addEventListener("scroll", () => {
 
@@ -562,8 +560,8 @@ function revealOnScroll(){
   });
 }
 
-window.addEventListener("scroll", revealOnScroll);
 window.addEventListener("load", revealOnScroll);
+  setTimeout(revealOnScroll,100);
 
   function toggleMenu(){
 
