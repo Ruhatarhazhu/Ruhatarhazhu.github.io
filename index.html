@@ -401,6 +401,14 @@ let currentImages=[];
 let currentIndex=0;
 const perPage=20;
 
+  function slugify(text){
+  return text
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/ /g,"-");
+  }
+
 async function loadProducts(){
 
   try{
@@ -474,18 +482,11 @@ if(p.sold === true){
   b.innerText = "ELADVA";
   card.appendChild(b);
 
-} else if(index < 4)
+}else if(index < 4){
   const b = document.createElement("div");
   b.className = "badge new";
   b.innerText = "ÚJ";
   card.appendChild(b);
-}
-function slugify(text){
-  return text
-    .toLowerCase()
-    .normalize("NFD")
-    .replace(/[\u0300-\u036f]/g, "")
-    .replace(/ /g,"-");
 }
 
 card.onclick=()=>window.location.href="product.html?slug="+slugify(p.name);
