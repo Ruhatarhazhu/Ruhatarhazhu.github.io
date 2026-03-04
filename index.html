@@ -524,12 +524,36 @@ if(startX-endX>50) nextImage();
 if(endX-startX>50) prevImage();
 });
 
-window.addEventListener("scroll",()=>{
-const scrollTop=window.scrollY;
-const docHeight=document.body.scrollHeight-window.innerHeight;
-document.getElementById("progressBar").style.width=(scrollTop/docHeight)*100+"%";
-const header=document.querySelector("header");
-if(scrollTop>50) header.classList.add("scrolled"); else header.classList.remove("scrolled");
+let ticking = false;
+
+window.addEventListener("scroll", () => {
+
+if(!ticking){
+
+window.requestAnimationFrame(() => {
+
+const scrollTop = window.scrollY;
+const docHeight = document.body.scrollHeight - window.innerHeight;
+
+document.getElementById("progressBar").style.width =
+(scrollTop / docHeight) * 100 + "%";
+
+const header = document.querySelector("header");
+
+if(scrollTop > 50){
+header.classList.add("scrolled");
+}else{
+header.classList.remove("scrolled");
+}
+
+ticking = false;
+
+});
+
+ticking = true;
+
+}
+
 });
 
 document.getElementById("categoryFilter").addEventListener("change",()=>{currentPage=1;render();});
