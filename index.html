@@ -416,9 +416,9 @@ async function loadProducts(){
     const res = await fetch(sheetURL);
     const text = await res.text();
 
-    const jsonString = text.substring(47, text.length - 2);
-
-    const json = JSON.parse(jsonString);
+    const json = JSON.parse(
+  text.substring(text.indexOf("{"), text.lastIndexOf("}") + 1)
+);
     const rows = json.table.rows;
 
     products = [];
