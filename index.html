@@ -320,6 +320,20 @@ display:none;
 }
 
 }
+  .menu-overlay{
+position:fixed;
+inset:0;
+background:rgba(0,0,0,0.4);
+opacity:0;
+pointer-events:none;
+transition:0.3s;
+z-index:2500;
+}
+
+.menu-overlay.active{
+opacity:1;
+pointer-events:auto;
+}
 </style></head>
 <body>
   <div class="mobile-drawer" id="mobileMenu">
@@ -329,6 +343,7 @@ display:none;
 <a href="visszajelzesek.html">⭐ Vásárlói visszajelzések</a>
 
 </div>
+  <div class="menu-overlay" id="menuOverlay" onclick="closeMenu()"></div>
   <div id="progressBar"></div><div class="wrapper">
 <header>
 <div class="hamburger" onclick="toggleMenu()">☰</div><div class="dropdown">
@@ -554,7 +569,20 @@ window.addEventListener("scroll", revealOnScroll);
 window.addEventListener("load", revealOnScroll);
 
   function toggleMenu(){
-document.getElementById("mobileMenu").classList.toggle("open");
+
+const menu = document.getElementById("mobileMenu");
+const overlay = document.getElementById("menuOverlay");
+
+menu.classList.toggle("open");
+overlay.classList.toggle("active");
+
+}
+
+function closeMenu(){
+
+document.getElementById("mobileMenu").classList.remove("open");
+document.getElementById("menuOverlay").classList.remove("active");
+
 }
 </script></body>
 </html>
