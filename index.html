@@ -492,7 +492,7 @@ card.onclick=()=>window.location.href="product.html?slug="+slugify(p.name);
 grid.appendChild(card);
 });
 renderPagination(filtered.length);
-  setTimeout(revealOnScroll, 100);
+setTimeout(revealOnScroll, 100);
 }
 
 function renderPagination(total){
@@ -561,7 +561,6 @@ function revealOnScroll(){
 }
 
 window.addEventListener("load", revealOnScroll);
-  setTimeout(revealOnScroll,100);
 
   function toggleMenu(){
 
