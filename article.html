@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+<meta charset="UTF-8">
+<title>Cikk – Ruhatárház</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+body{
+font-family:Inter, sans-serif;
+max-width:900px;
+margin:auto;
+padding:40px 20px;
+background:#f6f6f6;
+}
+
+article{
+background:white;
+padding:30px;
+border-radius:12px;
+border:1px solid #eee;
+}
+
+h1{
+margin-bottom:20px;
+}
+
+p{
+line-height:1.6;
+margin-bottom:16px;
+}
+</style>
+</head>
+
+<body>
+
+<article>
+
+<h1 id="title"></h1>
+
+<div id="content"></div>
+
+</article>
+
+<script>
+
+const sheetURL="https://docs.google.com/spreadsheets/d/1PlqIBtGVKHCQIoDk4gAbIOIpRh_-bEGRXmexvaT5sos/gviz/tq";
+
+function getSlug(){
+return new URLSearchParams(window.location.search).get("slug");
+}
+
+async function loadArticle(){
+
+const res=await fetch(sheetURL);
+const text=await res.text();
+
+const json=JSON.parse(text.substring(47).slice(0,-2));
+const rows=json.table.rows;
+
+const slug=getSlug();
+
+rows.forEach(r=>{
+
+const title=r.c[0]?.v || "";
+const articleSlug=r.c[1]?.v || "";
+const content=r.c[3]?.v || "";
+
+if(articleSlug===slug){
+
+document.getElementById("title").innerText=title;
+document.getElementById("content").innerText=content;
+
+}
+
+});
+
+}
+
+loadArticle();
+
+</script>
+
+</body>
+</html>
