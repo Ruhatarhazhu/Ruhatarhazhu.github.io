@@ -48,14 +48,15 @@ font-weight:600;
 
 <script>
 
-const sheetURL="https://docs.google.com/spreadsheets/d/1js2SD4xPHS49y5Jo6pjBzScwXnePuTzE2yghCn2pJjU/gviz/tq";
-
+const sheetURL="https://docs.google.com/spreadsheets/d/1js2SD4xPHS49y5Jo6pjBzScwXnePuTzE2yghCn2pJjU/gviz/tq?sheet=Cikkek";
 async function loadArticles(){
 
 const res=await fetch(sheetURL);
 const text=await res.text();
 
-const json=JSON.parse(text.substring(47).slice(0,-2));
+const json = JSON.parse(
+  text.substring(text.indexOf("{"), text.lastIndexOf("}") + 1)
+);
 const rows=json.table.rows;
 
 const container=document.getElementById("articles");
