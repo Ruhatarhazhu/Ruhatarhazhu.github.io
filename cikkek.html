@@ -38,24 +38,6 @@ text-decoration:none;
 font-weight:600;
 }
 
-  .pagination{
-display:flex;
-gap:8px;
-margin-top:30px;
-}
-
-.pagination button{
-padding:6px 12px;
-border:1px solid #ddd;
-background:white;
-cursor:pointer;
-border-radius:6px;
-}
-
-.pagination button.active{
-background:#3a7d2e;
-color:white;
-}
 </style>
 </head>
 
@@ -64,8 +46,6 @@ color:white;
 <h1>Cikkek</h1>
 
 <div id="articles"></div>
-
-  <div class="pagination" id="pagination"></div>
 
 <script>
 
@@ -107,35 +87,6 @@ container.appendChild(div);
 
 });
   
-}
-  renderPagination();
-
-}
-
-function renderPagination(){
-
-const pages=Math.ceil(articles.length/perPage);
-
-const container=document.getElementById("pagination");
-container.innerHTML="";
-
-for(let i=1;i<=pages;i++){
-
-const btn=document.createElement("button");
-
-btn.textContent=i;
-
-if(i===currentPage) btn.classList.add("active");
-
-btn.onclick=()=>{
-currentPage=i;
-render();
-};
-
-container.appendChild(btn);
-
-}
-
 }
 
 loadArticles();
