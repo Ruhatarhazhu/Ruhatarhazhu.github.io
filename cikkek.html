@@ -38,6 +38,24 @@ text-decoration:none;
 font-weight:600;
 }
 
+  .pagination{
+display:flex;
+gap:8px;
+margin-top:30px;
+}
+
+.pagination button{
+padding:6px 12px;
+border:1px solid #ddd;
+background:white;
+cursor:pointer;
+border-radius:6px;
+}
+
+.pagination button.active{
+background:#3a7d2e;
+color:white;
+}
 </style>
 </head>
 
@@ -47,9 +65,16 @@ font-weight:600;
 
 <div id="articles"></div>
 
+  <div id="pagination"></div>
+
 <script>
 
 const sheetURL="https://docs.google.com/spreadsheets/d/1js2SD4xPHS49y5Jo6pjBzScwXnePuTzE2yghCn2pJjU/gviz/tq?sheet=Cikkek";
+
+let articles = [];
+let currentPage = 1;
+const perPage = 15;
+  
 async function loadArticles(){
 
 const res=await fetch(sheetURL);
@@ -62,7 +87,18 @@ const rows=json.table.rows;
 
 const container=document.getElementById("articles");
 
-rows.reverse().forEach(r=>{
+articles = rows.reverse();
+render();
+
+function render(){
+
+const container=document.getElementById("articles");
+container.innerHTML="";
+
+const start=(currentPage-1)*perPage;
+const paginated=articles.slice(start,start+perPage);
+
+paginated.forEach(r=>{
 
 if(!r.c) return;
 
@@ -70,7 +106,6 @@ const title = r.c[0]?.v || "";
 const slug = r.c[1]?.v || "";
 const excerpt = r.c[2]?.v || "";
 
-/* ha ez csak fejléc vagy üres sor → kihagyjuk */
 if(title.toLowerCase() === "cím") return;
 if(!title || !slug) return;
 
@@ -86,9 +121,36 @@ div.innerHTML=`
 container.appendChild(div);
 
 });
-  
+
+renderPagination();
 }
 
+function renderPagination(){
+
+const pages=Math.ceil(articles.length/perPage);
+const container=document.getElementById("pagination");
+
+container.innerHTML="";
+container.className="pagination";
+
+for(let i=1;i<=pages;i++){
+
+const btn=document.createElement("button");
+
+btn.textContent=i;
+
+if(i===currentPage) btn.classList.add("active");
+
+btn.onclick=()=>{
+currentPage=i;
+render();
+};
+
+container.appendChild(btn);
+
+}
+
+}
 loadArticles();
 
 </script>
