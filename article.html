@@ -106,10 +106,37 @@ document.getElementById("title").textContent = title;
 
 document.title = title + " | Ruhatárház";
 
-document.getElementById("content").innerHTML =
-content.replace(/\n/g,"<br><br>");
+const formattedContent = content.replace(/\n/g,"<br><br>");
+document.getElementById("content").innerHTML = formattedContent;
+
+/* META DESCRIPTION */
+document.querySelector('meta[name="description"]').setAttribute(
+"content",
+content.substring(0,150)
+);
+
+/* GOOGLE RICH RESULT */
+const schema = {
+"@context":"https://schema.org",
+"@type":"Article",
+"headline": title,
+"description": content.substring(0,150),
+"author":{
+"@type":"Organization",
+"name":"Ruhatárház"
+},
+"publisher":{
+"@type":"Organization",
+"name":"Ruhatárház"
+},
+"mainEntityOfPage": window.location.href
+};
+
+document.getElementById("schemaData").textContent =
+JSON.stringify(schema);
 
 }
+
 
 });
 
