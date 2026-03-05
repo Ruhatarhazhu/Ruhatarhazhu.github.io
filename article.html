@@ -44,6 +44,18 @@ margin-bottom:16px;
 
 <script>
 
+  function getSlug(){
+
+const path = window.location.pathname;
+
+if(path.includes("/cikk/")){
+return path.split("/cikk/")[1];
+}
+
+return new URLSearchParams(window.location.search).get("slug");
+
+  }
+
 const sheetURL="https://docs.google.com/spreadsheets/d/1PlqIBtGVKHCQIoDk4gAbIOIpRh_-bEGRXmexvaT5sos/gviz/tq?sheet=Cikkek";
 
 function getSlug(){
