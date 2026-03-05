@@ -2,10 +2,12 @@
 <html lang="hu">
 <head>
 <meta charset="UTF-8">
-<title>Cikk – Ruhatárház</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+<title>Cikk – Ruhatárház</title>
+
 <style>
+
 body{
 font-family:Inter, sans-serif;
 max-width:900px;
@@ -29,14 +31,31 @@ p{
 line-height:1.6;
 margin-bottom:16px;
 }
+
+.back{
+display:inline-block;
+margin-bottom:20px;
+text-decoration:none;
+color:#3a7d2e;
+font-weight:600;
+}
+
+.error{
+color:#999;
+font-style:italic;
+}
+
 </style>
+
 </head>
 
 <body>
 
+<a class="back" href="cikkek.html">← Vissza a cikkekhez</a>
+
 <article>
 
-<h1 id="title"></h1>
+<h1 id="title">Betöltés...</h1>
 
 <div id="content"></div>
 
@@ -44,19 +63,8 @@ margin-bottom:16px;
 
 <script>
 
-  function getSlug(){
-
-const path = window.location.pathname;
-
-if(path.includes("/cikk/")){
-return path.split("/cikk/")[1];
-}
-
-return new URLSearchParams(window.location.search).get("slug");
-
-  }
-
-const sheetURL="https://docs.google.com/spreadsheets/d/1PlqIBtGVKHCQIoDk4gAbIOIpRh_-bEGRXmexvaT5sos/gviz/tq?sheet=Cikkek";
+const sheetURL =
+"https://docs.google.com/spreadsheets/d/1js2SD4xPHS49y5Jo6pjBzScwXnePuTzE2yghCn2pJjU/gviz/tq?sheet=Cikkek";
 
 function getSlug(){
 return new URLSearchParams(window.location.search).get("slug");
@@ -64,31 +72,36 @@ return new URLSearchParams(window.location.search).get("slug");
 
 async function loadArticle(){
 
-const res=await fetch(sheetURL);
-const text=await res.text();
+try{
+
+const res = await fetch(sheetURL);
+const text = await res.text();
 
 const json = JSON.parse(
 text.substring(text.indexOf("{"), text.lastIndexOf("}") + 1)
 );
 
-const rows=json.table.rows;
+const rows = json.table.rows;
 
-const slug=getSlug();
+const slug = getSlug();
 
-let found=false;
+let found = false;
 
 rows.forEach(r=>{
 
 if(!r.c) return;
-if(!r.c[1]) return;
 
 const title = r.c[0]?.v || "";
 const articleSlug = r.c[1]?.v || "";
 const content = r.c[3]?.v || "";
 
-if(articleSlug.trim() === slug){
+if(articleSlug && articleSlug.trim() === slug){
+
+found = true;
 
 document.getElementById("title").textContent = title;
+
+document.title = title + " | Ruhatárház";
 
 document.getElementById("content").innerHTML =
 content.replace(/\n/g,"<br><br>");
@@ -97,29 +110,23 @@ content.replace(/\n/g,"<br><br>");
 
 });
 
-const title=r.c[0]?.v || "";
-const articleSlug=r.c[1]?.v || "";
-const content=r.c[3]?.v || "";
-
-if(articleSlug && articleSlug.trim()===slug){
-
-found=true;
-
-document.getElementById("title").textContent=title;
-
-document.getElementById("content").innerHTML=
-content.replace(/\n/g,"<br><br>");
-
-}
-
-});
-
 if(!found){
-document.getElementById("title").textContent="Cikk nem található";
-document.getElementById("content").textContent="Nem található ilyen slug a táblában.";
+
+document.getElementById("title").textContent = "Cikk nem található";
+
+document.getElementById("content").innerHTML =
+"<p class='error'>A keresett cikk nem található.</p>";
+
 }
 
-});
+}catch(e){
+
+document.getElementById("title").textContent = "Hiba";
+
+document.getElementById("content").innerHTML =
+"<p class='error'>Nem sikerült betölteni a cikket.</p>";
+
+}
 
 }
 
