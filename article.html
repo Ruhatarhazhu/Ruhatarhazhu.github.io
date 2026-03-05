@@ -64,12 +64,14 @@ rows.forEach(r=>{
 
 const title=r.c[0]?.v || "";
 const articleSlug=r.c[1]?.v || "";
-const content=r.c[3]?.v || "";
+const content = r.c[3]?.v || "";
 
 if(articleSlug===slug){
 
-document.getElementById("title").innerText=title;
-document.getElementById("content").innerText=content;
+document.getElementById("title").textContent = title;
+
+document.getElementById("content").innerHTML =
+content.replace(/\n/g,"<br><br>");
 
 }
 
