@@ -161,6 +161,9 @@ JSON.stringify(schema);
 
 const related = document.getElementById("relatedArticles");
 
+/* töröljük a régi elemeket */
+related.innerHTML = "";
+
 let relatedCount = 0;
 
 rows.forEach(r=>{
