@@ -163,8 +163,11 @@ const related = document.getElementById("relatedArticles");
 
 related.innerHTML = "";
 
-/* összegyűjtjük a többi cikket */
-const otherArticles = rows.filter(r => {
+/* fejléc sor kihagyása */
+const dataRows = rows.slice(1);
+
+/* többi cikk */
+const otherArticles = dataRows.filter(r => {
 
 if(!r.c) return false;
 
@@ -175,16 +178,17 @@ return title && articleSlug && articleSlug !== slug;
 
 });
 
-/* keverés (shuffle) */
+/* shuffle */
 for(let i = otherArticles.length - 1; i > 0; i--){
 
 const j = Math.floor(Math.random() * (i + 1));
 
-[otherArticles[i], otherArticles[j]] = [otherArticles[j], otherArticles[i]];
+[otherArticles[i], otherArticles[j]] =
+[otherArticles[j], otherArticles[i]];
 
 }
 
-/* első 3 cikk */
+/* csak 3 kapcsolódó */
 otherArticles.slice(0,3).forEach(r=>{
 
 const title = r.c[0]?.v;
@@ -198,7 +202,7 @@ li.innerHTML =
 related.appendChild(li);
 
 });
-
+  
 if(!found){
 
 document.getElementById("title").textContent =
