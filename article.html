@@ -157,28 +157,38 @@ JSON.stringify(schema);
 
 });
 
-/* ===== KAPCSOLÓDÓ CIKKEK ===== */
+/* ===== KAPCSOLÓDÓ CIKKEK (VÉLETLENSZERŰ) ===== */
 
 const related = document.getElementById("relatedArticles");
 
-/* töröljük a régi elemeket */
 related.innerHTML = "";
 
-let relatedCount = 0;
+/* összegyűjtjük a többi cikket */
+const otherArticles = rows.filter(r => {
 
-rows.forEach(r=>{
-
-if(!r.c) return;
+if(!r.c) return false;
 
 const title = r.c[0]?.v || "";
 const articleSlug = r.c[1]?.v || "";
 
-if(
-title &&
-articleSlug &&
-articleSlug !== slug &&
-relatedCount < 3
-){
+return title && articleSlug && articleSlug !== slug;
+
+});
+
+/* keverés (shuffle) */
+for(let i = otherArticles.length - 1; i > 0; i--){
+
+const j = Math.floor(Math.random() * (i + 1));
+
+[otherArticles[i], otherArticles[j]] = [otherArticles[j], otherArticles[i]];
+
+}
+
+/* első 3 cikk */
+otherArticles.slice(0,3).forEach(r=>{
+
+const title = r.c[0]?.v;
+const articleSlug = r.c[1]?.v;
 
 const li = document.createElement("li");
 
@@ -186,10 +196,6 @@ li.innerHTML =
 `<a href="article.html?slug=${articleSlug}">${title}</a>`;
 
 related.appendChild(li);
-
-relatedCount++;
-
-}
 
 });
 
