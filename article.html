@@ -96,6 +96,26 @@ let found = false;
 
 rows.forEach(r=>{
 
+  // kapcsolódó cikkek
+const related = document.getElementById("relatedArticles");
+
+rows.slice(0,3).forEach(r=>{
+
+const title = r.c[0]?.v || "";
+const slug = r.c[1]?.v || "";
+
+if(title && slug){
+
+const li = document.createElement("li");
+
+li.innerHTML = `<a href="article.html?slug=${slug}">${title}</a>`;
+
+related.appendChild(li);
+
+}
+
+});
+
 if(!r.c) return;
 
 const title = r.c[0]?.v || "";
