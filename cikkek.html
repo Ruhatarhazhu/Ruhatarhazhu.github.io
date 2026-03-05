@@ -63,18 +63,15 @@ const container=document.getElementById("articles");
 
 rows.reverse().forEach(r=>{
 
-  if(!r.c) return;
+if(!r.c) return;
 
 const title = r.c[0]?.v || "";
 const slug = r.c[1]?.v || "";
 const excerpt = r.c[2]?.v || "";
 
-/* Üres sorok kihagyása */
+/* ha ez csak fejléc vagy üres sor → kihagyjuk */
+if(title.toLowerCase() === "cím") return;
 if(!title || !slug) return;
-
-const title=r.c[0]?.v || "";
-const slug=r.c[1]?.v || "";
-const excerpt=r.c[2]?.v || "";
 
 const div=document.createElement("div");
 div.className="article";
@@ -88,7 +85,7 @@ div.innerHTML=`
 container.appendChild(div);
 
 });
-
+  
 }
 
 loadArticles();
