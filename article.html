@@ -63,19 +63,30 @@ const rows=json.table.rows;
 
 const slug=getSlug();
 
+let found=false;
+
 rows.forEach(r=>{
 
 const title=r.c[0]?.v || "";
 const articleSlug=r.c[1]?.v || "";
 const content=r.c[3]?.v || "";
 
-if(articleSlug===slug){
+if(articleSlug && articleSlug.trim()===slug){
+
+found=true;
 
 document.getElementById("title").textContent=title;
 
 document.getElementById("content").innerHTML=
 content.replace(/\n/g,"<br><br>");
 
+}
+
+});
+
+if(!found){
+document.getElementById("title").textContent="Cikk nem található";
+document.getElementById("content").textContent="Nem található ilyen slug a táblában.";
 }
 
 });
