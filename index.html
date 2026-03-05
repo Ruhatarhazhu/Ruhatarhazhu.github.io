@@ -638,6 +638,43 @@ document.getElementById("sortPrice").addEventListener("change",()=>{currentPage=
 
 document.addEventListener("DOMContentLoaded", loadProducts);
 
+  async function loadLatestArticles(){
+
+const res = await fetch("https://docs.google.com/spreadsheets/d/1js2SD4xPHS49y5Jo6pjBzScwXnePuTzE2yghCn2pJjU/gviz/tq?sheet=Cikkek");
+const text = await res.text();
+
+const json = JSON.parse(
+text.substring(text.indexOf("{"), text.lastIndexOf("}") + 1)
+);
+
+const rows = json.table.rows.slice(1).reverse();
+
+const container = document.getElementById("latestArticles");
+
+rows.slice(0,3).forEach(r=>{
+
+const title = r.c[0]?.v;
+const slug = r.c[1]?.v;
+const excerpt = r.c[2]?.v;
+
+const card = document.createElement("div");
+
+card.className = "blog-card";
+
+card.innerHTML = `
+<h3>${title}</h3>
+<p>${excerpt}</p>
+<a href="article.html?slug=${slug}">Elolvasom →</a>
+`;
+
+container.appendChild(card);
+
+});
+
+}
+
+document.addEventListener("DOMContentLoaded", loadLatestArticles);
+
   // ===== SCROLL FADE-IN STABIL VERZIÓ =====
 
 function observeCards(){
