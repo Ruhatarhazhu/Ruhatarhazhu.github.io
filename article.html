@@ -99,18 +99,27 @@ rows.forEach(r=>{
   // kapcsolódó cikkek
 const related = document.getElementById("relatedArticles");
 
-rows.slice(0,3).forEach(r=>{
+let relatedCount = 0;
+
+rows.forEach(r=>{
 
 const title = r.c[0]?.v || "";
-const slug = r.c[1]?.v || "";
+const articleSlug = r.c[1]?.v || "";
 
-if(title && slug){
+if(
+title &&
+articleSlug &&
+articleSlug !== slug && 
+relatedCount < 3
+){
 
 const li = document.createElement("li");
 
-li.innerHTML = `<a href="article.html?slug=${slug}">${title}</a>`;
+li.innerHTML = `<a href="article.html?slug=${articleSlug}">${title}</a>`;
 
 related.appendChild(li);
+
+relatedCount++;
 
 }
 
