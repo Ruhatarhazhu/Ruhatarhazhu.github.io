@@ -74,21 +74,23 @@ const sheetURL="https://docs.google.com/spreadsheets/d/1js2SD4xPHS49y5Jo6pjBzScw
 let articles = [];
 let currentPage = 1;
 const perPage = 15;
-  
+
 async function loadArticles(){
 
-const res=await fetch(sheetURL);
-const text=await res.text();
+const res = await fetch(sheetURL);
+const text = await res.text();
 
 const json = JSON.parse(
-  text.substring(text.indexOf("{"), text.lastIndexOf("}") + 1)
+text.substring(text.indexOf("{"), text.lastIndexOf("}") + 1)
 );
-const rows=json.table.rows;
 
-const container=document.getElementById("articles");
+const rows = json.table.rows;
 
 articles = rows.reverse();
+
 render();
+
+}
 
 function render(){
 
@@ -123,6 +125,7 @@ container.appendChild(div);
 });
 
 renderPagination();
+
 }
 
 function renderPagination(){
@@ -151,6 +154,7 @@ container.appendChild(btn);
 }
 
 }
+
 loadArticles();
 
 </script>
