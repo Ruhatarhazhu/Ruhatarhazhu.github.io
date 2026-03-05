@@ -94,36 +94,9 @@ const slug = getSlug();
 
 let found = false;
 
-rows.forEach(r=>{
-
-  // kapcsolódó cikkek
-const related = document.getElementById("relatedArticles");
-
-let relatedCount = 0;
+/* ===== AKTUÁLIS CIKK BETÖLTÉSE ===== */
 
 rows.forEach(r=>{
-
-const title = r.c[0]?.v || "";
-const articleSlug = r.c[1]?.v || "";
-
-if(
-title &&
-articleSlug &&
-articleSlug !== slug && 
-relatedCount < 3
-){
-
-const li = document.createElement("li");
-
-li.innerHTML = `<a href="article.html?slug=${articleSlug}">${title}</a>`;
-
-related.appendChild(li);
-
-relatedCount++;
-
-}
-
-});
 
 if(!r.c) return;
 
@@ -149,15 +122,18 @@ Ruhatárház aktuális kínálatát
 </a>.
 </p>`;
 
-document.getElementById("content").innerHTML = formattedContent + promo;
+document.getElementById("content").innerHTML =
+formattedContent + promo;
 
 /* META DESCRIPTION */
+
 document.querySelector('meta[name="description"]').setAttribute(
 "content",
 content.substring(0,150)
 );
 
 /* GOOGLE RICH RESULT */
+
 const schema = {
 "@context":"https://schema.org",
 "@type":"Article",
@@ -179,12 +155,45 @@ JSON.stringify(schema);
 
 }
 
+});
+
+/* ===== KAPCSOLÓDÓ CIKKEK ===== */
+
+const related = document.getElementById("relatedArticles");
+
+let relatedCount = 0;
+
+rows.forEach(r=>{
+
+if(!r.c) return;
+
+const title = r.c[0]?.v || "";
+const articleSlug = r.c[1]?.v || "";
+
+if(
+title &&
+articleSlug &&
+articleSlug !== slug &&
+relatedCount < 3
+){
+
+const li = document.createElement("li");
+
+li.innerHTML =
+`<a href="article.html?slug=${articleSlug}">${title}</a>`;
+
+related.appendChild(li);
+
+relatedCount++;
+
+}
 
 });
 
 if(!found){
 
-document.getElementById("title").textContent = "Cikk nem található";
+document.getElementById("title").textContent =
+"Cikk nem található";
 
 document.getElementById("content").innerHTML =
 "<p class='error'>A keresett cikk nem található.</p>";
@@ -203,7 +212,7 @@ document.getElementById("content").innerHTML =
 }
 
 loadArticle();
-
+  
 </script>
 
 </body>
