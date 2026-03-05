@@ -1,1 +1,89 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+<meta charset="UTF-8">
+<title>Cikkek – Ruhatárház</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+<style>
+body{
+font-family:Inter, sans-serif;
+max-width:900px;
+margin:auto;
+padding:40px 20px;
+background:#f6f6f6;
+}
+
+h1{
+margin-bottom:30px;
+}
+
+.article{
+background:white;
+padding:20px;
+border-radius:12px;
+margin-bottom:20px;
+border:1px solid #eee;
+}
+
+.article h2{
+margin-bottom:8px;
+}
+
+.article a{
+display:inline-block;
+margin-top:10px;
+color:#3a7d2e;
+text-decoration:none;
+font-weight:600;
+}
+</style>
+</head>
+
+<body>
+
+<h1>Cikkek</h1>
+
+<div id="articles"></div>
+
+<script>
+
+const sheetURL="https://docs.google.com/spreadsheets/d/1js2SD4xPHS49y5Jo6pjBzScwXnePuTzE2yghCn2pJjU/gviz/tq";
+
+async function loadArticles(){
+
+const res=await fetch(sheetURL);
+const text=await res.text();
+
+const json=JSON.parse(text.substring(47).slice(0,-2));
+const rows=json.table.rows;
+
+const container=document.getElementById("articles");
+
+rows.reverse().forEach(r=>{
+
+const title=r.c[0]?.v || "";
+const slug=r.c[1]?.v || "";
+const excerpt=r.c[2]?.v || "";
+
+const div=document.createElement("div");
+div.className="article";
+
+div.innerHTML=`
+<h2>${title}</h2>
+<p>${excerpt}</p>
+<a href="article.html?slug=${slug}">Elolvasom →</a>
+`;
+
+container.appendChild(div);
+
+});
+
+}
+
+loadArticles();
+
+</script>
+
+</body>
+</html>
