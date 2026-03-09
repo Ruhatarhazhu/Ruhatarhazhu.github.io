@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Cikk – Ruhatárház</title>
 <meta name="description" content="Hasznos cikkek használt ruhák vásárlásáról és divatról a Ruhatárház blogján.">
+<link rel="canonical" href="https://ruhatarhaz.hu/article.html">
 
 <script id="schemaData" type="application/ld+json"></script>
   
@@ -148,6 +149,7 @@ const schema = {
 "@type":"Article",
 "headline": title,
 "description": content.substring(0,150),
+"datePublished": new Date().toISOString(),
 "author":{
 "@type":"Organization",
 "name":"Ruhatárház"
