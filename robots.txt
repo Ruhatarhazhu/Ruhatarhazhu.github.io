@@ -1,0 +1,23 @@
+# Ruhatárház robots.txt
+
+User-agent: *
+Allow: /
+
+# Tiltott rendszer oldalak
+Disallow: /404.html
+Disallow: /search
+Disallow: /cgi-bin/
+Disallow: /tmp/
+Disallow: /private/
+
+# Sitemap
+Sitemap: https://ruhatarhaz.hu/sitemap.xml
+
+
+# Google bot
+User-agent: Googlebot
+Allow: /
+
+# Bing bot
+User-agent: Bingbot
+Allow: /
