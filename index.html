@@ -613,7 +613,7 @@ paginated.forEach((p,index)=>{
 const card=document.createElement("div");
 card.className="card";
 card.innerHTML=`<img src="${p.images[0]}" ${index < 4 ? 'loading="eager"' : 'loading="lazy"'} decoding="async"><h3>${p.name}</h3><div class="price">${p.price} Ft</div>`;
-if(p.sold === "TRUE"){
+if(p.sold && p.sold.toString().toLowerCase() === "true"){
   const b = document.createElement("div");
   b.className = "badge";
   b.innerText = "ELADVA";
