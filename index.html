@@ -764,5 +764,11 @@ document.getElementById("mobileMenu").classList.remove("open");
 document.getElementById("menuOverlay").classList.remove("active");
 
 }
+  document.querySelectorAll(".dropdown-content a").forEach(link => {
+  link.addEventListener("click", () => {
+    const dropdown = document.querySelector(".dropdown-content");
+    dropdown.style.display = "none";
+  });
+});
 </script></body>
 </html>
