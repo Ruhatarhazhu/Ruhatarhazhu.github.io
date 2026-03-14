@@ -244,9 +244,11 @@ async function loadProduct(){
 
   const slug = getSlug();
 
-  rows.forEach(r => {
+  let productFound = false;
 
-  if(!r.c) return;
+rows.forEach(r => {
+
+  if(!r.c || productFound) return;
 
   const name = r.c[0]?.v || "";
   const price = r.c[1]?.v || "";
@@ -258,6 +260,8 @@ async function loadProduct(){
   const rowSlug = slugify(name);
 
   if(rowSlug === slug){
+
+    productFound = true;
 
     document.getElementById("name").innerText = name;
     document.getElementById("price").innerText = price + " Ft";
@@ -288,40 +292,6 @@ async function loadProduct(){
   }
 
 });
-      
-      addProductSchema({
-  name: name,
-  price: price,
-  description: description,
-  image: "https://ruhatarhaz.hu/images/" + imagesRaw.split("|")[0].trim(),
-  url: window.location.href
-});
-
-      if(size){
-        document.getElementById("size").innerText = "Méret: " + size;
-      }
-
-      currentImages = imagesRaw
-  .split("|")
-  .map(img => "/images/" + img.trim());
-
-      currentIndex = 0;
-      updateImage();
-
-      const thumbs = document.getElementById("thumbs");
-      thumbs.innerHTML = "";
-
-      currentImages.forEach((img,i)=>{
-        const t = document.createElement("img");
-        t.src = img;
-        t.onclick = ()=>{ currentIndex=i; updateImage(); };
-        thumbs.appendChild(t);
-      });
-    }
-
-  });
-}
-
 document.addEventListener("DOMContentLoaded", function() {
   loadProduct();
 });
