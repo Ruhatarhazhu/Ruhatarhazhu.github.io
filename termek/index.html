@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<script>
+
+const slug = window.location.pathname
+.split("/termek/")[1];
+
+if(slug){
+window.location.replace("/product.html?slug="+slug);
+}else{
+window.location.replace("/");
+}
+
+</script>
+</head>
+<body></body>
+</html>
