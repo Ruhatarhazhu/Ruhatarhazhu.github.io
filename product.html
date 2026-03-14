@@ -12,6 +12,8 @@
 <meta property="og:url" id="ogUrl" content="https://ruhatarhaz.hu/">
 <meta property="og:site_name" content="Ruhatárház">
 
+  <link rel="canonical" id="canonicalUrl">
+
 <link rel="icon" type="image/png" href="favicon.png">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 
@@ -247,6 +249,9 @@ async function loadProduct(){
   const rows = json.table.rows;
 
   const slug = getSlug();
+
+  document.getElementById("canonicalUrl").href =
+"https://ruhatarhaz.hu/termek/" + slug;
 
   let productFound = false;
 
