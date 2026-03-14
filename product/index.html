@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+<meta charset="UTF-8">
+<title>Termék – Ruhatárház</title>
+
+<script>
+
+const path = window.location.pathname;
+
+/* slug kinyerése */
+const slug = path.split("/product/")[1];
+
+/* átirányítás */
+if(slug){
+  window.location.replace(
+    "/product.html?slug=" + slug
+  );
+}
+
+</script>
+
+</head>
+<body>
+
+Betöltés...
+
+</body>
+</html>
