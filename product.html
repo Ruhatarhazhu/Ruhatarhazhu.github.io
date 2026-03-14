@@ -6,10 +6,10 @@
 <title>Termék – Ruhatárház</title>
 
 <meta property="og:type" content="product">
-<meta property="og:title" content="Termék – Ruhatárház">
-<meta property="og:description" content="Minőségi használt ruhák kedvező áron a Ruhatárház kínálatában.">
-<meta property="og:image" content="https://ruhatarhaz.hu/logo.webp">
-<meta property="og:url" content="https://ruhatarhaz.hu/">
+<meta property="og:title" id="ogTitle" content="Termék – Ruhatárház">
+<meta property="og:description" id="ogDesc" content="Minőségi használt ruhák kedvező áron a Ruhatárház kínálatában.">
+<meta property="og:image" id="ogImage" content="https://ruhatarhaz.hu/logo.webp">
+<meta property="og:url" id="ogUrl" content="https://ruhatarhaz.hu/">
 <meta property="og:site_name" content="Ruhatárház">
 
 <link rel="icon" type="image/png" href="favicon.png">
@@ -173,14 +173,18 @@ let currentIndex = 0;
 
 function getSlug(){
 
+// 1️⃣ slug paraméter
 const urlSlug = new URLSearchParams(window.location.search).get("slug");
+if(urlSlug) return urlSlug;
 
-if(urlSlug){
-return urlSlug;
+// 2️⃣ /termek/slug URL
+const path = window.location.pathname;
+if(path.startsWith("/termek/")){
+return path.replace("/termek/","");
 }
 
+// 3️⃣ hash fallback
 const hashSlug = window.location.hash.replace("#","");
-
 return hashSlug;
 
 }
