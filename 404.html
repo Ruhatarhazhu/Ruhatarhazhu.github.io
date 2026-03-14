@@ -1,23 +1,18 @@
 <!DOCTYPE html>
-<html lang="hu">
+<html>
 <head>
 <meta charset="UTF-8">
-<title>Betöltés...</title>
-
 <script>
 
 const path = window.location.pathname.replace("/", "");
 
-if(path && path !== "index.html"){
+if(path){
 window.location.replace("/product.html?slug=" + path);
 }else{
 window.location.replace("/");
 }
 
 </script>
-
 </head>
-<body>
-Betöltés...
-</body>
+<body></body>
 </html>
