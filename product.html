@@ -265,6 +265,28 @@ rows.forEach(r => {
 
   if(rowSlug === slug){
 
+    document.title = name + " – Ruhatárház";
+
+document.getElementById("ogTitle").setAttribute(
+"content",
+name + " – Ruhatárház"
+);
+
+document.getElementById("ogDesc").setAttribute(
+"content",
+description
+);
+
+document.getElementById("ogImage").setAttribute(
+"content",
+"https://ruhatarhaz.hu/images/" + imagesRaw.split("|")[0].trim()
+);
+
+document.getElementById("ogUrl").setAttribute(
+"content",
+window.location.href
+);
+
     productFound = true;
 
     document.getElementById("name").innerText = name;
