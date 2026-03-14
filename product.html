@@ -246,51 +246,48 @@ async function loadProduct(){
 
   rows.forEach(r => {
 
-    const name = r.c[0]?.v || "";
-    const price = r.c[1]?.v || "";
-    const imagesRaw = r.c[2]?.v || "";
-    const description = r.c[3]?.v || "";
-    const link = r.c[4]?.v || "";
-    const size = r.c[8]?.v || "";
+  if(!r.c) return;
 
-    if(slugify(name).includes(slug))
+  const name = r.c[0]?.v || "";
+  const price = r.c[1]?.v || "";
+  const imagesRaw = r.c[2]?.v || "";
+  const description = r.c[3]?.v || "";
+  const link = r.c[4]?.v || "";
+  const size = r.c[8]?.v || "";
 
-      if(slugify(name) === slug){
+  const rowSlug = slugify(name);
 
-  console.log("TERMÉK:", name);
-  console.log("imagesRaw:", imagesRaw);
+  if(rowSlug === slug){
 
-  const images = imagesRaw.split("|").map(img => "/images/" + img.trim());
-  console.log("images array:", images);
+    document.getElementById("name").innerText = name;
+    document.getElementById("price").innerText = price + " Ft";
+    document.getElementById("description").innerText = description;
+    document.getElementById("vintedLink").href = link;
 
-  currentImages = images;
+    if(size){
+      document.getElementById("size").innerText = "Méret: " + size;
+    }
 
-      document.getElementById("name").innerText = name;
-      document.getElementById("price").innerText = price + " Ft";
-      document.getElementById("description").innerText = description;
-      document.getElementById("vintedLink").href = link;
+    currentImages = imagesRaw
+      .split("|")
+      .map(img => "/images/" + img.trim());
 
-      document.title = name + " – Ruhatárház";
+    currentIndex = 0;
+    updateImage();
 
-document.getElementById("ogTitle").setAttribute(
-"content",
-name + " – Ruhatárház"
-);
+    const thumbs = document.getElementById("thumbs");
+    thumbs.innerHTML = "";
 
-document.getElementById("ogDescription").setAttribute(
-"content",
-description
-);
+    currentImages.forEach((img,i)=>{
+      const t = document.createElement("img");
+      t.src = img;
+      t.onclick = ()=>{ currentIndex=i; updateImage(); };
+      thumbs.appendChild(t);
+    });
 
-document.getElementById("ogImage").setAttribute(
-"content",
-window.location.origin + "/images/" + imagesRaw.split("|")[0].trim()
-);
+  }
 
-document.getElementById("ogUrl").setAttribute(
-"content",
-window.location.href
-);
+});
       
       addProductSchema({
   name: name,
