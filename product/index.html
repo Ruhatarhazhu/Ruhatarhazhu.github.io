@@ -2,28 +2,21 @@
 <html lang="hu">
 <head>
 <meta charset="UTF-8">
-<title>Termék – Ruhatárház</title>
+<title>Betöltés...</title>
 
 <script>
 
-const path = window.location.pathname;
+const slug = window.location.hash.substring(1);
 
-/* slug kinyerése */
-const slug = path.split("/product/")[1];
-
-/* átirányítás */
 if(slug){
-  window.location.replace(
-    "/product.html?slug=" + slug
-  );
+window.location.href =
+"/product.html?slug=" + slug;
 }
 
 </script>
 
 </head>
 <body>
-
 Betöltés...
-
 </body>
 </html>
