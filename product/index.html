@@ -6,17 +6,20 @@
 
 <script>
 
-const slug = window.location.hash.substring(1);
+const slug = window.location.hash.replace("#","");
 
 if(slug){
-window.location.href =
-"/product.html?slug=" + slug;
+window.location.replace("/product.html?slug=" + slug);
+}else{
+window.location.replace("/");
 }
 
 </script>
 
 </head>
 <body>
+
 Betöltés...
+
 </body>
 </html>
