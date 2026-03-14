@@ -5,6 +5,14 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Termék – Ruhatárház</title>
 
+<meta property="og:type" content="product">
+
+<meta property="og:title" id="ogTitle" content="Termék – Ruhatárház">
+<meta property="og:description" id="ogDescription" content="Minőségi ruhák a Ruhatárház kínálatában.">
+<meta property="og:image" id="ogImage" content="https://ruhatarhaz.hu/logo.webp">
+<meta property="og:url" id="ogUrl" content="">
+<meta property="og:site_name" content="Ruhatárház">
+
 <link rel="icon" type="image/png" href="favicon.png">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 
@@ -242,6 +250,28 @@ async function loadProduct(){
       document.getElementById("price").innerText = price + " Ft";
       document.getElementById("description").innerText = description;
       document.getElementById("vintedLink").href = link;
+
+      document.title = name + " – Ruhatárház";
+
+document.getElementById("ogTitle").setAttribute(
+"content",
+name + " – Ruhatárház"
+);
+
+document.getElementById("ogDescription").setAttribute(
+"content",
+description
+);
+
+document.getElementById("ogImage").setAttribute(
+"content",
+window.location.origin + "/images/" + imagesRaw.split("|")[0].trim()
+);
+
+document.getElementById("ogUrl").setAttribute(
+"content",
+window.location.href
+);
       
       addProductSchema({
   name: name,
