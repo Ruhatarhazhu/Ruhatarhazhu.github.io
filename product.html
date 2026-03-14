@@ -253,7 +253,7 @@ async function loadProduct(){
     const link = r.c[4]?.v || "";
     const size = r.c[8]?.v || "";
 
-    if(slugify(name) === slug){
+    if(slugify(name).includes(slug))
 
       document.getElementById("name").innerText = name;
       document.getElementById("price").innerText = price + " Ft";
