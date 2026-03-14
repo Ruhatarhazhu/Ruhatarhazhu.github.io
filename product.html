@@ -255,6 +255,16 @@ async function loadProduct(){
 
     if(slugify(name).includes(slug))
 
+      if(slugify(name) === slug){
+
+  console.log("TERMÉK:", name);
+  console.log("imagesRaw:", imagesRaw);
+
+  const images = imagesRaw.split("|").map(img => "/images/" + img.trim());
+  console.log("images array:", images);
+
+  currentImages = images;
+
       document.getElementById("name").innerText = name;
       document.getElementById("price").innerText = price + " Ft";
       document.getElementById("description").innerText = description;
