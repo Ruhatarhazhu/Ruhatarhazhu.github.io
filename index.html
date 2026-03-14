@@ -628,7 +628,7 @@ if(p.sold && p.sold.toString().toLowerCase() === "true"){
 }
 
 
-card.onclick=()=>window.location.href="product.html?slug="+slugify(p.name);
+card.onclick=()=>window.location.href="/termek/"+slugify(p.name)+".html";
 grid.appendChild(card);
 });
 renderPagination(filtered.length);
