@@ -4,12 +4,14 @@
 <meta charset="UTF-8">
 <script>
 
-const path = window.location.pathname.replace("/", "");
+const path = window.location.pathname;
 
-if(path){
-window.location.replace("/product.html?slug=" + path);
-}else{
-window.location.replace("/");
+if(path.startsWith("/termek/")){
+
+const slug = path.replace("/termek/","");
+
+window.location.replace("/product.html?slug="+slug);
+
 }
 
 </script>
