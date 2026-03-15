@@ -165,15 +165,16 @@ let currentImages = [];
 let currentIndex = 0;
 
 function getSlug(){
-  return new URLSearchParams(window.location.search).get("slug");
+return new URLSearchParams(window.location.search).get("slug");
 }
 
 function slugify(text){
-  return text
-    .toLowerCase()
-    .normalize("NFD")
-    .replace(/[\u0300-\u036f]/g, "")
-    .replace(/ /g,"-");
+return text
+.toLowerCase()
+.normalize("NFD")
+.replace(/[\u0300-\u036f]/g,"")
+.replace(/[^a-z0-9 ]/g,"")
+.replace(/\s+/g,"-")
 }
 
   function addProductSchema(product){
