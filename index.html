@@ -606,7 +606,7 @@ if(String(p.sold).trim().toUpperCase() === "TRUE"){
 }
 
 
-card.onclick=()=>window.location.href="/termek/"+slugify(p.name);
+card.onclick=()=>window.location.href="/termek/"+slugify(p.name)
 grid.appendChild(card);
 });
 renderPagination(filtered.length);
