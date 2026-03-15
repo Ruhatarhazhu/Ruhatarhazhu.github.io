@@ -1,20 +1,89 @@
 <!DOCTYPE html>
 <html lang="hu">
 <head>
+
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title id="title">Termék – Ruhatárház</title>
+
+<meta property="og:type" content="product">
+<meta property="og:title" id="ogTitle" content="Ruhatárház termék">
+<meta property="og:description" id="ogDesc" content="Minőségi használt ruhák a Ruhatárház kínálatában.">
+<meta property="og:image" id="ogImage" content="https://ruhatarhaz.hu/logo.webp">
+
+<link rel="canonical" id="canonical">
+
+</head>
+
+<body>
+
+<h1 id="name"></h1>
+
+<img id="image" style="max-width:300px">
+
+<p id="price"></p>
+
+<p id="description"></p>
 
 <script>
 
-const slug = window.location.pathname.split("/termek/")[1];
+const sheet =
+"https://opensheet.elk.sh/1PlqIBtGVKHCQIoDk4gAbIOIpRh_-bEGRXmexvaT5sos/termekek"
 
-if(slug){
-window.location.replace("/product.html?slug="+slug);
-}else{
-window.location.replace("/");
+function getSlug(){
+return window.location.pathname.split("/termek/")[1]
 }
+
+function slugify(text){
+return text
+.toLowerCase()
+.normalize("NFD")
+.replace(/[\u0300-\u036f]/g,"")
+.replace(/ /g,"-")
+}
+
+async function load(){
+
+const res = await fetch(sheet)
+const products = await res.json()
+
+const slug = getSlug()
+
+const product = products.find(p =>
+slugify(p.name) === slug
+)
+
+if(!product) return
+
+const image = product.images.split("|")[0]
+
+document.title = product.name + " – Ruhatárház"
+
+document.getElementById("name").innerText = product.name
+document.getElementById("price").innerText = product.price + " Ft"
+document.getElementById("description").innerText = product.description
+
+document.getElementById("image").src =
+"/images/" + image
+
+document.getElementById("ogTitle").content =
+product.name + " – Ruhatárház"
+
+document.getElementById("ogDesc").content =
+product.description
+
+document.getElementById("ogImage").content =
+"https://ruhatarhaz.hu/images/" + image
+
+document.getElementById("canonical").href =
+"https://ruhatarhaz.hu/termek/" + slug
+
+}
+
+load()
 
 </script>
 
-</head>
-<body></body>
+</body>
 </html>
