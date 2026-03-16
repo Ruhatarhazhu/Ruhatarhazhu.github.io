@@ -484,6 +484,37 @@ grid-template-columns:1fr;
 
     </section>
 
+<script>
+
+const articles = [
+
+{title:"Hogyan hat a divat az önbizalomra?", url:"/cikk/divat-es-onbizalom.html"},
+{title:"Miért érdemes használt ruhát vásárolni?", url:"/cikk/hasznalt-ruha-elonyei.html"},
+{title:"Kapszula ruhatár – hogyan működik?", url:"/cikk/kapszula-ruhatar.html"},
+{title:"Fast fashion vs second hand", url:"/cikk/fast-fashion-vs-second-hand.html"},
+{title:"Ruhák élettartama", url:"/cikk/ruhak-elettartama.html"},
+{title:"Online használt ruha vásárlás", url:"/cikk/hasznalt-ruha-online.html"}
+
+];
+
+const container = document.getElementById("latestArticles");
+
+articles.slice(0,4).forEach(article => {
+
+const div = document.createElement("div");
+div.className = "article";
+
+div.innerHTML = `
+<h3>${article.title}</h3>
+<a href="${article.url}">Elolvasom →</a>
+`;
+
+container.appendChild(div);
+
+});
+
+</script>
+    
 <footer>© 2026 Ruhatárház – Minden termék Vinteden vásárolható.</footer>
 </div><div class="modal" id="imageModal">
 <img id="modalImg">
