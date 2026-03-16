@@ -497,40 +497,35 @@ font-size:16px;
 
 <h2>Legújabb cikkek</h2>
 
-<div id="latestArticles"></div>
+<div class="latestArticles">
+
+<div class="article">
+<h2>Hogyan hat a divat az önbizalomra?</h2>
+<p>Az öltözködés hatással lehet arra, hogyan érezzük magunkat.</p>
+<a href="/cikk/divat-es-onbizalom.html">Elolvasom →</a>
+</div>
+
+<div class="article">
+<h2>Miért érdemes használt ruhát vásárolni?</h2>
+<p>A használt ruhák vásárlása pénzt takarít meg és környezetbarát.</p>
+<a href="/cikk/hasznalt-ruha-elonyei.html">Elolvasom →</a>
+</div>
+
+<div class="article">
+<h2>Kapszula ruhatár – hogyan működik?</h2>
+<p>A kapszula ruhatár kevés, jól kombinálható darabból áll.</p>
+<a href="/cikk/kapszula-ruhatar.html">Elolvasom →</a>
+</div>
+
+<div class="article">
+<h2>Fast fashion vs second hand</h2>
+<p>Mi a különbség a fast fashion és a használt ruhák között?</p>
+<a href="/cikk/fast-fashion-vs-second-hand.html">Elolvasom →</a>
+</div>
+
+</div>
 
     </section>
-
-<script>
-
-const articles = [
-
-{title:"Hogyan hat a divat az önbizalomra?", url:"/cikk/divat-es-onbizalom.html"},
-{title:"Miért érdemes használt ruhát vásárolni?", url:"/cikk/hasznalt-ruha-elonyei.html"},
-{title:"Kapszula ruhatár – hogyan működik?", url:"/cikk/kapszula-ruhatar.html"},
-{title:"Fast fashion vs second hand", url:"/cikk/fast-fashion-vs-second-hand.html"},
-{title:"Ruhák élettartama", url:"/cikk/ruhak-elettartama.html"},
-{title:"Online használt ruha vásárlás", url:"/cikk/hasznalt-ruha-online.html"}
-
-];
-
-const container = document.getElementById("latestArticles");
-
-articles.slice(0,4).forEach(article => {
-
-const div = document.createElement("div");
-div.className = "article";
-
-div.innerHTML = `
-<h3>${article.title}</h3>
-<a href="${article.url}">Elolvasom →</a>
-`;
-
-container.appendChild(div);
-
-});
-
-</script>
     
 <footer>© 2026 Ruhatárház – Minden termék Vinteden vásárolható.</footer>
 </div><div class="modal" id="imageModal">
