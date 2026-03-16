@@ -420,10 +420,43 @@ grid-template-columns:1fr;
 }
 
 .latestArticles{
-margin-top:15px;
-display:grid;
-gap:16px;
-  }
+max-width:900px;
+margin:40px auto;
+}
+
+.latestArticles h2{
+margin-bottom:20px;
+}
+
+.article{
+background:white;
+padding:24px;
+border-radius:14px;
+margin-bottom:18px;
+border:1px solid #eee;
+box-shadow:0 2px 6px rgba(0,0,0,0.04);
+}
+
+.article h2{
+font-size:18px;
+margin-bottom:8px;
+}
+
+.article p{
+font-size:14px;
+color:#666;
+margin-bottom:12px;
+}
+
+.article a{
+color:#3a7d2e;
+font-weight:600;
+text-decoration:none;
+}
+
+.article a:hover{
+text-decoration:underline;
+}
 </style></head>
 <body>
   <div class="mobile-drawer" id="mobileMenu">
@@ -482,36 +515,26 @@ gap:16px;
 </section>
 <div class="pagination"></div>
 
-    <section style="padding:30px">
+    <section class="latestArticles">
 
 <h2>Legújabb cikkek</h2>
 
-<div class="latestArticles">
-
 <div class="article">
-<h2>Hogyan hat a divat az önbizalomra?</h2>
-<p>Az öltözködés hatással lehet arra, hogyan érezzük magunkat.</p>
-<a href="/cikk/divat-es-onbizalom.html">Elolvasom →</a>
+<h2>Miért viselünk külön ruhát különböző munkákhoz?</h2>
+<p>A különböző munkák gyakran külön öltözködést igényelnek.</p>
+<a href="/cikk/munka-ruhazat.html">Elolvasom →</a>
 </div>
 
 <div class="article">
-<h2>Miért érdemes használt ruhát vásárolni?</h2>
-<p>A használt ruhák vásárlása pénzt takarít meg és környezetbarát.</p>
-<a href="/cikk/hasznalt-ruha-elonyei.html">Elolvasom →</a>
+<h2>Miért változik az emberek öltözködése a hét különböző napjain?</h2>
+<p>Az emberek gyakran más ruhákat viselnek hétköznap és hétvégén.</p>
+<a href="/cikk/het-napjai-oltozkodes.html">Elolvasom →</a>
 </div>
 
 <div class="article">
-<h2>Kapszula ruhatár – hogyan működik?</h2>
-<p>A kapszula ruhatár kevés, jól kombinálható darabból áll.</p>
-<a href="/cikk/kapszula-ruhatar.html">Elolvasom →</a>
-</div>
-
-<div class="article">
-<h2>Fast fashion vs second hand</h2>
-<p>Mi a különbség a fast fashion és a használt ruhák között?</p>
-<a href="/cikk/fast-fashion-vs-second-hand.html">Elolvasom →</a>
-</div>
-
+<h2>Miért hordunk külön ruhát otthon és utcán?</h2>
+<p>Sok ember külön ruhát visel otthon és a mindennapi programok során.</p>
+<a href="/cikk/otthoni-es-utcai-ruha.html">Elolvasom →</a>
 </div>
 
     </section>
