@@ -4,15 +4,21 @@
 <meta charset="UTF-8">
 <title>Cikkek – Ruhatárház</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Hasznos cikkek használt ruhák vásárlásáról, divatról és online ruhavásárlási tippekről a Ruhatárház blogján.">
+
+<meta name="description" content="Hasznos cikkek használt ruhák vásárlásáról és öltözködésről.">
 
 <style>
+
 body{
 font-family:Inter, sans-serif;
+background:#f6f6f6;
+margin:0;
+padding:40px 20px;
+}
+
+.wrapper{
 max-width:900px;
 margin:auto;
-padding:40px 20px;
-background:#f6f6f6;
 }
 
 h1{
@@ -21,144 +27,108 @@ margin-bottom:30px;
 
 .article{
 background:white;
-padding:20px;
-border-radius:12px;
+padding:22px;
+border-radius:14px;
 margin-bottom:20px;
 border:1px solid #eee;
 }
 
 .article h2{
-margin-bottom:8px;
+font-size:18px;
+margin-bottom:6px;
+}
+
+.article p{
+font-size:14px;
+color:#666;
+margin:0 0 10px 0;
 }
 
 .article a{
-display:inline-block;
-margin-top:10px;
 color:#3a7d2e;
 text-decoration:none;
 font-weight:600;
+font-size:14px;
 }
 
-  .pagination{
-display:flex;
-gap:8px;
-margin-top:30px;
+.article a:hover{
+text-decoration:underline;
 }
 
-.pagination button{
-padding:6px 12px;
-border:1px solid #ddd;
-background:white;
-cursor:pointer;
-border-radius:6px;
-}
-
-.pagination button.active{
-background:#3a7d2e;
-color:white;
-}
 </style>
 </head>
 
 <body>
 
+<div class="wrapper">
+
 <h1>Cikkek</h1>
 
-<div id="articles"></div>
 
-  <div id="pagination"></div>
+<div class="article">
+<h2>Miért viselünk külön ruhát különböző munkákhoz?</h2>
+<p>A különböző munkák gyakran külön öltözködést igényelnek.</p>
+<a href="/cikk/miert-viselunk-kulon-ruhat-kulonbozo-munkakhoz.html">Elolvasom →</a>
+</div>
 
-<script>
 
-const sheetURL="https://docs.google.com/spreadsheets/d/1js2SD4xPHS49y5Jo6pjBzScwXnePuTzE2yghCn2pJjU/gviz/tq?sheet=Cikkek";
+<div class="article">
+<h2>Miért változik az emberek öltözködése a hét különböző napjain?</h2>
+<p>Az emberek gyakran más ruhákat viselnek hétköznap és hétvégén.</p>
+<a href="/cikk/miert-valtozik-az-oltozkodes-a-het-napjain.html">Elolvasom →</a>
+</div>
 
-let articles = [];
-let currentPage = 1;
-const perPage = 15;
 
-async function loadArticles(){
+<div class="article">
+<h2>Miért hordunk külön ruhát otthon és utcán?</h2>
+<p>Sok ember külön ruhát visel otthon és a mindennapi programok során.</p>
+<a href="/cikk/miert-hordunk-kulon-ruhat-otthon-es-utcan.html">Elolvasom →</a>
+</div>
 
-const res = await fetch(sheetURL);
-const text = await res.text();
 
-const json = JSON.parse(
-text.substring(text.indexOf("{"), text.lastIndexOf("}") + 1)
-);
+<div class="article">
+<h2>Miért fontos az öltözködés az első benyomásnál?</h2>
+<p>Az öltözködés hatással lehet az első benyomásra.</p>
+<a href="/cikk/miert-fontos-az-elso-benyomasnal-az-oltozkodes.html">Elolvasom →</a>
+</div>
 
-const rows = json.table.rows;
 
-articles = rows.reverse();
+<div class="article">
+<h2>Miért van minden kultúrának saját öltözködési stílusa?</h2>
+<p>Az öltözködés a kultúra egyik fontos kifejezési formája.</p>
+<a href="/cikk/kulturalis-oltozkodesi-stilusok.html">Elolvasom →</a>
+</div>
 
-render();
 
-}
+<div class="article">
+<h2>Miért halmozódnak fel ruhák a szekrényben?</h2>
+<p>A ruhák gyakran felhalmozódnak a szekrényben.</p>
+<a href="/cikk/miert-halmozodnak-fel-ruhak.html">Elolvasom →</a>
+</div>
 
-function render(){
 
-const container=document.getElementById("articles");
-container.innerHTML="";
+<div class="article">
+<h2>Miért változik az emberek ruhatára az életkorral?</h2>
+<p>Az öltözködési szokások az életkor előrehaladtával változnak.</p>
+<a href="/cikk/ruhatari-valtozas-eletkorral.html">Elolvasom →</a>
+</div>
 
-const start=(currentPage-1)*perPage;
-const paginated=articles.slice(start,start+perPage);
 
-paginated.forEach(r=>{
+<div class="article">
+<h2>Miért hordunk különböző ruhákat különböző helyzetekben?</h2>
+<p>A ruhák gyakran az adott helyzethez és környezethez igazodnak.</p>
+<a href="/cikk/kulonbozo-ruhak-kulonbozo-helyzetekben.html">Elolvasom →</a>
+</div>
 
-if(!r.c) return;
 
-const title = r.c[0]?.v || "";
-const slug = r.c[1]?.v || "";
-const excerpt = r.c[2]?.v || "";
+<div class="article">
+<h2>Miért őriznek meg az emberek régi ruhákat?</h2>
+<p>A ruhák sokszor érzelmi értéket is hordoznak.</p>
+<a href="/cikk/miert-orizzuk-meg-a-regi-ruhak.html">Elolvasom →</a>
+</div>
 
-if(title.toLowerCase() === "cím") return;
-if(!title || !slug) return;
 
-const div=document.createElement("div");
-div.className="article";
-
-div.innerHTML=`
-<h2>${title}</h2>
-<p>${excerpt}</p>
-<a href="article.html?slug=${slug}">Elolvasom →</a>
-`;
-
-container.appendChild(div);
-
-});
-
-renderPagination();
-
-}
-
-function renderPagination(){
-
-const pages=Math.ceil(articles.length/perPage);
-const container=document.getElementById("pagination");
-
-container.innerHTML="";
-container.className="pagination";
-
-for(let i=1;i<=pages;i++){
-
-const btn=document.createElement("button");
-
-btn.textContent=i;
-
-if(i===currentPage) btn.classList.add("active");
-
-btn.onclick=()=>{
-currentPage=i;
-render();
-};
-
-container.appendChild(btn);
-
-}
-
-}
-
-loadArticles();
-
-</script>
+</div>
 
 </body>
 </html>
