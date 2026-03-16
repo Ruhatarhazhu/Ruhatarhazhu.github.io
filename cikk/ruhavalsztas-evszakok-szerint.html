@@ -1,0 +1,102 @@
+
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Hogyan válassz ruhát évszakok szerint? – Ruhatárház</title>
+
+<meta name="description" content="Az évszaknak megfelelő ruhák kiválasztása fontos a kényelem és a praktikum szempontjából.">
+
+<meta property="og:title" content="Hogyan válassz ruhát évszakok szerint?">
+<meta property="og:description" content="Az évszaknak megfelelő ruhák kiválasztása fontos a kényelem és a praktikum szempontjából.">
+<meta property="og:type" content="article">
+
+<link rel="canonical" href="https://ruhatarhaz.hu/cikk/ruhavalsztas-evszakok-szerint">
+
+<style>
+
+body{font-family:Inter, sans-serif;background:#f6f6f6;margin:0;padding:40px 20px;}
+
+.wrapper{max-width:900px;margin:auto;}
+
+.back{display:inline-block;margin-bottom:20px;text-decoration:none;color:#3a7d2e;font-weight:500;}
+
+article{background:white;padding:30px;border-radius:14px;border:1px solid #eee;}
+
+h1{margin-top:0;margin-bottom:20px;}
+
+p{line-height:1.7;margin-bottom:16px;color:#444;}
+
+.highlight{color:#3a7d2e;font-weight:600;text-decoration:none;}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="wrapper">
+
+<a class="back" href="/cikk">← Vissza a cikkekhez</a>
+
+<article>
+
+<h1>Hogyan válassz ruhát évszakok szerint?</h1>
+
+<p>A ruhaválasztásnál érdemes figyelembe venni az évszakot és az időjárási körülményeket.</p><p>Nyáron a könnyű, szellős anyagok a legjobbak, például a pamut vagy a len.</p><p>Ősszel és tavasszal a réteges öltözködés praktikus megoldás.</p><p>Télen a vastagabb anyagok, például a gyapjú vagy a polár segítenek melegen tartani a testet.</p><p>A megfelelő ruhák kiválasztásával kényelmesebb és praktikusabb ruhatárat alakíthatsz ki.</p>
+
+<p>
+Ha minőségi használt ruhákat keresel, nézd meg a
+<a href="/" class="highlight">
+Ruhatárház aktuális kínálatát
+</a>.
+</p>
+
+<h3>Kapcsolódó cikkek</h3>
+<ul id="relatedArticles"></ul>
+
+<script>
+
+const articles = [
+
+{title:"Miért viselünk külön ruhát különböző munkákhoz?", url:"/cikk/munka-ruhazat.html"},
+{title:"Miért változik az öltözködés a hét napjai szerint?", url:"/cikk/het-napjai-oltozkodes.html"},
+{title:"Miért hordunk külön ruhát otthon és utcán?", url:"/cikk/otthoni-es-utcai-ruha.html"},
+{title:"Miért fontos az öltözködés az első benyomásnál?", url:"/cikk/elso-benyomas-oltozkodes.html"},
+{title:"Miért halmozódnak fel ruhák a szekrényben?", url:"/cikk/ruhak-felhalmozodasa.html"},
+{title:"Miért változik az emberek ruhatára az életkorral?", url:"/cikk/ruhatar-valtozasa-eletkorral.html"}
+
+];
+
+function shuffle(array){
+for(let i=array.length-1;i>0;i--){
+const j=Math.floor(Math.random()*(i+1));
+[array[i],array[j]]=[array[j],array[i]];
+}
+}
+
+shuffle(articles);
+
+const container=document.getElementById("relatedArticles");
+
+articles.slice(0,3).forEach(article=>{
+
+const li=document.createElement("li");
+
+li.innerHTML=`<a href="${article.url}" style="color:#3a7d2e;font-weight:600;">${article.title}</a>`;
+
+container.appendChild(li);
+
+});
+
+</script>
+
+</article>
+
+</div>
+
+</body>
+</html>

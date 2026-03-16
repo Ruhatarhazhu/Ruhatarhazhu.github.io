@@ -1,0 +1,102 @@
+
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Hogyan válasszunk ruhát mindennapi viselethez? – Ruhatárház</title>
+
+<meta name="description" content="Ezeket a ruhákat válaszd mindennapi viselethez.">
+
+<meta property="og:title" content="Hogyan válasszunk ruhát mindennapi viselethez?">
+<meta property="og:description" content="Ezeket a ruhákat válaszd mindennapi viselethez.">
+<meta property="og:type" content="article">
+
+<link rel="canonical" href="https://ruhatarhaz.hu/cikk/ruha-mindennapi-viselethez">
+
+<style>
+
+body{font-family:Inter, sans-serif;background:#f6f6f6;margin:0;padding:40px 20px;}
+
+.wrapper{max-width:900px;margin:auto;}
+
+.back{display:inline-block;margin-bottom:20px;text-decoration:none;color:#3a7d2e;font-weight:500;}
+
+article{background:white;padding:30px;border-radius:14px;border:1px solid #eee;}
+
+h1{margin-top:0;margin-bottom:20px;}
+
+p{line-height:1.7;margin-bottom:16px;color:#444;}
+
+.highlight{color:#3a7d2e;font-weight:600;text-decoration:none;}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="wrapper">
+
+<a class="back" href="/cikk">← Vissza a cikkekhez</a>
+
+<article>
+
+<h1>Hogyan válasszunk ruhát mindennapi viselethez?</h1>
+
+<p>A mindennapi ruhák kiválasztásánál a kényelem és a praktikum a legfontosabb szempont. Az olyan darabok, amelyek könnyen kombinálhatók, sokkal hasznosabbak a ruhatárban.</p><p>A semleges színek, például a fekete, szürke vagy fehér könnyen párosíthatók más ruhadarabokkal. Ez segít abban, hogy egyszerűen összeállíthassunk egy teljes szettet.</p><p>Érdemes olyan ruhákat választani, amelyek strapabíró anyagból készültek. Így hosszabb ideig megőrzik az állapotukat.</p><p>Ha minőségi használt ruhákat keresel kedvező áron, érdemes megnézni a Ruhatárház aktuális kínálatát.</p>
+
+<p>
+Ha minőségi használt ruhákat keresel, nézd meg a
+<a href="/" class="highlight">
+Ruhatárház aktuális kínálatát
+</a>.
+</p>
+
+<h3>Kapcsolódó cikkek</h3>
+<ul id="relatedArticles"></ul>
+
+<script>
+
+const articles = [
+
+{title:"Miért viselünk külön ruhát különböző munkákhoz?", url:"/cikk/munka-ruhazat.html"},
+{title:"Miért változik az öltözködés a hét napjai szerint?", url:"/cikk/het-napjai-oltozkodes.html"},
+{title:"Miért hordunk külön ruhát otthon és utcán?", url:"/cikk/otthoni-es-utcai-ruha.html"},
+{title:"Miért fontos az öltözködés az első benyomásnál?", url:"/cikk/elso-benyomas-oltozkodes.html"},
+{title:"Miért halmozódnak fel ruhák a szekrényben?", url:"/cikk/ruhak-felhalmozodasa.html"},
+{title:"Miért változik az emberek ruhatára az életkorral?", url:"/cikk/ruhatar-valtozasa-eletkorral.html"}
+
+];
+
+function shuffle(array){
+for(let i=array.length-1;i>0;i--){
+const j=Math.floor(Math.random()*(i+1));
+[array[i],array[j]]=[array[j],array[i]];
+}
+}
+
+shuffle(articles);
+
+const container=document.getElementById("relatedArticles");
+
+articles.slice(0,3).forEach(article=>{
+
+const li=document.createElement("li");
+
+li.innerHTML=`<a href="${article.url}" style="color:#3a7d2e;font-weight:600;">${article.title}</a>`;
+
+container.appendChild(li);
+
+});
+
+</script>
+
+</article>
+
+</div>
+
+</body>
+</html>
