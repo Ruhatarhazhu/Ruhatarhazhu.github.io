@@ -46,6 +46,46 @@ text-decoration:none;
 Ruhatárház aktuális kínálatát
 </a>.
 </p>
+
+<h3>Kapcsolódó cikkek</h3>
+<ul id="relatedArticles"></ul>
+
+<script>
+
+const articles = [
+
+{title:"Miért viselünk külön ruhát különböző munkákhoz?", url:"/cikk/munka-ruhazat.html"},
+{title:"Miért változik az öltözködés a hét napjai szerint?", url:"/cikk/het-napjai-oltozkodes.html"},
+{title:"Miért hordunk külön ruhát otthon és utcán?", url:"/cikk/otthoni-es-utcai-ruha.html"},
+{title:"Miért fontos az öltözködés az első benyomásnál?", url:"/cikk/elso-benyomas-oltozkodes.html"},
+{title:"Miért halmozódnak fel ruhák a szekrényben?", url:"/cikk/ruhak-felhalmozodasa.html"},
+{title:"Miért változik az emberek ruhatára az életkorral?", url:"/cikk/ruhatar-valtozasa-eletkorral.html"}
+
+];
+
+function shuffle(array){
+for(let i=array.length-1;i>0;i--){
+const j=Math.floor(Math.random()*(i+1));
+[array[i],array[j]]=[array[j],array[i]];
+}
+}
+
+shuffle(articles);
+
+const container=document.getElementById("relatedArticles");
+
+articles.slice(0,3).forEach(article=>{
+
+const li=document.createElement("li");
+
+li.innerHTML=`<a href="${article.url}" style="color:#3a7d2e;font-weight:600;">${article.title}</a>`;
+
+container.appendChild(li);
+
+});
+
+</script>
+  
 </article>
   
 </body>
