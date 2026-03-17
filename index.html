@@ -751,14 +751,26 @@ document.getElementById("menuOverlay").classList.remove("active");
 initCategories();
 render();
 });
-<script src="js/products.js"></script>
-  
+<!-- 1. TERMÉKEK BETÖLTÉSE -->
+<script src="/termek/products.js"></script>
+
+<!-- 2. SAJÁT JS -->
 <script>
-  
+
 let currentPage=1;
+let currentImages=[];
+let currentIndex=0;
 const perPage=20;
 
-/* MINDEN JS IDE */
+function slugify(text){
+  return text
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/ /g,"-");
+}
+
+// ide marad az összes function (initCategories, render stb)
 
 document.addEventListener("DOMContentLoaded", () => {
   initCategories();
