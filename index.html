@@ -610,7 +610,8 @@ if(String(p.sold).trim().toUpperCase() === "TRUE"){
 
 
 card.onclick = () => {
-  const url = window.location.origin + "/termek/" + slugify(p.name) + ".html";
+  window.location.href = "/termek/" + slugify(p.name) + ".html";
+};
   
   console.log("URL:", url);   // 👈 EZ A FONTOS
   
