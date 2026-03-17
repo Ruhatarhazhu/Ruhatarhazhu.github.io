@@ -148,6 +148,9 @@ Megnézem Vinteden
   <script src="/js/products.js"></script>
   <script>
 
+    let currentIndex = 0;
+let images = [];
+
 function slugify(text){
   return text
     .toLowerCase()
@@ -167,6 +170,7 @@ if(product){
   document.getElementById("price").innerText = product.price + " Ft";
   document.getElementById("size").innerText = product.size || "-";
   document.getElementById("desc").innerText = product.description || "";
+  document.getElementById("vintedBtn").href = product.vinted;
 
   // 🔥 GALÉRIA
   images = product.images;
@@ -174,11 +178,6 @@ if(product){
 
 }
 
-    
-  document.getElementById("vintedBtn").href = product.vinted;
-
-    let currentIndex = 0;
-let images = [];
 
 function showImage(){
   document.getElementById("mainImage").src = images[currentIndex];
