@@ -162,7 +162,7 @@ function slugify(text){
 // EZ A FONTOS: a fájlnév slug-ja
 const slug = "sinsay-m-es-noi-pulover";
 
-const product = products.find(p => slugify(p.name) === slug);
+const product = products.find(p => p.slug === slug);
 
 if(product){
 
