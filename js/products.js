@@ -3,6 +3,7 @@ window.products = [
 name:"Sinsay M-es női pulóver",
 slug:"sinsay-m-es-noi-pulover",
 price:1290,
+size:"M",
 images: [
   "/images/product1.webp",
   "/images/product1b.webp",
