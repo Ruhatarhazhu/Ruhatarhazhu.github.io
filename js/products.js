@@ -18,7 +18,7 @@ description:"Szép állapotú női pulóver"
 name:"Női póló",
 slug:"noi-polo",
 price:6990,
-size:"XXL"
+size:"XXL",
 images: [
   "/images/product2.webp",
   "/images/product2b.webp",
