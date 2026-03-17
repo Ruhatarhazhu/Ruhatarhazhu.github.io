@@ -762,56 +762,11 @@ render();
 <!-- 1. TERMÉKEK -->
 <script src="/js/products.js"></script>
 
-<!-- 2. MINDEN JS -->
 <script>
-
-let currentPage=1;
-let currentImages=[];
-let currentIndex=0;
-const perPage=20;
-
-function slugify(text){
-  return text
-    .toLowerCase()
-    .normalize("NFD")
-    .replace(/[\u0300-\u036f]/g, "")
-    .replace(/ /g,"-");
-}
-
-function initCategories(){
-  const select=document.getElementById("categoryFilter");
-  const cats=[...new Set(products.map(p=>p.category))];
-  select.innerHTML='<option value="all">Összes kategória</option>';
-  cats.forEach(cat=>{
-    select.innerHTML+=`<option value="${cat}">${cat}</option>`;
-  });
-}
-
-function render(){
-  let filtered=[...products].reverse();
-
-  const grid=document.querySelector(".products");
-  grid.innerHTML="";
-
-  filtered.forEach(p=>{
-    const card=document.createElement("div");
-    card.className="card";
-
-    card.innerHTML=`
-      <img src="${p.images[0]}">
-      <h3>${p.name}</h3>
-      <div class="price">${p.price} Ft</div>
-    `;
-
-    grid.appendChild(card);
-  });
-}
-
-document.addEventListener("DOMContentLoaded", ()=>{
+document.addEventListener("DOMContentLoaded", () => {
   initCategories();
   render();
 });
-
 </script>
 </body>
 </html>
