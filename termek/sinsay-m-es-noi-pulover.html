@@ -173,9 +173,10 @@ if(product){
   document.getElementById("vintedBtn").href = product.vinted;
 
   // 🔥 GALÉRIA
-  images = product.images;
-  showImage();
+  images = product.images || [];
 
+if(images.length > 0){
+  showImage();
 }
 
 
