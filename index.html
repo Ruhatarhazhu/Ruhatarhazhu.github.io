@@ -777,5 +777,36 @@ document.getElementById("menuOverlay").classList.remove("active");
 initCategories();
 render();
 });
+
+
+let products = [
+{
+name:"Teszt póló",
+price:1990,
+images:["https://via.placeholder.com/300"],
+category:"teszt"
+}
+];
+
+function render(){
+const grid = document.querySelector(".products");
+grid.innerHTML = "";
+
+products.forEach(p=>{
+const card = document.createElement("div");
+card.className="card";
+
+card.innerHTML = `
+<img src="${p.images[0]}">
+<h3>${p.name}</h3>
+<div class="price">${p.price} Ft</div>
+`;
+
+grid.appendChild(card);
+});
+}
+
+document.addEventListener("DOMContentLoaded", render);
+
 </script></body>
 </html>
