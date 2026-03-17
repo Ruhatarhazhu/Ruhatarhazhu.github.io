@@ -1,6 +1,5 @@
-const products = [
-
-{
+window.products = [
+  {
 name:"Sinsay női pulóver",
 price:1290,
 image:"/images/product1.webp",
