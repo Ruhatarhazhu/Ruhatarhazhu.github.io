@@ -172,5 +172,22 @@ if(product){
 }
 
   document.getElementById("vintedBtn").href = product.vinted;
+
+    let currentIndex = 0;
+let images = [];
+
+function showImage(){
+  document.getElementById("mainImage").src = images[currentIndex];
+}
+
+function nextImage(){
+  currentIndex = (currentIndex + 1) % images.length;
+  showImage();
+}
+
+function prevImage(){
+  currentIndex = (currentIndex - 1 + images.length) % images.length;
+  showImage();
+}
   </script>
 </html>
