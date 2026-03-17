@@ -2,6 +2,8 @@
 <html lang="hu">
 <head>
 
+  <script src="/js/products.js"></script>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -90,24 +92,18 @@ color:#555;
 <div class="product-layout">
 
 <div class="image">
-
-<img src="/images/product1.webp" alt="Sinsay női pulóver">
-
+  <img id="image">
 </div>
 
 <div>
 
-<h1>Sinsay M-es női pulóver</h1>
+<h1 id="title"></h1>
 
-<div class="price">2500 Ft</div>
+<div class="price" id="price"></div>
 
-<p><strong>Méret:</strong> M</p>
+<p><strong>Méret:</strong> <span id="size"></span></p>
 
-<p>
-Szép állapotú Sinsay női pulóver.  
-Kényelmes és divatos darab mindennapi viselethez.
-</p>
-
+<p id="desc"></p>
 <a href="VINTED_LINK_IDE" target="_blank" class="button">
 Megnézem Vinteden
 </a>
@@ -119,4 +115,30 @@ Megnézem Vinteden
 </div>
 
 </body>
+  <script>
+
+function slugify(text){
+  return text
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/ /g,"-");
+}
+
+// EZ A FONTOS: a fájlnév slug-ja
+const slug = "sinsay-m-es-noi-pulover";
+
+const product = products.find(p => slugify(p.name) === slug);
+
+if(product){
+
+  document.getElementById("title").innerText = product.name;
+  document.getElementById("price").innerText = product.price + " Ft";
+  document.getElementById("size").innerText = product.size || "-";
+  document.getElementById("desc").innerText = product.description || "";
+  document.getElementById("image").src = product.images[0];
+
+}
+
+  </script>
 </html>
