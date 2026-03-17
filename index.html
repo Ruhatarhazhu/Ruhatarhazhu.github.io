@@ -753,12 +753,16 @@ document.getElementById("menuOverlay").classList.remove("active");
 
 }
   
+  <!-- 1. ELŐSZÖR ez -->
+<script src="/js/products.js"></script>
+
+<!-- 2. UTÁNA ez -->
+<script>
   document.addEventListener("DOMContentLoaded", () => {
-initCategories();
-render();
-});
+    initCategories();
+    render();
+  });
 
 </script>
-  <script src="/js/products.js"></script>
 </body>
 </html>
