@@ -613,7 +613,7 @@ if(String(p.sold).trim().toUpperCase() === "TRUE"){
 
 
 card.onclick = () => {
-  alert(p.slug);
+  window.location.href = "termek/" + p.slug + ".html";
 };
   
 grid.appendChild(card);
