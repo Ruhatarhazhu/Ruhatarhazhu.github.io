@@ -612,11 +612,6 @@ if(String(p.sold).trim().toUpperCase() === "TRUE"){
 card.onclick = () => {
   window.location.href = "/termek/" + slugify(p.name) + ".html";
 };
-  
-  console.log("URL:", url);   // 👈 EZ A FONTOS
-  
-  window.location.href = url;
-};
 grid.appendChild(card);
 });
 renderPagination(filtered.length);
