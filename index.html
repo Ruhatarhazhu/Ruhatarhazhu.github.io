@@ -609,8 +609,9 @@ if(String(p.sold).trim().toUpperCase() === "TRUE"){
 }
 
 
+
 card.onclick = () => {
-  window.location.href = "https://ruhatarhaz.hu/termek/" + slugify(p.name) + ".html";
+  window.location.href = "termek/" + p.slug + ".html";
 };
 grid.appendChild(card);
 });
