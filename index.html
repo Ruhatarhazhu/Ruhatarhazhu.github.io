@@ -568,30 +568,6 @@ const perPage=20;
   }
 
 
-name:"Sinsay női pulóver",
-price:1290,
-images:["/images/product1.webp"],
-category:"Női ruházat"
-},
-{
-name:"Laura Torelli női farmer nadrág",
-price:3990,
-images:["/images/laura.webp"],
-category:"nadrág"
-},
-{
-name:"Megkötős nadrág",
-price:2990,
-images:["/images/megkotos.webp"],
-category:"nadrág"
-},
-{
-name:"Leggings",
-price:1290,
-images:["/images/leggings.webp"],
-category:"nadrág"
-}
-];
 
 function initCategories(){
 const select=document.getElementById("categoryFilter");
@@ -775,6 +751,20 @@ document.getElementById("menuOverlay").classList.remove("active");
 initCategories();
 render();
 });
-  <script src="js/products.js"></script>
+<script src="js/products.js"></script>
+
+<script>
+
+let currentPage=1;
+const perPage=20;
+
+/* MINDEN JS IDE */
+
+document.addEventListener("DOMContentLoaded", () => {
+  initCategories();
+  render();
+});
+
+</script>
 </script></body>
 </html>
