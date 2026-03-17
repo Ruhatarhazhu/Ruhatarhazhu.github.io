@@ -181,6 +181,7 @@ if(images.length > 0){
 
 
 function showImage(){
+  if(images.length === 0) return;
   document.getElementById("mainImage").src = images[currentIndex];
 }
 
