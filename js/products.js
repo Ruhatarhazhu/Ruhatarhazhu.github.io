@@ -23,7 +23,7 @@ images: [
   "/images/product2.webp",
   "/images/product2b.webp",
   "/images/product2c.webp"
-],      // 🔥 EZ IS
+],
 vinted:"https://vinted.hu/...",
 category:"Női ruházat",
 description:"Új egyszer sem viselt"
