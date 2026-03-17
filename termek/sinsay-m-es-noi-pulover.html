@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Sinsay M-es női pulóver – Ruhatárház</title>
+
+<meta name="description" content="Szép állapotú Sinsay női pulóver M méretben kedvező áron.">
+
+<meta property="og:type" content="product">
+<meta property="og:title" content="Sinsay M-es női pulóver – Ruhatárház">
+<meta property="og:description" content="Szép állapotú Sinsay női pulóver M méretben kedvező áron.">
+<meta property="og:image" content="https://ruhatarhaz.hu/images/product1.webp">
+<meta property="og:url" content="https://ruhatarhaz.hu/termek/sinsay-m-es-noi-pulover">
+<meta property="og:site_name" content="Ruhatárház">
+
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="canonical" href="https://ruhatarhaz.hu/termek/sinsay-m-es-noi-pulover">
+
+<link rel="icon" href="/favicon.png">
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+
+body{
+font-family:'Inter',sans-serif;
+background:#f6f6f6;
+margin:0;
+padding:40px 20px;
+}
+
+.wrapper{
+max-width:900px;
+margin:auto;
+background:white;
+padding:40px;
+border-radius:18px;
+box-shadow:0 20px 60px rgba(0,0,0,0.06);
+}
+
+.product-layout{
+display:flex;
+gap:40px;
+flex-wrap:wrap;
+}
+
+.image img{
+width:100%;
+max-width:400px;
+border-radius:14px;
+}
+
+.price{
+font-size:22px;
+font-weight:600;
+margin:15px 0;
+}
+
+.button{
+display:inline-block;
+background:#3a7d2e;
+color:white;
+padding:12px 22px;
+border-radius:10px;
+text-decoration:none;
+margin-top:15px;
+}
+
+.back{
+display:inline-block;
+margin-bottom:20px;
+text-decoration:none;
+color:#555;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="wrapper">
+
+<a href="/" class="back">← Vissza a főoldalra</a>
+
+<div class="product-layout">
+
+<div class="image">
+  <img id="image">
+</div>
+
+<div>
+
+<h1 id="title"></h1>
+
+<div class="price" id="price"></div>
+
+<p><strong>Méret:</strong> <span id="size"></span></p>
+
+<p id="desc"></p>
+<a href="VINTED_LINK_IDE" target="_blank" class="button">
+Megnézem Vinteden
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+</body>
+  <script src="/js/products.js"></script>
+  <script>
+
+function slugify(text){
+  return text
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/ /g,"-");
+}
+
+// EZ A FONTOS: a fájlnév slug-ja
+const slug = "sinsay-m-es-noi-pulover";
+
+const product = products.find(p => slugify(p.name) === slug);
+
+if(product){
+
+  document.getElementById("title").innerText = product.name;
+  document.getElementById("price").innerText = product.price + " Ft";
+  document.getElementById("size").innerText = product.size || "-";
+  document.getElementById("desc").innerText = product.description || "";
+  document.getElementById("image").src = product.images[0];
+
+}
+
+  </script>
+</html>
