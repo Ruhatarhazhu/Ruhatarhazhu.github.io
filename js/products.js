@@ -15,12 +15,17 @@ description:"Szép állapotú női pulóver"
 },
 
 {
-name:"Laura Torelli női farmer nadrág",
-slug:"",
-price:3990,
-images:["/images/laura.webp"],      // 🔥 EZ IS
+name:"Női póló",
+slug:"noi-polo",
+price:6990,
+size:"XXL"
+images: [
+  "/images/product2.webp",
+  "/images/product2b.webp",
+  "/images/product2c.webp"
+],      // 🔥 EZ IS
 vinted:"https://vinted.hu/...",
-category:"nadrág",
-description:"Kényelmes farmer nadrág"
+category:"Női ruházat",
+description:"Új egyszer sem viselt"
 }
 ];
