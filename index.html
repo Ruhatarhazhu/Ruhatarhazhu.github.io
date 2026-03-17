@@ -553,7 +553,7 @@ const CACHE_KEY = "ruhatárhaz_cache";
 const CACHE_TIME_KEY = "ruhatárhaz_cache_time";
 const CACHE_DURATION = 5 * 60 * 1000; // 5 perc
 
-const sheetURL="https://docs.google.com/spreadsheets/d/1PlqIBtGVKHCQIoDk4gAbIOIpRh_-bEGRXmexvaT5sos/gviz/tq?tqx=out:json";
+
 let products=[];
 let currentPage=1;
 let currentImages=[];
@@ -568,59 +568,21 @@ const perPage=20;
     .replace(/ /g,"-");
   }
 
-async function loadProducts(){
-
-  const cached = localStorage.getItem("ruhat_products");
-
-if(cached){
-  products = JSON.parse(cached);
-  initCategories();
-  render();
+  let products = [
+{
+name:"Janina leggings",
+price:1290,
+images:["images/janina.webp"],
+category:"nadrág"
+},
+{
+name:"Laura Torelli női farmer nadrág",
+price:3990,
+images:["images/laura.webp"],
+category:"nadrág"
 }
+];
 
-  try{
-
-    const res = await fetch(sheetURL,{
-cache:"no-store"
-});
-    const text = await res.text();
-
-    const json = JSON.parse(
-  text.substring(text.indexOf("{"), text.lastIndexOf("}") + 1)
-);
-    const rows = json.table.rows;
-
-    products = [];
-
-    rows.forEach(r => {
-
-      if(!r.c) return;
-
-      products.push({
-        name: r.c[0]?.v || "",
-        price: parseInt(r.c[1]?.v || 0),
-        images: (r.c[2]?.v || "")
-          .split("|")
-          .map(i=>"images/"+i.trim()),
-        description: r.c[3]?.v || "",
-        link: r.c[4]?.v || "",
-        new: r.c[5]?.v || "",
-        sold: r.c[6]?.v || "",
-        category: r.c[7]?.v || ""
-      });
-
-    });
-
-    localStorage.setItem("ruhat_products", JSON.stringify(products));
-
-    initCategories();
-    render();
-
-  }catch(err){
-    console.error("Sheet hiba:", err);
-  }
-
-}
 function initCategories(){
 const select=document.getElementById("categoryFilter");
 const cats=[...new Set(products.map(p=>p.category))];
@@ -661,7 +623,7 @@ if(String(p.sold).trim().toUpperCase() === "TRUE"){
 }
 
 
-card.onclick=()=>window.location.href="/product.html?slug="+slugify(p.name);
+card.onclick=()=>window.location.href="/termek/"+slugify(p.name)+".html";
 grid.appendChild(card);
 });
 renderPagination(filtered.length);
@@ -718,7 +680,7 @@ header.classList.remove("scrolled");
 document.getElementById("categoryFilter").addEventListener("change",()=>{currentPage=1;render();});
 document.getElementById("sortPrice").addEventListener("change",()=>{currentPage=1;render();});
 
-document.addEventListener("DOMContentLoaded", loadProducts);
+
 
   async function loadLatestArticles(){
 
@@ -798,5 +760,10 @@ document.getElementById("mobileMenu").classList.remove("open");
 document.getElementById("menuOverlay").classList.remove("active");
 
 }
+
+  document.addEventListener("DOMContentLoaded", () => {
+initCategories();
+render();
+});
 </script></body>
 </html>
