@@ -167,10 +167,14 @@ if(product){
   document.getElementById("price").innerText = product.price + " Ft";
   document.getElementById("size").innerText = product.size || "-";
   document.getElementById("desc").innerText = product.description || "";
-  document.getElementById("image").src = product.images[0];
+
+  // 🔥 GALÉRIA
+  images = product.images;
+  showImage();
 
 }
 
+    
   document.getElementById("vintedBtn").href = product.vinted;
 
     let currentIndex = 0;
