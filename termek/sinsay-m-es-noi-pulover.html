@@ -148,51 +148,51 @@ Megnézem Vinteden
   <script src="/js/products.js"></script>
   <script>
 
-    let currentIndex = 0;
-let images = [];
+    document.addEventListener("DOMContentLoaded", () => {
 
-function slugify(text){
-  return text
-    .toLowerCase()
-    .normalize("NFD")
-    .replace(/[\u0300-\u036f]/g, "")
-    .replace(/ /g,"-");
-}
+  let currentIndex = 0;
+  let images = [];
 
-// EZ A FONTOS: a fájlnév slug-ja
-const slug = "sinsay-m-es-noi-pulover";
+  function showImage(){
+    if(images.length === 0) return;
+    document.getElementById("mainImage").src = images[currentIndex];
+  }
 
-const product = products.find(p => p.slug === slug);
+  function nextImage(){
+    currentIndex = (currentIndex + 1) % images.length;
+    showImage();
+  }
 
-if(product){
+  function prevImage(){
+    currentIndex = (currentIndex - 1 + images.length) % images.length;
+    showImage();
+  }
 
-  document.getElementById("title").innerText = product.name;
-  document.getElementById("price").innerText = product.price + " Ft";
-  document.getElementById("size").innerText = product.size || "-";
-  document.getElementById("desc").innerText = product.description || "";
-  document.getElementById("vintedBtn").href = product.vinted;
+  window.nextImage = nextImage;
+  window.prevImage = prevImage;
 
-  // 🔥 GALÉRIA
-  images = product.images || [];
+  const slug = "sinsay-m-es-noi-pulover";
 
-if(images.length > 0){
-  showImage();
-}
+  const product = products.find(p => p.slug === slug);
 
-}
-function showImage(){
-  if(images.length === 0) return;
-  document.getElementById("mainImage").src = images[currentIndex];
-}
+  console.log(product); // DEBUG
 
-function nextImage(){
-  currentIndex = (currentIndex + 1) % images.length;
-  showImage();
-}
+  if(product){
 
-function prevImage(){
-  currentIndex = (currentIndex - 1 + images.length) % images.length;
-  showImage();
-}
+    document.getElementById("title").innerText = product.name;
+    document.getElementById("price").innerText = product.price + " Ft";
+    document.getElementById("size").innerText = product.size || "-";
+    document.getElementById("desc").innerText = product.description || "";
+    document.getElementById("vintedBtn").href = product.vinted;
+
+    images = product.images || [];
+
+    if(images.length > 0){
+      showImage();
+    }
+
+  }
+
+});
   </script>
 </html>
