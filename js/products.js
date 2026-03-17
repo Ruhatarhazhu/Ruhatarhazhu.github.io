@@ -7,7 +7,7 @@ images: [
   "/images/product1.webp",
   "/images/product1b.webp",
   "/images/product1c.webp"
-]   // 🔥 EZ A LÉNYEG
+],
 vinted:"https://www.vinted.hu/items/8371202554-portland-noi-pulover",
 category:"Női ruházat",
 description:"Szép állapotú női pulóver"
