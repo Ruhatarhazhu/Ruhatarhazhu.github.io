@@ -1,9 +1,9 @@
 const products = [
 
 {
-name:"Janina leggings",
+name:"Sinsay női pulóver",
 price:1290,
-image:"/images/janina.webp",
+image:"/images/product1.webp",
 url:"/termek/janina-leggings.html"
 },
 
