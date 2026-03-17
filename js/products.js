@@ -1,6 +1,7 @@
 window.products = [
 {
 name:"Sinsay M-es női pulóver",
+slug:"sinsay-m-es-noi-pulover",
 price:1290,
 images:["/images/product1.webp"],   // 🔥 EZ A LÉNYEG
 url:"/termek/sinsay-m-es-noi-pulover.html",
