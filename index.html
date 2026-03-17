@@ -554,7 +554,6 @@ const CACHE_TIME_KEY = "ruhatárhaz_cache_time";
 const CACHE_DURATION = 5 * 60 * 1000; // 5 perc
 
 
-let products=[];
 let currentPage=1;
 let currentImages=[];
 let currentIndex=0;
@@ -572,25 +571,25 @@ let products = [
 {
 name:"Sinsay női pulóver",
 price:1290,
-images:["images/product1.webp"],
+images:["/images/product1.webp"],
 category:"Női ruházat"
 },
 {
 name:"Laura Torelli női farmer nadrág",
 price:3990,
-images:["images/laura.webp"],
+images:["/images/laura.webp"],
 category:"nadrág"
 },
 {
 name:"Megkötős nadrág",
 price:2990,
-images:["images/megkotos.webp"],
+images:["/images/megkotos.webp"],
 category:"nadrág"
 },
 {
 name:"Leggings",
 price:1290,
-images:["images/leggings.webp"],
+images:["/images/leggings.webp"],
 category:"nadrág"
 }
 ];
@@ -777,36 +776,5 @@ document.getElementById("menuOverlay").classList.remove("active");
 initCategories();
 render();
 });
-
-
-let products = [
-{
-name:"Teszt póló",
-price:1990,
-images:["https://via.placeholder.com/300"],
-category:"teszt"
-}
-];
-
-function render(){
-const grid = document.querySelector(".products");
-grid.innerHTML = "";
-
-products.forEach(p=>{
-const card = document.createElement("div");
-card.className="card";
-
-card.innerHTML = `
-<img src="${p.images[0]}">
-<h3>${p.name}</h3>
-<div class="price">${p.price} Ft</div>
-`;
-
-grid.appendChild(card);
-});
-}
-
-document.addEventListener("DOMContentLoaded", render);
-
 </script></body>
 </html>
