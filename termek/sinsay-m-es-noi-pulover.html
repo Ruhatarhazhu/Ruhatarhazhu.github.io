@@ -77,6 +77,31 @@ text-decoration:none;
 color:#555;
 }
 
+  .gallery{
+  position:relative;
+  max-width:400px;
+}
+
+.gallery img{
+  width:100%;
+  border-radius:14px;
+}
+
+.gallery-controls{
+  display:flex;
+  justify-content:center;
+  gap:10px;
+  margin-top:10px;
+}
+
+.gallery-controls button{
+  padding:6px 12px;
+  border:none;
+  border-radius:8px;
+  background:#3a7d2e;
+  color:white;
+  cursor:pointer;
+}
 </style>
 
 </head>
@@ -90,7 +115,14 @@ color:#555;
 <div class="product-layout">
 
 <div class="image">
-  <img id="image">
+  <div class="gallery">
+  <img id="mainImage">
+
+  <div class="gallery-controls">
+    <button onclick="prevImage()">◀</button>
+    <button onclick="nextImage()">▶</button>
+  </div>
+  </div>
 </div>
 
 <div>
