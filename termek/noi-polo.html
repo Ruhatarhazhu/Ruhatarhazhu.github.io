@@ -171,14 +171,14 @@ Megnézem Vinteden
   window.nextImage = nextImage;
   window.prevImage = prevImage;
 
-  const slug = "sinsay-m-es-noi-pulover";
-
+  // ✅ SLUG az URL-ből
   const slug = window.location.pathname
-  .replace("/termek/","")
-  .replace(".html","")
-  .replace("/","")
-  .trim();
+    .replace("/termek/","")
+    .replace(".html","")
+    .replace("/","")
+    .trim();
 
+  // ✅ TERMÉK KERESÉS
   const product = products.find(p =>
     p.slug.trim().toLowerCase() === slug.toLowerCase()
   );
@@ -200,6 +200,8 @@ Megnézem Vinteden
       showImage();
     }
 
+  } else {
+    console.log("NINCS TALÁLAT");
   }
 
 });
