@@ -173,9 +173,11 @@ Megnézem Vinteden
 
   const slug = "sinsay-m-es-noi-pulover";
 
-  const product = products.find(p => 
-  p.slug.trim().toLowerCase() === slug.toLowerCase()
-);
+  const slug = window.location.pathname
+  .replace("/termek/","")
+  .replace(".html","")
+  .replace("/","")
+  .trim();
 
   console.log(product); // DEBUG
 
