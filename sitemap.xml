@@ -20,12 +20,6 @@
 <loc>https://ruhatarhaz.hu/tudasbazis/</loc>
 <changefreq>monthly</changefreq>
 <priority>0.7</priority>
-</url><!-- Tudásbázis főoldal -->
-  
-<url>
-<loc>https://ruhatarhaz.hu/tudasbazis/</loc>
-<changefreq>monthly</changefreq>
-<priority>0.7</priority>
 </url>
   
   <!-- Tudásbázis cikkek -->
