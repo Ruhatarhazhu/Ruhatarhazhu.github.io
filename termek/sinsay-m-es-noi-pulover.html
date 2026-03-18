@@ -179,7 +179,12 @@ Megnézem Vinteden
   .replace("/","")
   .trim();
 
-  console.log(product); // DEBUG
+  const product = products.find(p =>
+    p.slug.trim().toLowerCase() === slug.toLowerCase()
+  );
+
+  console.log("SLUG:", slug);
+  console.log("PRODUCT:", product);
 
   if(product){
 
