@@ -173,7 +173,9 @@ Megnézem Vinteden
 
   const slug = "sinsay-m-es-noi-pulover";
 
-  const product = products.find(p => p.slug === slug);
+  const product = products.find(p => 
+  p.slug.trim().toLowerCase() === slug.toLowerCase()
+);
 
   console.log(product); // DEBUG
 
