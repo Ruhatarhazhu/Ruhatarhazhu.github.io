@@ -203,9 +203,7 @@ Megnézem Vinteden
   } else {
     console.log("NINCS TALÁLAT");
   }
-
+history.replaceState(null, "", window.location.pathname.replace(".html",""));
 });
-
-    history.replaceState(null, "", window.location.pathname.replace(".html",""));
   </script>
 </html>
