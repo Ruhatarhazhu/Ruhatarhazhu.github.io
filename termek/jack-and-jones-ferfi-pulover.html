@@ -43,9 +43,10 @@ box-shadow:0 20px 60px rgba(0,0,0,0.06);
 }
 
 .product-layout{
-display:flex;
-gap:40px;
-flex-wrap:wrap;
+  display:flex;
+  gap:40px;
+  flex-wrap:nowrap;   /* 👈 EZ A LÉNYEG */
+  align-items:flex-start;
 }
 
 .image img{
@@ -101,6 +102,15 @@ color:#555;
   background:#3a7d2e;
   color:white;
   cursor:pointer;
+}
+
+.image{
+  flex:1;
+  max-width:400px;
+}
+
+.product-layout > div:last-child{
+  flex:1;
 }
 </style>
 
