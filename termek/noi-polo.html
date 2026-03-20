@@ -7,7 +7,7 @@
 
 <title>Női póló – Ruhatárház</title>
 
-<meta name="description" content="Uj, egyszer sem viselt női póló">
+<meta name="description" content="Új, egyszer sem viselt női póló">
 
 <meta property="og:type" content="product">
 <meta property="og:title" content="Női póló – Ruhatárház">
@@ -43,9 +43,11 @@ box-shadow:0 20px 60px rgba(0,0,0,0.06);
 }
 
 .product-layout{
-display:flex;
-gap:40px;
-flex-wrap:wrap;
+  display:flex;
+  gap:40px;
+  flex-wrap:nowrap;   /* 👈 EZ A LÉNYEG */
+  align-items:flex-start;
+  flex-direction:row;
 }
 
 .image img{
@@ -101,6 +103,33 @@ color:#555;
   background:#3a7d2e;
   color:white;
   cursor:pointer;
+}
+
+.image{
+  flex:1;
+  max-width:400px;
+  min-width:250px;
+}
+
+.product-layout > div:last-child{
+  flex:1;
+  min-width:300px;
+}
+
+@media(max-width:768px){
+  .product-layout{
+    flex-direction:column !important;
+    gap:20px; /* kicsit kisebb tér mobilon */
+  }
+
+  .image{
+    max-width:100%;
+    min-width:unset;
+  }
+
+  .product-layout > div:last-child{
+    min-width:unset;
+  }
 }
 </style>
 
