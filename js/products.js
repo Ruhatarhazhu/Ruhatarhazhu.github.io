@@ -27,5 +27,20 @@ images: [
 vinted:"https://vinted.hu/...",
 category:"Női ruházat",
 description:"Új egyszer sem viselt"
+},
+
+{
+name:"Jack and Jones férfi pulóver",
+slug:"jack-and-jones-ferfi-pulover",
+price:2490,
+size:"XXL",
+images: [
+  "/images/product3.webp",
+  "/images/product3b.webp",
+  "/images/product3c.webp"
+],
+vinted:"https://vinted.hu/...",
+category:"Férfi ruházat",
+description:"Jó állapotban lévő férfi pulóver"
 }
 ];
