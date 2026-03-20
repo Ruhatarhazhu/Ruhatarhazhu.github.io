@@ -47,6 +47,7 @@ box-shadow:0 20px 60px rgba(0,0,0,0.06);
   gap:40px;
   flex-wrap:nowrap;   /* 👈 EZ A LÉNYEG */
   align-items:flex-start;
+  flex-direction:row;
 }
 
 .image img{
@@ -117,7 +118,7 @@ color:#555;
 
 @media(max-width:768px){
   .product-layout{
-    flex-direction:column;
+    flex-direction:column !important;
     gap:20px; /* kicsit kisebb tér mobilon */
   }
 
