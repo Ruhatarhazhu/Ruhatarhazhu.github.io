@@ -118,6 +118,16 @@ color:#555;
 @media(max-width:768px){
   .product-layout{
     flex-direction:column;
+    gap:20px; /* kicsit kisebb tér mobilon */
+  }
+
+  .image{
+    max-width:100%;
+    min-width:unset;
+  }
+
+  .product-layout > div:last-child{
+    min-width:unset;
   }
 }
 </style>
