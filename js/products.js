@@ -57,5 +57,20 @@ images: [
 vinted:"https://vinted.hu/...",
 category:"Női ruházat",
 description:"Jó állapotban van, folt és szakadás mentes"
+},
+
+{
+name:"Gyerek Champion kapucnis pulóver",
+slug:"gyerek-champion-kapucnis-pulover",
+price:2490,
+size:"XS",
+images: [
+  "/images/product5.webp",
+  "/images/product5b.webp",
+  "/images/product5c.webp"
+],
+vinted:"https://vinted.hu/...",
+category:"Férfi ruházat",
+description:"Jó állapotban lévő, gyerek kapucnis pulóver"
 }
 ];
