@@ -42,5 +42,20 @@ images: [
 vinted:"https://vinted.hu/...",
 category:"Férfi ruházat",
 description:"Jó állapotban lévő férfi pulóver"
+},
+
+{
+name:"Lonsdale női kapucnis pulóver",
+slug:"lonsdale-noi-kapucnis-pulover",
+price:2490,
+size:"XXL",
+images: [
+  "/images/product4.webp",
+  "/images/product4b.webp",
+  "/images/product4c.webp"
+],
+vinted:"https://vinted.hu/...",
+category:"Női ruházat",
+description:"Jó állapotban van, folt és szakadás mentes"
 }
 ];
