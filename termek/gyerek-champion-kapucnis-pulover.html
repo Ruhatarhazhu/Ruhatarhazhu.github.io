@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Gyerek Champion kapucnis pulóver – Ruhatárház</title>
+
+<meta name="description" content="Jó állapotban lévő, gyerek kapucnis pulóver">
+
+<meta property="og:type" content="product">
+<meta property="og:title" content="Gyerek Champion kapucnis pulóver – Ruhatárház">
+<meta property="og:description" content="Jó állapotban lévő, gyerek kapucnis pulóver">
+<meta property="og:image" content="https://ruhatarhaz.hu/images/product5.webp">
+<meta property="og:url" content="https://ruhatarhaz.hu/termek/gyerek-champion-kapucnis-pulover">
+<meta property="og:site_name" content="Ruhatárház">
+
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="canonical" href="https://ruhatarhaz.hu/termek/gyerek-champion-kapucnis-pulover">
+
+<link rel="icon" href="/favicon.png">
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+
+body{
+font-family:'Inter',sans-serif;
+background:#f6f6f6;
+margin:0;
+padding:40px 20px;
+}
+
+.wrapper{
+max-width:900px;
+margin:auto;
+background:white;
+padding:40px;
+border-radius:18px;
+box-shadow:0 20px 60px rgba(0,0,0,0.06);
+}
+
+.product-layout{
+  display:flex;
+  gap:40px;
+  flex-wrap:nowrap;   /* 👈 EZ A LÉNYEG */
+  align-items:flex-start;
+  flex-direction:row;
+}
+
+.image img{
+width:100%;
+max-width:400px;
+border-radius:14px;
+}
+
+.price{
+font-size:22px;
+font-weight:600;
+margin:15px 0;
+}
+
+.button{
+display:inline-block;
+background:#3a7d2e;
+color:white;
+padding:12px 22px;
+border-radius:10px;
+text-decoration:none;
+margin-top:15px;
+}
+
+.back{
+display:inline-block;
+margin-bottom:20px;
+text-decoration:none;
+color:#555;
+}
+
+  .gallery{
+  position:relative;
+  max-width:400px;
+}
+
+.gallery img{
+  width:100%;
+  border-radius:14px;
+}
+
+.gallery-controls{
+  display:flex;
+  justify-content:center;
+  gap:10px;
+  margin-top:10px;
+}
+
+.gallery-controls button{
+  padding:6px 12px;
+  border:none;
+  border-radius:8px;
+  background:#3a7d2e;
+  color:white;
+  cursor:pointer;
+}
+
+.image{
+  flex:1;
+  max-width:400px;
+  min-width:250px;
+}
+
+.product-layout > div:last-child{
+  flex:1;
+  min-width:300px;
+}
+
+@media(max-width:768px){
+  .product-layout{
+    flex-direction:column !important;
+    gap:20px; /* kicsit kisebb tér mobilon */
+  }
+
+  .image{
+    max-width:100%;
+    min-width:unset;
+  }
+
+  .product-layout > div:last-child{
+    min-width:unset;
+  }
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="wrapper">
+
+<a href="/" class="back">← Vissza a főoldalra</a>
+
+<div class="product-layout">
+
+<div class="image">
+  <div class="gallery">
+  <img id="mainImage">
+
+  <div class="gallery-controls">
+    <button onclick="prevImage()">◀</button>
+    <button onclick="nextImage()">▶</button>
+  </div>
+  </div>
+</div>
+
+<div>
+
+<h1 id="title"></h1>
+
+<div class="price" id="price"></div>
+
+<p><strong>Méret:</strong> <span id="size"></span></p>
+
+<p id="desc"></p>
+<a id="vintedBtn" target="_blank" class="button">
+Megnézem Vinteden
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+</body>
+  <script src="/js/products.js"></script>
+  <script>
+
+    document.addEventListener("DOMContentLoaded", () => {
+
+  let currentIndex = 0;
+  let images = [];
+
+  function showImage(){
+    if(images.length === 0) return;
+    document.getElementById("mainImage").src = images[currentIndex];
+  }
+
+  function nextImage(){
+    currentIndex = (currentIndex + 1) % images.length;
+    showImage();
+  }
+
+  function prevImage(){
+    currentIndex = (currentIndex - 1 + images.length) % images.length;
+    showImage();
+  }
+
+  window.nextImage = nextImage;
+  window.prevImage = prevImage;
+
+  // ✅ SLUG az URL-ből
+  const slug = window.location.pathname
+    .replace("/termek/","")
+    .replace(".html","")
+    .replace("/","")
+    .trim();
+
+  // ✅ TERMÉK KERESÉS
+  const product = products.find(p =>
+    p.slug.trim().toLowerCase() === slug.toLowerCase()
+  );
+
+  console.log("SLUG:", slug);
+  console.log("PRODUCT:", product);
+
+  if(product){
+
+    document.getElementById("title").innerText = product.name;
+    document.getElementById("price").innerText = product.price + " Ft";
+    document.getElementById("size").innerText = product.size || "-";
+    document.getElementById("desc").innerText = product.description || "";
+    document.getElementById("vintedBtn").href = product.vinted;
+
+    images = product.images || [];
+
+    if(images.length > 0){
+      showImage();
+    }
+
+  } else {
+    console.log("NINCS TALÁLAT");
+  }
+history.replaceState(null, "", window.location.pathname.replace(".html",""));
+});
+  </script>
+</html>
