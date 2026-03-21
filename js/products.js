@@ -48,7 +48,7 @@ description:"Jó állapotban lévő férfi pulóver"
 name:"Lonsdale női kapucnis pulóver",
 slug:"lonsdale-noi-kapucnis-pulover",
 price:2490,
-size:"XXL",
+size:"XS",
 images: [
   "/images/product4.webp",
   "/images/product4b.webp",
