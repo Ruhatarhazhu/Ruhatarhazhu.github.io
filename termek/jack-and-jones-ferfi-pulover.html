@@ -160,6 +160,10 @@ color:#555;
 
 <div class="price" id="price"></div>
 
+<div id="soldBadge" style="display:none;color:red;font-weight:600;margin-top:10px;">
+  ELADVA
+</div>
+
 <p><strong>Méret:</strong> <span id="size"></span></p>
 
 <p id="desc"></p>
@@ -223,6 +227,10 @@ Megnézem Vinteden
     document.getElementById("desc").innerText = product.description || "";
     document.getElementById("vintedBtn").href = product.vinted;
 
+if(product.sold){
+  document.getElementById("soldBadge").style.display = "block";
+}
+    
     images = product.images || [];
 
     if(images.length > 0){
