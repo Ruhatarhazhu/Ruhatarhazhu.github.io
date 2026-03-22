@@ -88,10 +88,27 @@ sold:false,
 images: [
   "/images/product6.webp",
   "/images/product6b.webp",
-  "/images/product6c.webp"
+  "/images/product6c.webp",
+  "/images/product6d.webp"
 ],
 vinted:"https://vinted.hu/...",
 category:"Férfi ruházat",
 description:"Hátán van egy kis varrás"
+},
+
+{
+name:"Siksilk férfi melegítő nadrág",
+slug:"siksilk-ferfi-melegito-nadrag",
+price:2490,
+size:"13-14 évesnek",
+sold:false,
+images: [
+  "/images/product7.webp",
+  "/images/product7b.webp",
+  "/images/product7c.webp"
+],
+vinted:"https://vinted.hu/...",
+category:"Férfi ruházat",
+description:"Jó állapotban van,nincs rajta folt vagy szakadás"
 }
 ];
