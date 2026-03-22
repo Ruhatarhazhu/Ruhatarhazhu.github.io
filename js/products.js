@@ -92,6 +92,6 @@ images: [
 ],
 vinted:"https://vinted.hu/...",
 category:"Férfi ruházat",
-description:"Jó állapotban lévő, gyerek kapucnis felso"
+description:"Hátán van egy kis varrás"
 }
 ];
