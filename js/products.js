@@ -100,7 +100,7 @@ description:"Hátán van egy kis varrás"
 name:"Siksilk férfi melegítő nadrág",
 slug:"siksilk-ferfi-melegito-nadrag",
 price:2490,
-size:"13-14 évesnek",
+size:"M",
 sold:false,
 images: [
   "/images/product7.webp",
@@ -109,6 +109,22 @@ images: [
 ],
 vinted:"https://vinted.hu/...",
 category:"Férfi ruházat",
-description:"Jó állapotban van,nincs rajta folt vagy szakadás"
+description:"Jó állapotban van, nincs rajta folt vagy szakadás"
+},
+
+{
+name:"Vans gyerek kapucnis pulóver",
+slug:"vans-gyerek-kapucnis-pulover",
+price:2490,
+size:"XL",
+sold:false,
+images: [
+  "/images/product8.webp",
+  "/images/product8b.webp",
+  "/images/product8c.webp"
+],
+vinted:"https://vinted.hu/...",
+category:"Férfi ruházat",
+description:"Jó állapotban lévő, gyerek kapucnis pulóver"
 }
 ];
