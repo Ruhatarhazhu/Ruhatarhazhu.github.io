@@ -77,5 +77,21 @@ images: [
 vinted:"https://vinted.hu/...",
 category:"Férfi ruházat",
 description:"Jó állapotban lévő, gyerek kapucnis pulóver"
+},
+
+{
+name:"Gyerek adidas kapucnis felső",
+slug:"gyerek-adidas-kapucnis-felso",
+price:2490,
+size:"13-14 évesnek",
+sold:false,
+images: [
+  "/images/product6.webp",
+  "/images/product6b.webp",
+  "/images/product6c.webp"
+],
+vinted:"https://vinted.hu/...",
+category:"Férfi ruházat",
+description:"Jó állapotban lévő, gyerek kapucnis felso"
 }
 ];
