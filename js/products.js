@@ -126,5 +126,21 @@ images: [
 vinted:"https://vinted.hu/...",
 category:"Férfi ruházat",
 description:"Jó állapotban lévő, gyerek kapucnis pulóver"
+},
+
+{
+name:"Jack and Jones férfi kapucnis pulóver",
+slug:"jack-and-jones-ferfi-kapucnis-pulover",
+price:2490,
+size:"XL",
+sold:false,
+images: [
+  "/images/product9.webp",
+  "/images/product9b.webp",
+  "/images/product9c.webp"
+],
+vinted:"https://vinted.hu/...",
+category:"Férfi ruházat",
+description:"Jó állapotban lévő, férfi kapucnis pulóver"
 }
 ];
