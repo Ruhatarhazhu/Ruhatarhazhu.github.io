@@ -142,5 +142,21 @@ images: [
 vinted:"https://vinted.hu/...",
 category:"Férfi ruházat",
 description:"Jó állapotban lévő, férfi kapucnis pulóver"
+},
+
+{
+name:"Jack and Jones fehér pulóver",
+slug:"jack-and-jones-feher-pulover",
+price:2490,
+size:"M",
+sold:false,
+images: [
+  "/images/product10.webp",
+  "/images/product10b.webp",
+  "/images/product10c.webp"
+],
+vinted:"https://vinted.hu/...",
+category:"Férfi ruházat",
+description:"Jó állapotban lévő, férfi pulóver"
 }
 ];
