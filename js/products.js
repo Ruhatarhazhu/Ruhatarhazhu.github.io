@@ -101,7 +101,7 @@ name:"Siksilk férfi melegítő nadrág",
 slug:"siksilk-ferfi-melegito-nadrag",
 price:2490,
 size:"M",
-sold:false,
+sold:true,
 images: [
   "/images/product7.webp",
   "/images/product7b.webp",
