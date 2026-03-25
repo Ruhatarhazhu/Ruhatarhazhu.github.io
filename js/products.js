@@ -190,5 +190,37 @@ images: [
 vinted:"https://vinted.hu/...",
 category:"Férfi ruházat",
 description:"Jó állapotban lévő, férfi kapucnis pulóver"
+},
+
+{
+name:"Prada férfi póló",
+slug:"prada-ferfi-polo",
+price:2490,
+size:"XXL",
+sold:false,
+images: [
+  "/images/product13.webp",
+  "/images/product13b.webp",
+  "/images/product13c.webp",
+  "/images/product13d.webp"
+],
+vinted:"https://vinted.hu/...",
+category:"Férfi ruházat",
+description:"Jó állapotban lévő, férfi póló"
+},
+
+{
+name:"FB Sister női has pulóver",
+slug:"fb-sister-noi-has-pulover",
+price:2490,
+size:"L",
+sold:false,
+images: [
+  "/images/product14.webp",
+  "/images/product14b.webp"
+  ],
+vinted:"https://vinted.hu/...",
+category:"Női ruházat",
+description:"Jó állapotban lévő, női pulóver"
 }
 ];
