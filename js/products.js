@@ -325,7 +325,7 @@ name:"Bershka női pulóver",
 slug:"bershka-noi-pulover",
 price:2490,
 size:"M",
-sold:true,
+sold:false,
 images: [
   "/images/product21.webp",
   "/images/product21b.webp",
