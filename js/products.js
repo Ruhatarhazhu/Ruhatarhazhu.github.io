@@ -318,5 +318,21 @@ images: [
 vinted:"https://vinted.hu/...",
 category:"Női ruházat",
 description:"Új címkés leggings"
+},
+
+{
+name:"Bershka női pulóver",
+slug:"bershka-noi-pulover",
+price:2490,
+size:"M",
+sold:true,
+images: [
+  "/images/product21.webp",
+  "/images/product21b.webp",
+  "/images/product21c.webp"
+],
+vinted:"https://vinted.hu/...",
+category:"Női ruházat",
+description:"Jó állapotban lévő, noi pulóver"
 }
 ];
