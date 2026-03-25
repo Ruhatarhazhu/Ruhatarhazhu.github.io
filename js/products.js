@@ -222,5 +222,21 @@ images: [
 vinted:"https://vinted.hu/...",
 category:"Női ruházat",
 description:"Jó állapotban lévő, női pulóver"
+},
+
+{
+name:"F&F női farmer nadrág",
+slug:"fandf-noi-farmer-nadrag",
+price:2490,
+size:"XL",
+sold:true,
+images: [
+  "/images/product15.webp",
+  "/images/product15b.webp",
+  "/images/product15c.webp"
+],
+vinted:"https://vinted.hu/...",
+category:"Női ruházat",
+description:"Jó állapotban lévő, noi farmer nadrág"
 }
 ];
