@@ -237,6 +237,54 @@ images: [
 ],
 vinted:"https://vinted.hu/...",
 category:"Női ruházat",
-description:"Jó állapotban lévő, noi farmer nadrág"
+description:"Jó állapotban lévő, női farmer nadrág"
+},
+
+{
+name:"Only női farmer nadrág",
+slug:"only-noi-farmer-nadrag",
+price:2490,
+size:"M 32",
+sold:true,
+images: [
+  "/images/product16.webp",
+  "/images/product16b.webp",
+  "/images/product16c.webp"
+],
+vinted:"https://vinted.hu/...",
+category:"Női ruházat",
+description:"Jó állapotban lévő, női farmer nadrág"
+},
+
+{
+name:"Jó állapotú leggings",
+slug:"jo-allapotu-leggings",
+price:2490,
+size:"XL",
+sold:true,
+images: [
+  "/images/product17.webp",
+  "/images/product17b.webp",
+  "/images/product17c.webp"
+],
+vinted:"https://vinted.hu/...",
+category:"Női ruházat",
+description:"Jó állapotban lévő leggings"
+},
+
+{
+name:"Csíkos nadrág",
+slug:"csikos-nadrag",
+price:2490,
+size:"XXL",
+sold:true,
+images: [
+  "/images/product18.webp",
+  "/images/product18b.webp",
+  "/images/product18c.webp"
+],
+vinted:"https://vinted.hu/...",
+category:"Női ruházat",
+description:"Jó állapotban lévő, női csíkos nadrág"
 }
 ];
