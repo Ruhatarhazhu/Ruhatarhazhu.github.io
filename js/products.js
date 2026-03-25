@@ -158,5 +158,37 @@ images: [
 vinted:"https://vinted.hu/...",
 category:"Férfi ruházat",
 description:"Jó állapotban lévő, férfi pulóver"
+},
+
+{
+name:"DC férfi pulóver",
+slug:"dc-ferfi-pulover",
+price:2490,
+size:"M",
+sold:false,
+images: [
+  "/images/product11.webp",
+  "/images/product11b.webp",
+  "/images/product11c.webp"
+],
+vinted:"https://vinted.hu/...",
+category:"Férfi ruházat",
+description:"Jó állapotban lévő, férfi pulóver"
+},
+
+{
+name:"Nike férfi kapucnis pulóver",
+slug:"nike-ferfi-kapucnis-pulover",
+price:2490,
+size:"XXL",
+sold:false,
+images: [
+  "/images/product12.webp",
+  "/images/product12b.webp",
+  "/images/product12c.webp"
+],
+vinted:"https://vinted.hu/...",
+category:"Férfi ruházat",
+description:"Jó állapotban lévő, férfi kapucnis pulóver"
 }
 ];
