@@ -286,5 +286,37 @@ images: [
 vinted:"https://vinted.hu/...",
 category:"Női ruházat",
 description:"Jó állapotban lévő, női csíkos nadrág"
+},
+
+{
+name:"Laura Torelli női farmer nadrág",
+slug:"laura-torelli-noi-farmer-nadrag",
+price:2490,
+size:"XL",
+sold:true,
+images: [
+  "/images/product19.webp",
+  "/images/product19b.webp",
+  "/images/product19c.webp"
+],
+vinted:"https://vinted.hu/...",
+category:"Női ruházat",
+description:"Jó állapotban lévő, noi farmer nadrág"
+},
+
+{
+name:"Janina leggings",
+slug:"janina-leggings",
+price:2490,
+size:"XL",
+sold:true,
+images: [
+  "/images/product20.webp",
+  "/images/product20b.webp",
+  "/images/product20c.webp"
+],
+vinted:"https://vinted.hu/...",
+category:"Női ruházat",
+description:"Új címkés leggings"
 }
 ];
