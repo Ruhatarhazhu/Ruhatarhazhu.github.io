@@ -350,5 +350,22 @@ images: [
 vinted:"https://vinted.hu/...",
 category:"Női ruházat",
 description:"Új, címkés pepco leggings"
+},
+
+{
+name:"Szoknya nadrág",
+slug:"szoknya-nadrag",
+price:1290,
+size:"XL",
+sold:false,
+images: [
+  "/images/product23.webp",
+  "/images/product23b.webp",
+  "/images/product23c.webp",
+  "/images/product23d.webp"
+],
+vinted:"https://vinted.hu/...",
+category:"Női ruházat",
+description:"Jó állapotban lévő, szoknya nadrág"
 }
 ];
