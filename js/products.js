@@ -334,5 +334,21 @@ images: [
 vinted:"https://vinted.hu/...",
 category:"Női ruházat",
 description:"Jó állapotban lévő, noi pulóver"
+},
+
+{
+name:"Pepco leggings",
+slug:"pepco-leggings",
+price:1290,
+size:"L",
+sold:false,
+images: [
+  "/images/product22.webp",
+  "/images/product22b.webp",
+  "/images/product22c.webp"
+],
+vinted:"https://vinted.hu/...",
+category:"Női ruházat",
+description:"Új, címkés pepco leggings"
 }
 ];
