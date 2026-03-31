@@ -355,7 +355,7 @@ description:"Új, címkés pepco leggings"
 {
 name:"Szoknya nadrág",
 slug:"szoknya-nadrag",
-price:1290,
+price:2490,
 size:"XL",
 sold:false,
 images: [
