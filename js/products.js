@@ -367,5 +367,21 @@ images: [
 vinted:"https://vinted.hu/...",
 category:"Női ruházat",
 description:"Jó állapotban lévő, szoknya nadrág"
+},
+
+{
+name:"Kötött pulóver",
+slug:"kotott-pulover",
+price:2490,
+size:"XL",
+sold:false,
+images: [
+  "/images/product24.webp",
+  "/images/product24b.webp",
+  "/images/product24c.webp"
+],
+vinted:"https://vinted.hu/...",
+category:"Női ruházat",
+description:"Jó állapotban lévő, kötött pulóver"
 }
 ];
