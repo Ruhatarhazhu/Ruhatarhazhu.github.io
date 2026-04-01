@@ -416,5 +416,22 @@ images: [
 vinted:"https://vinted.hu/...",
 category:"Női ruházat",
 description:"Ülepénél kopott, női farmer nadrág"
+},
+
+{
+name:"Pull & Bear nadrág",
+slug:"pull-and-bear-nadrag",
+price:1490,
+size:"32",
+sold:false,
+images: [
+  "/images/product27.webp",
+  "/images/product27b.webp",
+  "/images/product27c.webp",
+  "/images/product27d.webp"
+],
+vinted:"https://vinted.hu/...",
+category:"Női ruházat",
+description:"Ülepénél kopott"
 }
 ];
