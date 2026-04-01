@@ -383,5 +383,21 @@ images: [
 vinted:"https://vinted.hu/...",
 category:"Női ruházat",
 description:"Jó állapotban lévő, kötött pulóver"
+},
+
+{
+name:"Shein kapucnis pulóver",
+slug:"shein-kapucnis-pulover",
+price:2490,
+size:"XL",
+sold:false,
+images: [
+  "/images/product25.webp",
+  "/images/product25b.webp",
+  "/images/product25c.webp"
+],
+vinted:"https://vinted.hu/...",
+category:"Női ruházat",
+description:"Jó állapotban lévő, kapucnis pulóver"
 }
 ];
