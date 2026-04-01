@@ -399,5 +399,22 @@ images: [
 vinted:"https://vinted.hu/...",
 category:"Női ruházat",
 description:"Jó állapotban lévő, kapucnis pulóver"
+},
+
+{
+name:"F&F farmer nadrág",
+slug:"fandf-farmer-nadrag",
+price:1490,
+size:"XL",
+sold:false,
+images: [
+  "/images/product26.webp",
+  "/images/product26b.webp",
+  "/images/product26c.webp",
+  "/images/product26d.webp"
+],
+vinted:"https://vinted.hu/...",
+category:"Női ruházat",
+description:"Ülepénél kopott, női farmer nadrág"
 }
 ];
